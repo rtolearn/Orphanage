@@ -27,7 +27,7 @@ h1 {
 }
 
 h3 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .greetings h1,
