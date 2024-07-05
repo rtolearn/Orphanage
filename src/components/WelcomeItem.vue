@@ -1,4 +1,5 @@
 <template>
+  <Breadcrumb :home="home" :model="items" />
   <div class="item">
     <i>
       <slot name="icon"></slot>
@@ -10,7 +11,24 @@
       <slot></slot>
     </div>
   </div>
+  <Button class="form-button p-button-sm" label="Button" />
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+const home = ref({
+  icon: "pi pi-home",
+});
+
+const items = ref([
+  { label: "Electronics" },
+  { label: "Computer" },
+  { label: "Accessories" },
+  { label: "Keyboard" },
+  { label: "Wireless" },
+]);
+</script>
 
 <style scoped>
 .item {
@@ -59,7 +77,7 @@ h3 {
   }
 
   .item:before {
-    content: ' ';
+    content: " ";
     border-left: 1px solid var(--color-border);
     position: absolute;
     left: 0;
@@ -68,7 +86,7 @@ h3 {
   }
 
   .item:after {
-    content: ' ';
+    content: " ";
     border-left: 1px solid var(--color-border);
     position: absolute;
     left: 0;
