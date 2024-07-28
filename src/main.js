@@ -14,7 +14,7 @@ app.use(PrimeVue, {
         preset: Aura
     }
 });
-app.component('Button', Button);
-app.component("Breadcrumb", Breadcrumb);
-app.component("Menubar", Menubar);
+app.component('ButtonUsed', Button);
+app.component("BreadcrumbUsed", Breadcrumb);
+app.component("MenubarUsed", Menubar);
 app.mount('#app');
