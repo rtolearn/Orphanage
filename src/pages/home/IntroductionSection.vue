@@ -8,7 +8,7 @@
     <div
       class="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"
     />
-    <div class="mx-auto max-w-2xl lg:max-w-4xl">
+    <div class="mx-auto max-w-2xl lg:max-w-4xl m-0">
       <img
         class="mx-auto h-12"
         src="https://tailwindui.com/img/logos/workcation-logo-indigo-600.svg"
@@ -28,9 +28,9 @@
     </div>
   </div>
   <div class="w-1/2 m-auto display-block">
-    <carousel :items-to-show="2">
+    <carousel :items-to-show="3">
       <slide v-for="(imgSrc, index) in img" :key="index" class="w-full">
-        <img :src="imgSrc" alt="Image" style="width: 80%; height: auto" />
+        <img :src="imgSrc" alt="Image" style="width: 100%; height: auto" />
       </slide>
 
       <template #addons>

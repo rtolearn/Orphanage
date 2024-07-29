@@ -1,250 +1,123 @@
 <template>
-  <header class="bg-white">
-    <nav
-      class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
-      aria-label="Global"
-    >
-      <div class="flex lg:flex-1">
-        <a href="#" class="-m-1.5 p-1.5">
-          <span class="sr-only">Your Company</span>
-          <img
-            class="h-8 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt=""
+  <div class="card">
+    <Menubar :model="items">
+      <template #start>
+        <svg
+          width="35"
+          height="40"
+          viewBox="0 0 35 40"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-8"
+        >
+          <path
+            d="M25.87 18.05L23.16 17.45L25.27 20.46V29.78L32.49 23.76V13.53L29.18 14.73L25.87 18.04V18.05ZM25.27 35.49L29.18 31.58V27.67L25.27 30.98V35.49ZM20.16 17.14H20.03H20.17H20.16ZM30.1 5.19L34.89 4.81L33.08 12.33L24.1 15.67L30.08 5.2L30.1 5.19ZM5.72 14.74L2.41 13.54V23.77L9.63 29.79V20.47L11.74 17.46L9.03 18.06L5.72 14.75V14.74ZM9.63 30.98L5.72 27.67V31.58L9.63 35.49V30.98ZM4.8 5.2L10.78 15.67L1.81 12.33L0 4.81L4.79 5.19L4.8 5.2ZM24.37 21.05V34.59L22.56 37.29L20.46 39.4H14.44L12.34 37.29L10.53 34.59V21.05L12.42 18.23L17.45 26.8L22.48 18.23L24.37 21.05ZM22.85 0L22.57 0.69L17.45 13.08L12.33 0.69L12.05 0H22.85Z"
+            fill="var(--p-primary-color)"
           />
-        </a>
-      </div>
-      <div class="flex lg:hidden">
-        <button
-          type="button"
-          class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-          @click="mobileMenuOpen = true"
-        >
-          <span class="sr-only">Open main menu</span>
-          <Bars3Icon class="h-6 w-6" aria-hidden="true" />
-        </button>
-      </div>
-      <a href="#" class="text-sm font-semibold leading-6 text-gray-900 mx-5"
-        >About Us</a
-      >
-      <a
-        href="#"
-        class="text-sm font-semibold leading-6 text-gray-900 lg:gap-x-6 mx-5"
-        >Vision & Mission</a
-      >
-      <a
-        href="#"
-        class="text-sm font-semibold leading-6 text-gray-900 lg:gap-x-6 mx-5"
-        >Content</a
-      >
+          <path
+            d="M30.69 4.21L24.37 4.81L22.57 0.69L22.86 0H26.48L30.69 4.21ZM23.75 5.67L22.66 3.08L18.05 14.24V17.14H19.7H20.03H20.16H20.2L24.1 15.7L30.11 5.19L23.75 5.67ZM4.21002 4.21L10.53 4.81L12.33 0.69L12.05 0H8.43002L4.22002 4.21H4.21002ZM21.9 17.4L20.6 18.2H14.3L13 17.4L12.4 18.2L12.42 18.23L17.45 26.8L22.48 18.23L22.5 18.2L21.9 17.4ZM4.79002 5.19L10.8 15.7L14.7 17.14H14.74H15.2H16.85V14.24L12.24 3.09L11.15 5.68L4.79002 5.2V5.19Z"
+            fill="var(--p-text-color)"
+          />
+        </svg>
+      </template>
+      <template #item="{ item, props }">
+        <div class="flex justify-center item-center">
+          <a v-ripple class="justify-self-center" v-bind="props.action">
+            <span class="ml-2">{{ item.label }}</span>
+            <!-- Problem 1: the arrow cannot be added -->
+            <div v-if="item.label === 'Projects'">
+              <ChevronDownIcon class="m-1" />
+            </div>
 
-      <PopoverGroup class="hidden lg:flex lg:gap-x-6">
-        <Popover class="relative">
-          <PopoverButton
-            class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 mx-5"
-          >
-            Activity
-            <ChevronDownIcon
-              class="h-5 w-5 flex-none text-gray-400"
-              aria-hidden="true"
+            <!-- <Badge
+              v-if="item.badge"
+              :class="{ 'ml-auto': !root, 'ml-2': root }"
+              :value="item.badge"
             />
-          </PopoverButton>
-
-          <transition
-            enter-active-class="transition ease-out duration-200"
-            enter-from-class="opacity-0 translate-y-1"
-            enter-to-class="opacity-100 translate-y-0"
-            leave-active-class="transition ease-in duration-150"
-            leave-from-class="opacity-100 translate-y-0"
-            leave-to-class="opacity-0 translate-y-1"
-          >
-            <PopoverPanel
-              class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
-            >
-              <div class="p-4">
-                <div
-                  v-for="item in products"
-                  :key="item.name"
-                  class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
-                >
-                  <div
-                    class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white"
-                  >
-                    <component
-                      :is="item.icon"
-                      class="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <div class="flex-auto">
-                    <a
-                      :href="item.href"
-                      class="block font-semibold text-gray-900"
-                    >
-                      {{ item.name }}
-                      <span class="absolute inset-0"> </span>
-                    </a>
-                    <p class="mt-1 text-gray-600">{{ item.description }}</p>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50"
-              >
-                <a
-                  v-for="item in callsToAction"
-                  :key="item.name"
-                  :href="item.href"
-                  class="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                >
-                  <component
-                    :is="item.icon"
-                    class="h-5 w-5 flex-none text-gray-400"
-                    aria-hidden="true"
-                  />
-                  {{ item.name }}
-                </a>
-              </div>
-            </PopoverPanel>
-          </transition>
-        </Popover>
-      </PopoverGroup>
-      <a
-        href="#"
-        class="text-sm font-semibold leading-6 text-gray-900 lg:gap-x-6 mx-5"
-        >Organizer</a
-      >
-      <div class="hidden lg:flex lg:flex-auto lg:justify-end mr-5 border-solid">
-        <a href="#" class="text-sm font-semibold leading-3 text-gray-450 "
-          >Log in <span aria-hidden="true">&rarr;</span></a
-        >
-      </div>
-      <div class="hidden lg:flex lg:flex-none lg:justify-end mr-5" >
-        <a href="#" class="text-sm font-semibold leading-3 text-gray-450"
-          >Sign Up <span aria-hidden="true">&rarr;</span></a
-        >
-      </div>
-    </nav>
-    <!-- <Dialog
-      class="lg:hidden"
-      @close="mobileMenuOpen = false"
-      :open="mobileMenuOpen"
-    >
-      <div class="fixed inset-0 z-10" />
-      <DialogPanel
-        class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-      >
-        <div class="flex items-center justify-between">
-          <a href="#" class="-m-1.5 p-1.5">
-            <span class="sr-only">Your Company</span>
-            <img
-              class="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
-            />
+            <span
+              v-if="item.shortcut"
+              class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1"
+              >{{ item.shortcut }}</span
+            > -->
+            <!-- <i
+              v-if="hasSubmenu"
+              :class="[
+                'pi pi-angle-down',
+                { 'pi-angle-down ml-2': root, 'pi-angle-right ml-auto': !root },
+              ]"
+            ></i> -->
           </a>
-          <button
-            type="button"
-            class="-m-2.5 rounded-md p-2.5 text-gray-700"
-            @click="mobileMenuOpen = false"
-          >
-            <span class="sr-only">Close menu</span>
-            <XMarkIcon class="h-6 w-6" aria-hidden="true" />
-          </button>
         </div>
-        <div class="mt-6 flow-root">
-          <div class="-my-6 divide-y divide-gray-500/10">
-            <div class="space-y-2 py-6">
-              <Disclosure as="div" class="-mx-3" v-slot="{ open }">
-                <DisclosureButton
-                  class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Activity
-                  <ChevronDownIcon
-                    :class="[open ? 'rotate-180' : '', 'h-5 w-5 flex-none']"
-                    aria-hidden="true"
-                  />
-                </DisclosureButton>
-                <DisclosurePanel class="mt-2 space-y-2">
-                  <DisclosureButton
-                    v-for="item in [...products, ...callsToAction]"
-                    :key="item.name"
-                    as="a"
-                    :href="item.href"
-                    class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    >{{ item.name }}</DisclosureButton
-                  >
-                </DisclosurePanel>
-              </Disclosure>
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Features</a
-              >
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Marketplace</a
-              >
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Company</a
-              >
-            </div>
-            <div class="py-6">
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Log in</a
-              >
-            </div>
-          </div>
+      </template>
+      <template #end>
+        <div class="flex items-center gap-2" v-if="status.accountStatus">
+          <Avatar
+            image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
+            shape="circle"
+          />
         </div>
-      </DialogPanel>
-    </Dialog> -->
-  </header>
+        <div v-if="!status.accountStatus">
+         
+          <button class="mx-1 lg:mx-5 sm:mx-3.5  border-2 p-1.5 rounded-md">Log in</button>
+          <button class="mx-1 lg:mx-5 sm:mx-3.5  border-2 p-1.5 rounded-md">Sign Up</button>
+        </div>
+      </template>
+    </Menubar>
+  </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
+import Menubar from "primevue/menubar"; // Correct import for Menubar
+import Avatar from "primevue/avatar"; // Correct import for Avatar
 import {
-
-  Popover,
-  PopoverButton,
-  PopoverGroup,
-  PopoverPanel,
-} from "@headlessui/vue";
-import {
-  Bars3Icon,
   CurrencyDollarIcon,
   ShoppingCartIcon,
-  BookOpenIcon
+  BookOpenIcon,
+  ChevronDownIcon,
+  NewspaperIcon,
+  EyeIcon,
+  CubeIcon,
 } from "@heroicons/vue/24/outline";
-import {
-  ChevronDownIcon
-} from "@heroicons/vue/20/solid";
 
-const products = [
+const status = reactive({
+  accountStatus: false,
+});
+
+const items = ref([
   {
-    name: "Sponsor & Donation",
-    description: "Get a better understanding of your traffic",
-    href: "#",
-    icon: CurrencyDollarIcon,
+    label: "About Us",
+    icon: CubeIcon,
   },
   {
-    name: "Market",
-    description: "Speak directly to your customers",
-    href: "#",
-    icon: ShoppingCartIcon,
+    label: "Vision & Mission",
+    icon: EyeIcon,
   },
   {
-    name: "Adoption Program",
-    description: "Your customers’ data will be safe and secure",
-    href: "#",
-    icon: BookOpenIcon,
-  }
-];
-
-const mobileMenuOpen = ref(false);
+    label: "Content",
+    icon: NewspaperIcon,
+  },
+  {
+    label: "Projects",
+    icon: ChevronDownIcon,
+    items: [
+      {
+        label: "Sponsor & Donation",
+        icon: CurrencyDollarIcon,
+      },
+      {
+        label: "Market",
+        icon: ShoppingCartIcon,
+      },
+      {
+        label: "Adoption Program",
+        icon: BookOpenIcon,
+      },
+    ],
+  },
+  {
+    label: "Organizer",
+    icon: CubeIcon,
+  },
+]);
 </script>
