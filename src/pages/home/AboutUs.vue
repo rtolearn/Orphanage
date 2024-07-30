@@ -8,7 +8,7 @@
         </div>
         <Divider layout="vertical" />
 
-        <div class="md:m-5 md:text-left w-2/3 h-auto sm:m-auto sm:display-block sm:text-center imageInfor">
+        <div class="md:m-5 md:text-left w-2/3 h-auto sm:m-auto sm:display-block sm:text-center">
             <div> 
                 <h1 class="font-sans font-black mb-5 text-2xl mt-5">About Us</h1>
             </div>
