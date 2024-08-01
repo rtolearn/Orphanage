@@ -15,8 +15,7 @@ import Avatar from 'primevue/avatar';
 import Carousel from 'primevue/carousel';
 import Dialog from 'primevue/dialog';
 import InputNumber from 'primevue/inputnumber';
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import router from '@/router/index.js';
 // import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import './assets/main.css'
 import './assets/style.scss'
@@ -28,7 +27,7 @@ app.use(PrimeVue, {
         preset: Aura
     }
 });
-Vue.use(VueRouter)
+
 app.component('Button', Button);
 app.component("Breadcrumb", Breadcrumb);
 app.component("Menubar", Menubar);
@@ -39,5 +38,5 @@ app.component("Carousel", Carousel)
 app.component("Dialog", Dialog)
 app.component('InputNumber', InputNumber)
 
-
+app.use(router)
 app.mount('#app');

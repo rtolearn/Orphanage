@@ -23,9 +23,9 @@
       <template #item="{ item, props}">
         <div class="flex justify-center item-center">
           <a v-ripple class="justify-self-center" v-bind="props.action">
-            
+            <RouterLink :to="item.label">
               <span class="ml-2">{{ item.label }}</span>
-            
+            </RouterLink>
             
             <!-- Problem 1: the arrow cannot be added -->
             <div v-if="item.label === 'Projects'">
@@ -65,7 +65,7 @@
           <button class="mx-1 lg:mx-5 sm:mx-3.5  border-2 p-1.5 rounded-md">Sign Up</button>
         </div>
       </template>
-
+      <router-view/>
     </Menubar>
 
   </div>

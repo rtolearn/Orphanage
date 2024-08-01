@@ -1,3 +1,4 @@
+<script setup>
 import NavigationBar from "./pages/homePage/NavigationBar.vue";
 import Introduction from "./pages/homePage/IntroductionSection.vue";
 import AboutUs from "./pages/homePage/AboutUs.vue";
@@ -25,15 +26,14 @@ import PurchasePage from "./pages/Marketplace/PurchasePage.vue";
   <SponsorAndDonation />
   <MarketPlace />
   <AdoptionProgram />
-  <DeveloperIntroduction /> 
+  <DeveloperIntroduction />
   <FooterSection /> 
-  <!-- <signInPageIndividual/>
+  <signInPageIndividual/>
   <signUpPageIndividual/>
   <signInPageCompany />
-  <signUpPageCompany /> -->
-  <!-- <DisplayItemPage />
-  <PurchasePage /> -->
-  <router-view/>
+  <signUpPageCompany />
+  <DisplayItemPage />
+  <PurchasePage />
 </template>
 
 <!-- <style scoped>
