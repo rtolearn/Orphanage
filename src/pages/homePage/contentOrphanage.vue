@@ -1,4 +1,4 @@
-<template>
+ <template>
   <h1 class="text-4xl text-center m-3">Content</h1>
   <swiper
     :modules="modules"
@@ -44,7 +44,7 @@
     <swiper-slide class="m-2.5">
       <img :src="imageContent" />
     </swiper-slide>
-    <!-- Add more slides as needed -->
+
   </swiper>
 </template>
 
@@ -75,4 +75,4 @@ const onSlideChange = () => {
 
 // Modules array for Swiper
 const modules = [Navigation, Pagination, Scrollbar, A11y];
-</script>
+</script> 

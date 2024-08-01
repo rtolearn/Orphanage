@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div>
     <Menubar :model="items">
       <template #start>
         <svg
@@ -20,10 +20,13 @@
           />
         </svg>
       </template>
-      <template #item="{ item, props }">
+      <template #item="{ item, props}">
         <div class="flex justify-center item-center">
           <a v-ripple class="justify-self-center" v-bind="props.action">
-            <span class="ml-2">{{ item.label }}</span>
+            
+              <span class="ml-2">{{ item.label }}</span>
+            
+            
             <!-- Problem 1: the arrow cannot be added -->
             <div v-if="item.label === 'Projects'">
               <ChevronDownIcon class="m-1" />
@@ -62,14 +65,20 @@
           <button class="mx-1 lg:mx-5 sm:mx-3.5  border-2 p-1.5 rounded-md">Sign Up</button>
         </div>
       </template>
+
     </Menubar>
+
   </div>
+
+
+  
 </template>
 
 <script setup>
 import { ref, reactive } from "vue";
 import Menubar from "primevue/menubar"; // Correct import for Menubar
 import Avatar from "primevue/avatar"; // Correct import for Avatar
+
 import {
   CurrencyDollarIcon,
   ShoppingCartIcon,
@@ -120,4 +129,6 @@ const items = ref([
     icon: CubeIcon,
   },
 ]);
+
+
 </script>

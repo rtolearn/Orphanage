@@ -1,4 +1,3 @@
-<script setup>
 import NavigationBar from "./pages/homePage/NavigationBar.vue";
 import Introduction from "./pages/homePage/IntroductionSection.vue";
 import AboutUs from "./pages/homePage/AboutUs.vue";
@@ -13,10 +12,12 @@ import signInPageIndividual from "./pages/signIn&SignUpPage/signInPageIndividual
 import signUpPageIndividual from "./pages/signIn&SignUpPage/signUpPageIndividual.vue";
 import signInPageCompany from "./pages/signIn&SignUpPage/signInPageCompany.vue";
 import signUpPageCompany from "./pages/signIn&SignUpPage/signUpPageCompany.vue";
+import DisplayItemPage from "./pages/Marketplace/DisplayItemPage.vue";
+import PurchasePage from "./pages/Marketplace/PurchasePage.vue";
 </script>
 
 <template>
-  <!-- <NavigationBar />
+  <NavigationBar />
   <Introduction />
   <AboutUs />
   <VisionAndMission />
@@ -24,12 +25,15 @@ import signUpPageCompany from "./pages/signIn&SignUpPage/signUpPageCompany.vue";
   <SponsorAndDonation />
   <MarketPlace />
   <AdoptionProgram />
-  <DeveloperIntroduction />
+  <DeveloperIntroduction /> 
   <FooterSection /> 
-  <signInPageIndividual/>
+  <!-- <signInPageIndividual/>
   <signUpPageIndividual/>
-  <signInPageCompany />-->
-  <signUpPageCompany />
+  <signInPageCompany />
+  <signUpPageCompany /> -->
+  <!-- <DisplayItemPage />
+  <PurchasePage /> -->
+  <router-view/>
 </template>
 
 <!-- <style scoped>
