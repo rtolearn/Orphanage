@@ -16,7 +16,6 @@ import Carousel from 'primevue/carousel';
 import Dialog from 'primevue/dialog';
 import InputNumber from 'primevue/inputnumber';
 import router from '@/router/index.js';
-// import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import './assets/main.css'
 import './assets/style.scss'
 

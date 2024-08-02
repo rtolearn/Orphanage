@@ -5,6 +5,7 @@
         Plugins:
           - @tailwindcss/forms
       -->
+
   
     <section class="bg-white">
       <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -42,6 +43,10 @@
                 />
               </svg>
             </a> -->
+
+            <router-link to="/">
+              <i class = "pi pi-chevron-left"></i> Back to Home
+            </router-link>
   
             <h1
               class="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl flex"

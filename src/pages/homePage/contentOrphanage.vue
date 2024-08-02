@@ -1,78 +1,83 @@
- <template>
-  <h1 class="text-4xl text-center m-3">Content</h1>
-  <swiper
-    :modules="modules"
-    :slides-per-view="3"
-    :space-between="50"
-    navigation
-    :pagination="{ clickable: true }"
-    :scrollbar="{ draggable: true }"
-    @swiper="onSwiper"
-    @slideChange="onSlideChange"
-    class="m-5 h-125 w-125"
-  >
-    <swiper-slide class="m-2.5">
-      <img :src="imageContent" />
-    </swiper-slide>
-    <swiper-slide class="m-2.5">
-      <img :src="imageContent" />
-    </swiper-slide>
-    <swiper-slide class="m-2.5">
-      <img :src="imageContent" />
-    </swiper-slide>
-    <swiper-slide class="m-2.5">
-      <img :src="imageContent" />
-    </swiper-slide>
-    <swiper-slide class="m-2.5">
-      <img :src="imageContent" />
-    </swiper-slide>
-    <swiper-slide class="m-2.5">
-      <img :src="imageContent" />
-    </swiper-slide>
-    <swiper-slide class="m-2.5">
-      <img :src="imageContent" />
-    </swiper-slide>
-    <swiper-slide class="m-2.5">
-      <img :src="imageContent" />
-    </swiper-slide>
-    <swiper-slide class="m-2.5">
-      <img :src="imageContent" />
-    </swiper-slide>
-    <swiper-slide class="m-2.5">
-      <img :src="imageContent" />
-    </swiper-slide>
-    <swiper-slide class="m-2.5">
-      <img :src="imageContent" />
-    </swiper-slide>
-
-  </swiper>
+<template>
+  <div class="bg-emerald-200" id="content">
+    <h1 class="font-sans font-black p-1 text-2xl text-center ">Content</h1>
+    <swiper
+      :modules="modules"
+      :slides-per-view="2"
+      :space-between="10"
+      navigation
+      :pagination="{ clickable: true, el: '.custom-pagination' }"
+      :scrollbar="{ draggable: true }"
+      @swiper="onSwiper"
+      @slideChange="onSlideChange"
+      class="h-auto w-full"
+    >
+    
+      <swiper-slide v-for="item in items" :key="item.id">
+        <img :src="item.image" />
+      </swiper-slide>
+    </swiper>
+    <div class="swiper-pagination custom-pagination"></div>
+  </div>
 </template>
 
 <script setup>
 // Import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 // Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from 'swiper/vue';
-
+import { Swiper, SwiperSlide } from "swiper/vue";
 // Import the image
-import imageContent from '../AboutUsImages.svg';
-
+import imageContent from "../AboutUsImages.svg";
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
+
+const items = [
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+  {image: imageContent},
+]
+// const triggerFunction = () => {
+//   console.log("Heello")
+// }
 // Event handlers
 const onSwiper = (swiper) => {
   console.log(swiper);
 };
 
 const onSlideChange = () => {
-  console.log('slide change');
+  console.log("slide change");
 };
 
 // Modules array for Swiper
 const modules = [Navigation, Pagination, Scrollbar, A11y];
-</script> 
+</script>
+
+
+<style scoped>
+.custom-pagination .swiper-pagination-bullet {
+  width: 10px;  /* Change the width as needed */
+  height: 10px; /* Change the height as needed */
+  background-color: #000; /* Change the color as needed */
+}
+.custom-pagination .swiper-pagination-bullet-active {
+  background-color: #ff0000; /* Change the active bullet color as needed */
+}
+</style>
