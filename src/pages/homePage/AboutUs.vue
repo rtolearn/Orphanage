@@ -6,9 +6,9 @@
         <Divider layout="vertical" />
 
         <div class="w-4/5
-         h-auto m-auto block text-center">
-            <div class="text-center"> 
-                <h1 class=" font-sans font-black mb-5 text-2xl text-center ">About Us</h1>
+         h-auto m-auto block text-center md:text-left">
+            <div> 
+                <h1 class=" font-sans font-black mb-5 text-2xl  ">About Us</h1>
             </div>
             <div>
                 <div>
@@ -33,11 +33,11 @@
                 <h5 class="italic font-light text-base">You can find us via: </h5>
                 <!-- Icon of Facebook, instagram LinkedIn, Email and Whatsapp,  -->
                 <div class="flex justify-center items-center   p-8">
-                    <img class="mx-2 hover:scale-150 transition-transform duration-100 w-1/6 h-auto"  src="https://img.icons8.com/clouds/100/new-post.png" alt="new-post"/>
-                    <img class="mx-2 hover:scale-150 transition-transform duration-100 w-1/6 h-auto"  src="https://img.icons8.com/clouds/100/facebook.png" alt="facebook"/>
-                    <img class="mx-2 hover:scale-150 transition-transform duration-100 w-1/6 h-auto"  src="https://img.icons8.com/clouds/100/instagram-new--v3.png" alt="instagram-new--v3"/>
-                    <img class="mx-2 hover:scale-150 transition-transform duration-100 w-1/6 h-auto"  src="https://img.icons8.com/clouds/100/linkedin.png" alt="linkedin"/>
-                    <img class="mx-2 hover:scale-150 transition-transform duration-100 w-1/6 h-auto"  src="https://img.icons8.com/clouds/100/whatsapp.png" alt="whatsapp"/>
+                    <img class="mx-2 hover:scale-150 transition-transform duration-100 w-1/5 h-auto"  src="https://img.icons8.com/clouds/100/new-post.png" alt="new-post"/>
+                    <img class="mx-2 hover:scale-150 transition-transform duration-100 w-1/5 h-auto"  src="https://img.icons8.com/clouds/100/facebook.png" alt="facebook"/>
+                    <img class="mx-2 hover:scale-150 transition-transform duration-100 w-1/5 h-auto"  src="https://img.icons8.com/clouds/100/instagram-new--v3.png" alt="instagram-new--v3"/>
+                    <img class="mx-2 hover:scale-150 transition-transform duration-100 w-1/5 h-auto"  src="https://img.icons8.com/clouds/100/linkedin.png" alt="linkedin"/>
+                    <img class="mx-2 hover:scale-150 transition-transform duration-100 w-1/5 h-auto"  src="https://img.icons8.com/clouds/100/whatsapp.png" alt="whatsapp"/>
                 </div>
             </div>
         </div>

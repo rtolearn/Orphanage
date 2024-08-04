@@ -43,7 +43,10 @@
           <router-link to="/sign-in">
             <button class="border-2 px-3 py-2 rounded-md">Log in</button>
           </router-link>
-          <button class="border-2 px-3 py-2 rounded-md">Sign Up</button>
+          <router-link to="/sign-up">
+            <button class="border-2 px-3 py-2 rounded-md">Sign Up</button>
+          </router-link>
+          
         </div>
       </template>
       <router-view />

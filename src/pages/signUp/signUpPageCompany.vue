@@ -63,13 +63,6 @@
               Sign Up an Account
             </h1>
             <div class="col-span-6 sm:col-span-6">
-              <!-- <label
-                  for="FirstName"
-                  class="block text-sm font-medium text-gray-700"
-                >
-                  First Name
-                </label> -->
-
               <input
                 type="text"
                 id="CompanyName"
@@ -100,13 +93,6 @@
               </div>
 
               <div class="col-span-6 sm:col-span-3">
-                <!-- <label
-      for="statesSelect"
-      class=" text-sm font-medium text-gray-900"
-    >
-      Industry List
-    </label>
-    -->
                 <select
                   name="industrySelect"
                   id="industrySelect"
@@ -200,13 +186,6 @@
             </div>
 
             <div class="col-span-6">
-              <!-- <label
-                  for="Email"
-                  class="block text-sm font-medium text-gray-700"
-                >
-                  Email
-                </label> -->
-
               <input
                 type="email"
                 id="Email"
@@ -217,13 +196,6 @@
             </div>
 
             <div class="col-span-6 sm:col-span-3">
-              <!-- <label
-                  for="Password"
-                  class="block text-sm font-medium text-gray-700"
-                >
-                  Password
-                </label> -->
-
               <input
                 type="password"
                 id="Password"
@@ -234,13 +206,6 @@
             </div>
 
             <div class="col-span-6 sm:col-span-3">
-              <!-- <label
-                  for="PasswordConfirmation"
-                  class="block text-sm font-medium text-gray-700"
-                >
-                  Password Confirmation
-                </label> -->
-
               <input
                 type="password"
                 id="PasswordConfirmation"
@@ -251,13 +216,6 @@
             </div>
 
             <div class="col-span-6">
-              <!-- <label
-                  for="Email"
-                  class="block text-sm font-medium text-gray-700"
-                >
-                  Phone Number
-                </label> -->
-
               <input
                 type="email"
                 id="Email"
@@ -268,13 +226,6 @@
             </div>
 
             <div class="col-span-6">
-              <!-- <label
-                  for="Email"
-                  class="block text-sm font-medium text-gray-700"
-                >
-                  Phone Number
-                </label> -->
-
               <input
                 type="email"
                 id="Email"
@@ -285,13 +236,6 @@
             </div>
 
             <div class="col-span-6">
-              <!-- <label
-                  for="Email"
-                  class="block text-sm font-medium text-gray-700"
-                >
-                  Address
-                </label> -->
-
               <input
                 type="email"
                 id="Email"

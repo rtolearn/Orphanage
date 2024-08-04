@@ -16,6 +16,8 @@ import Carousel from 'primevue/carousel';
 import Dialog from 'primevue/dialog';
 import InputNumber from 'primevue/inputnumber';
 import router from '@/router/index.js';
+import SelectButton from 'primevue/selectbutton';
+
 import './assets/main.css'
 import './assets/style.scss'
 
@@ -36,6 +38,7 @@ app.component('AvatarAcc', Avatar);
 app.component("Carousel", Carousel)
 app.component("Dialog", Dialog)
 app.component('InputNumber', InputNumber)
+app.component('SelectButton', SelectButton)
 
 app.use(router)
 app.mount('#app');

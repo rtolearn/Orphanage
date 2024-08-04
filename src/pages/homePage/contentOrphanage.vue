@@ -1,23 +1,23 @@
 <template>
-  <div class="bg-emerald-200" id="content">
+  <div class="bg-emerald-200 w-full h-auto" id="content">
     <h1 class="font-sans font-black p-1 text-2xl text-center ">Content</h1>
     <swiper
       :modules="modules"
-      :slides-per-view="2"
-      :space-between="10"
+      :slides-per-view="3"
+      :space-between="5"
       navigation
-      :pagination="{ clickable: true, el: '.custom-pagination' }"
+      
       :scrollbar="{ draggable: true }"
       @swiper="onSwiper"
       @slideChange="onSlideChange"
-      class="h-auto w-full"
+      class="h-auto w-full flex justify-center items-center"
     >
     
-      <swiper-slide v-for="item in items" :key="item.id">
-        <img :src="item.image" />
+      <swiper-slide v-for="item in items" :key="item.id" class="self-center">
+        <img :src="item.image" class="w-3/5 h-auto m-5"/>
       </swiper-slide>
     </swiper>
-    <div class="swiper-pagination custom-pagination"></div>
+    <!-- <div class="swiper-pagination custom-pagination"></div> -->
   </div>
 </template>
 

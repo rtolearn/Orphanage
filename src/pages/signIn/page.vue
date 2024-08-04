@@ -1,7 +1,13 @@
+<!-- eslint-disable vue/multi-word-component-names -->
+<script setup>
+    import signInPage from "./signInPageIndividual&Company.vue";
+
+</script>
+
+
+
 <template>
-    <signInpageCompany/>
+    <signInPage />
+
 </template>
 
-<script setup>
-    import signInpageCompany from "./signInPageCompany.vue";
-</script>

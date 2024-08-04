@@ -61,13 +61,6 @@
           >
             <h1 class="col-span-6 text-center m-2.5 text-3xl">Sign Up an Account</h1>
             <div class="col-span-6 sm:col-span-3">
-              <!-- <label
-                for="FirstName"
-                class="block text-sm font-medium text-gray-700"
-              >
-                First Name
-              </label> -->
-
               <input
                 type="text"
                 id="FirstName"
@@ -78,13 +71,6 @@
             </div>
 
             <div class="col-span-6 sm:col-span-3">
-              <!-- <label
-                for="LastName"
-                class="block text-sm font-medium text-gray-700"
-              >
-                Last Name
-              </label> -->
-
               <input
                 type="text"
                 id="LastName"
@@ -95,12 +81,6 @@
             </div>
             <div class="col-span-6 sm:col-span-6 flex justify-between items-center">
               <div class="col-span-6 sm:col-span-3">
-                <!-- <label
-                  for="LastName"
-                  class="block text-sm font-medium text-gray-700"
-                >
-                  Age
-                </label> -->
 
                 <input
                   type="number"
@@ -198,13 +178,6 @@
               
 
             <div class="col-span-6">
-              <!-- <label
-                for="Email"
-                class="block text-sm font-medium text-gray-700"
-              >
-                Email
-              </label> -->
-
               <input
                 type="email"
                 id="Email"
@@ -215,13 +188,6 @@
             </div>
 
             <div class="col-span-6 sm:col-span-3">
-              <!-- <label
-                for="Password"
-                class="block text-sm font-medium text-gray-700"
-              >
-                Password
-              </label> -->
-
               <input
                 type="password"
                 id="Password"
@@ -232,13 +198,6 @@
             </div>
 
             <div class="col-span-6 sm:col-span-3">
-              <!-- <label
-                for="PasswordConfirmation"
-                class="block text-sm font-medium text-gray-700"
-              >
-                Password Confirmation
-              </label> -->
-
               <input
                 type="password"
                 id="PasswordConfirmation"
@@ -249,13 +208,6 @@
             </div>
 
             <div class="col-span-6">
-              <!-- <label
-                for="Email"
-                class="block text-sm font-medium text-gray-700"
-              >
-                Phone Number
-              </label> -->
-
               <input
                 type="email"
                 id="Email"
@@ -265,13 +217,6 @@
                 />
             </div>
             <div class="col-span-6">
-              <!-- <label
-                for="Email"
-                class="block text-sm font-medium text-gray-700"
-              >
-                Address
-              </label> -->
-
               <input
                 type="email"
                 id="Email"
