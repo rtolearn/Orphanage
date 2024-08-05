@@ -49,7 +49,7 @@
           
         </div>
       </template>
-      <router-view />
+      <!-- <router-view /> -->
     </Menubar>
   </div>
 </template>
