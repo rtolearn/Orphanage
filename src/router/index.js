@@ -17,6 +17,22 @@ const routes = [
         path:'/sign-up',
         name: 'sign-up',
         component: () => import('../pages/signUp/signUpPage.vue')
+    },
+    {
+        path:'/market',
+        name:'market',
+        component: () => import('../pages/Marketplace/DisplayItemPage.vue' )
+
+    },
+    {
+        path:'/purchase',
+        name:'purchase',
+        component: () => import('../pages/Marketplace/PurchasePage.vue' )
+    },
+    {
+        path: '/adoption',
+        name: 'adoption',
+        component: () => import('../pages/AdoptionProgram/page.vue')
     }
 ];
 const router = createRouter({

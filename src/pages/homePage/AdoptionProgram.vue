@@ -32,11 +32,13 @@
           </p>
 
           <div class="mt-4 md:mt-8">
-            <button
-              class="items-left inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
-            >
-              Get Started Today
-            </button>
+            <router-link to="/adoption">
+              <button
+                class="items-left inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
+              >
+                Get Started Today
+              </button>
+            </router-link>
           </div>
         </div>
       </div>

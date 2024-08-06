@@ -6,7 +6,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
-import Button from 'primevue/button';
+
 import Breadcrumb from 'primevue/breadcrumb';
 import Menubar from 'primevue/menubar';
 import Ripple from 'primevue/ripple';   
@@ -17,6 +17,11 @@ import Dialog from 'primevue/dialog';
 import InputNumber from 'primevue/inputnumber';
 import router from '@/router/index.js';
 import SelectButton from 'primevue/selectbutton';
+import ToastService from 'primevue/toastservice';
+// import Accordion from 'primevue/accordion';
+// import AccordionPanel from 'primevue/accordionpanel';
+// import AccordionHeader from 'primevue/accordionheader';
+// import AccordionContent from 'primevue/accordioncontent';
 
 import './assets/main.css'
 import './assets/style.scss'
@@ -28,8 +33,8 @@ app.use(PrimeVue, {
         preset: Aura
     }
 });
+app.use(ToastService);
 
-app.component('Button', Button);
 app.component("Breadcrumb", Breadcrumb);
 app.component("Menubar", Menubar);
 app.directive('Ripple', Ripple);
@@ -39,6 +44,11 @@ app.component("Carousel", Carousel)
 app.component("Dialog", Dialog)
 app.component('InputNumber', InputNumber)
 app.component('SelectButton', SelectButton)
+
+// app.component('Accrodion', Accordion)
+// app.component('AccordionPanel', AccordionPanel)
+// app.component('AccordionHeader', AccordionHeader)
+// app.component('AccordionContent', AccordionContent)
 
 app.use(router)
 app.mount('#app');
