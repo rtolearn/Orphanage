@@ -44,7 +44,6 @@ app.component("Carousel", Carousel)
 app.component("Dialog", Dialog)
 app.component('InputNumber', InputNumber)
 app.component('SelectButton', SelectButton)
-
 // app.component('Accrodion', Accordion)
 // app.component('AccordionPanel', AccordionPanel)
 // app.component('AccordionHeader', AccordionHeader)

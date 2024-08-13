@@ -33,6 +33,11 @@ const routes = [
         path: '/adoption',
         name: 'adoption',
         component: () => import('../pages/AdoptionProgram/page.vue')
+    },
+    {
+        path:'/adoptionProgression',
+        name: 'adoptionProgression',
+        component: () => import('../pages/AdoptionProgram/applicationProgression.vue')
     }
 ];
 const router = createRouter({
