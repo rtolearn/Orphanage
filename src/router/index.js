@@ -22,7 +22,6 @@ const routes = [
         path:'/market',
         name:'market',
         component: () => import('../pages/Marketplace/DisplayItemPage.vue' )
-
     },
     {
         path:'/purchase',

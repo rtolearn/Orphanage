@@ -3,6 +3,7 @@ export default function validateEmail (valueEmail)  {
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valueEmail)) {
         return "Please enter a valid email address.";
       } else {
+   
         return true;
       }
     } else {
@@ -10,3 +11,7 @@ export default function validateEmail (valueEmail)  {
     }
   }
   
+
+
+
+
