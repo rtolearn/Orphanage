@@ -1,3 +1,5 @@
+<!-- eslint-disable vue/multi-word-component-names -->
+
 <script setup>
 import NavigationBar from "./NavigationBar.vue";
 import Introduction from "./IntroductionSection.vue";

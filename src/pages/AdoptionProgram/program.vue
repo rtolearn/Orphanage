@@ -8,11 +8,21 @@
       <AccordionPanel value="0">
         <AccordionHeader>
           <div class="w-full">
-            <h1>Male</h1>
+            <h1 class="text-xl">Male</h1>
             <!-- Implement the progression bar -->
-            <ProgressBar :value="progressionBarMale">
+            <!-- <ProgressBar :value="progressionBarMale">
               {{ progressionBarMale }}/100
-            </ProgressBar>
+            </ProgressBar> -->
+            <div v-if="progressionBarMale >= 0 && progressionBarMale < 100">
+              <ProgressBar :value="progressionBarMale">
+                {{ progressionBarMale }}/100
+              </ProgressBar>
+            </div>
+            <div v-else>
+              <ProgressBar :value="progressionBarMale">
+                Completed!
+              </ProgressBar>
+            </div>
           </div>
         </AccordionHeader>
         <AccordionContent class="w-full lg:w-4/5 h-full m-auto block mt-5">
@@ -24,7 +34,11 @@
       </AccordionPanel>
 
       <AccordionPanel value="1">
-        <AccordionHeader>Female </AccordionHeader>
+        <AccordionHeader>
+          <div class="text-xl w-full">
+            <h1>Female</h1>
+          </div>
+        </AccordionHeader>
         <AccordionContent>
           <div class="w-4/5 lg:w-3/5 h-full m-auto block mt-5">
             <!-- For the form of Male information -->
@@ -35,7 +49,7 @@
 
       <AccordionPanel value="2">
         <AccordionHeader>
-          <div class="w-full">
+          <div class="text-xl w-full">
             <h1>Prove of Marriage</h1>
             <!-- Implement the progression bar -->
             <ProgressBar :value="progressionBarMarriage">
@@ -53,6 +67,12 @@
           </div>
         </AccordionContent>
       </AccordionPanel>
+      <button
+        class="border solid m-auto block mt-[1rem] w-4/5 h-auto p-[0.56rem]
+        bg-green-500 hover:bg-green-600"
+      >
+        Confirm
+      </button>
     </Accordion>
 
     <div class="col-span-6 flex justify-center items-center p-5 m-5">

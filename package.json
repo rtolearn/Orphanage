@@ -13,6 +13,7 @@
     "@headlessui/vue": "^1.7.22",
     "@heroicons/vue": "^2.1.5",
     "@primevue/themes": "^4.0.0",
+    "@supabase/supabase-js": "^2.45.1",
     "@vee-validate/yup": "^4.13.2",
     "keen-slider": "^6.8.6",
     "material-design-icons-iconfont": "^6.7.0",

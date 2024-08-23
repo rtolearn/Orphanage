@@ -3,7 +3,6 @@
     action="#"
     class="mt-8 p-5 grid grid-cols-6 gap-6 border-2 border-solid border-black rounded-md"
   >
-    
     <Message class="col-span-6">Marriage Evidence</Message>
 
     <div class="col-span-6">
@@ -17,7 +16,6 @@
           name="marriageEvidence"
           type="file"
           :rules="validateFile"
-      
           @change="updateProgression(0)"
         >
         </Field>
@@ -37,22 +35,16 @@
         class="bg-green-400 w-full h-auto p-1.5 rounded-md cursor-pointer hover:text-white"
       />
     </div>
-
-
-
   </Form>
 </template>
 
 <script setup>
-import {ref} from "vue"
+import { ref } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Message from "primevue/message";
-import validateFile from "./function/validateFile";
+import validateFile from "../system_information/function/validateFile";
 
-
-
-
-const emit = defineEmits('progressionBarMarriage')
+const emit = defineEmits("progressionBarMarriage");
 
 //Progression Tacker
 let progressionBarMarriage = ref(0);
@@ -71,7 +63,6 @@ const updateProgression = (index) => {
     emit("progressionBarMarriage", progressionBarMarriage.value);
   }
 };
-
 </script>
 
 <style scoped>
@@ -84,7 +75,4 @@ input[type="file"]::file-selector-button {
   cursor: pointer;
   font-weight: 500;
 }
-
-
-
 </style>

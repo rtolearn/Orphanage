@@ -272,14 +272,14 @@
 import { ref, defineEmits } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Message from "primevue/message";
-import industries from "./data/industries.json";
-import states from "./data/states.json";
-import careerStatus from "./data/careerStatus.json";
-import validateName from "./function/validateName.js";
-import validateEmail from "./function/validateEmail";
-import validatePhoneNumber from "./function/validatePhoneNumber";
-import validateSelectionInput from "./function/validateSelectionInput";
-import validateFile from "./function/validateFile";
+import industries from "../system_information/data/industries.json";
+import states from "../system_information/data/states.json";
+import careerStatus from "../system_information/data/careerStatus.json";
+import validateName from "../system_information/function/validateName.js";
+import validateEmail from "../system_information/function/validateEmail.js";
+import validatePhoneNumber from "../system_information/function/validatePhoneNumber.js";
+import validateSelectionInput from "../system_information/function/validateSelectionInput.js";
+import validateFile from "../system_information/function/validateFile.js";
 
 //Alert after submitting the form
 const onSubmit = () => {
