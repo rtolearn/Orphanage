@@ -2,7 +2,8 @@
   <Form
     action="#"
     class="mt-8 p-5 grid content-center grid-cols-6 gap-6 border-2 border-solid border-black rounded-md"
-  >
+    @submit = "handleSignUp"
+    >
     <h1 class="col-span-6 text-center m-2.5 text-lg sm:text-xl">Sign Up</h1>
 
     <!-- Validation of First Name -->
@@ -199,7 +200,7 @@ import validatePhoneNumber from "@/system_information/function/validatePhoneNumb
 import validateSelectionInput from "@/system_information/function/validateSelectionInput.js";
 import validateEmptyContent from "@/system_information/function/validateEmptyContent.js";
 import { Form, Field, ErrorMessage } from "vee-validate";
-
+import {signUp} from '@/clients/authentication'
 const signUpIndividual = ref({
   first_name: "",
   last_name: "",
@@ -212,6 +213,21 @@ const signUpIndividual = ref({
   phone_number: "",
   address: "",
 });
+
+const handleSignUp = async () => {
+  try {
+    const user = await signUp(signUpIndividual);
+    if (user) {
+      console.log('Signed up user:', user);
+      // Handle successful sign-up (e.g., save user profile or redirect)
+    }
+    else{
+      console.log("No user has been signed up")
+    }
+  } catch (error) {
+    console.error('Sign up error:', error);
+  }
+}; 
 
 
 </script>

@@ -50,8 +50,6 @@
 </template>
 
 <script setup>
-// import genderType from "@/system_information/data/gender.json";
-// import { supabase } from "@/clients/supabase";
 import { ref } from "vue";
 
 import signUpIndividual from './signUpIndividual.vue'
@@ -59,38 +57,4 @@ import signUpCompany from "./signUpCompany.vue";
 const options = ref(["Individual", "Company"]);
 const selectedOption = ref("Individual");
 
-// async function createAccountIndividual() {
-//   console.log("Ellooo I am here");
-//   const { data, error } = await supabase.auth.signUp({
-//     first_name: signUpIndividual.value.first_name,
-//     last_name: signUpIndividual.value.last_name,
-//     age: signUpIndividual.value.age,
-//     gender: signUpIndividual.value.gender,
-//     state: signUpIndividual.value.state,
-//     email: signUpIndividual.value.email,
-//     password: signUpIndividual.value.password,
-//     password_confirmation: signUpIndividual.value.password_confirmation,
-//     phone_number: signUpIndividual.value.phone_number,
-//     address: signUpIndividual.value.address,
-//   });
-
-//   if (error) {
-//     console.log(error);
-//     alert(
-//       "You have exceeded the number of sign-up attempts. Please try again later."
-//     );
-//   } else {
-//     console.log("Data: " + JSON.stringify(data));
-//   }
-// }
-
-// async function createAccountCompany() {
-//   const { data, error } = await supabase.auth.signUp({});
-
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log(data);
-//   }
-// }
 </script>

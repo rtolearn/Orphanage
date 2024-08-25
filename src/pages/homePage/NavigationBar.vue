@@ -41,7 +41,7 @@
         </div>
         <div v-if="!status.accountStatus" class="flex gap-3">
           <router-link to="/sign-in">
-            <button class="border-2 px-3 py-2 rounded-md">Log in</button>
+            <button class="border-2 px-3 py-2 rounded-md">Sign in</button>
           </router-link>
           <router-link to="/sign-up">
             <button class="border-2 px-3 py-2 rounded-md">Sign Up</button>

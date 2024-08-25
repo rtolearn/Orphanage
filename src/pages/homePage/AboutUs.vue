@@ -3,7 +3,7 @@
         <div class="w-4/5 p-5 h-auto m-auto block ">
             <img :src="AboutUsImages" alt="About Us picture" />
         </div>
-        <Divider layout="vertical" />
+    
 
         <div class="w-4/5
          h-auto m-auto block text-center md:text-left">
