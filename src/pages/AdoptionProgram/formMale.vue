@@ -19,7 +19,6 @@
         placeholder="Name"
         required
         :rules="validateName"
-        @blur="updateProgression(0)"
       />
       <ErrorMessage name="name" v-slot="{ message }">
         <span class="text-red-500 text-sm">
@@ -38,10 +37,10 @@
             as="select"
             class="m-3 p-1 w-4/5 rounded-sm border border-solid border-gray-450 text-gray-700 sm:text-sm block"
             name="state"
-            :rules="validateSelectionInput"
+            :rules="validateSelectionState"
             @blur="updateProgression(1)"
           >
-            <option value="" selected>Select State</option>
+            <option value="" selected disabled>Select State</option>
             <option v-for="state in states" :key="state" :value="state">
               {{ state }}
             </option>
@@ -68,7 +67,6 @@
         class="mt-1 p-3 w-full rounded-md border border-solid border-gray-350 text-sm text-gray-700 shadow-sm"
         placeholder="Email"
         required
-        @blur="updateProgression(2)"
       />
       <ErrorMessage name="email" v-slot="{ message }">
         <span class="text-red-500 text-sm">
@@ -85,7 +83,6 @@
         :rules="validatePhoneNumber"
         class="mt-1 p-3 w-full rounded-md border border-solid border-gray-350 bg-white text-sm text-gray-700 shadow-sm"
         placeholder="Contact Number"
-        @blur="updateProgression(3)"
       />
       <ErrorMessage name="contact_number" v-slot="{ message }">
         <span class="text-red-500 text-sm">
@@ -275,11 +272,6 @@ import Message from "primevue/message";
 import industries from "@/system_information/data/industries.json";
 import states from "@/system_information/data/states.json";
 import careerStatus from "@/system_information/data/careerStatus.json";
-import validateName from "@/system_information/function/validateName.js";
-import validateEmail from "@/system_information/function/validateEmail.js";
-import validatePhoneNumber from "@/system_information/function/validatePhoneNumber.js";
-import validateSelectionInput from "@/system_information/function/validateSelectionInput.js";
-import validateFile from "@/system_information/function/validateFile.js";
 
 //Alert after submitting the form
 const onSubmit = () => {
@@ -320,6 +312,88 @@ const updateProgression = (index) => {
   } else {
     progressionBar.value += 0;
     emit("progressionBarEvent", progressionBar.value);
+  }
+};
+
+const validateName = (valueName) => {
+  if (valueName && valueName.trim()) {
+    if (/[^a-zA-Z\s]/.test(valueName)) {
+      if (arrTemp.value.includes(0)) {
+        arrTemp.value.shift(0);
+        progressionBar.value -= 10;
+        emit("progressionBarEvent", progressionBar.value);
+      }
+      return "Name can only contain alphabetic characters";
+    } else {
+      updateProgression(0);
+      return true;
+    }
+  } else {
+    return "This field is required";
+  }
+};
+const validateSelectionState = (valueState) => {
+  if (valueState) {
+    updateProgression(1);
+    return true;
+  } else {
+    if (arrTemp.value.includes(1)) {
+      arrTemp.value.shift(1);
+      progressionBar.value -= 10;
+      emit("progressionBarEvent", progressionBar.value);
+    }
+    return "This field is required";
+  }
+};
+const validateEmail = (valueEmail) => {
+  if (valueEmail) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valueEmail)) {
+      if (arrTemp.value.includes(2)) {
+        arrTemp.value.shift(2);
+        progressionBar.value -= 10;
+        emit("progressionBarEvent", progressionBar.value);
+      }
+      return "Please enter a valid email address.";
+    } else {
+      updateProgression(2);
+      return true;
+    }
+  } else {
+    return "This field is required";
+  }
+};
+
+const validatePhoneNumber = (valuePhone) => {
+  if (valuePhone) {
+    if (!/^[+]?[0-9]{10,15}$/.test(valuePhone.trim())) {
+      if (arrTemp.value.includes(3)) {
+        arrTemp.value.shift(3);
+        progressionBar.value -= 10;
+        emit("progressionBarEvent", progressionBar.value);
+      }
+      return "Invalid phone number.";
+    } else {
+      updateProgression(3);
+      return true;
+    }
+  } else {
+    return "This field is required";
+  }
+};
+
+const validateSelectionInput = (valueState) => {
+  if (valueState) {
+    return true;
+  } else {
+    return "This field is required";
+  }
+};
+
+const validateFile = (valueFile) => {
+  if (!valueFile) {
+    return "This field is required.";
+  } else {
+    return true;
   }
 };
 </script>

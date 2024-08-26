@@ -7,8 +7,8 @@
     <Accordion value="0" class="w-full h-auto m-auto block">
       <AccordionPanel value="0">
         <AccordionHeader>
-          <div class="w-full">
-            <h1 class="text-xl">Male</h1>
+          <div class="text-xl w-full">
+            <h1 class="m-2.5">Male</h1>
             <!-- Implement the progression bar -->
             <!-- <ProgressBar :value="progressionBarMale">
               {{ progressionBarMale }}/100
@@ -36,13 +36,23 @@
       <AccordionPanel value="1">
         <AccordionHeader>
           <div class="text-xl w-full">
-            <h1>Female</h1>
+            <h1 class="m-2.5">Female</h1>
+            <div v-if="progressionBarFemale >= 0 && progressionBarFemale < 100">
+              <ProgressBar :value="progressionBarFemale">
+                {{ progressionBarFemale }}/100
+              </ProgressBar>
+            </div>
+            <div v-else>
+              <ProgressBar :value="progressionBarFemale">
+                Completed!
+              </ProgressBar>
+            </div>
           </div>
         </AccordionHeader>
         <AccordionContent>
           <div class="w-4/5 lg:w-3/5 h-full m-auto block mt-5">
             <!-- For the form of Male information -->
-            <formFemale />
+            <formFemale @progressionBarEvent="handleProgressionFormFemale" />
           </div>
         </AccordionContent>
       </AccordionPanel>
@@ -50,7 +60,7 @@
       <AccordionPanel value="2">
         <AccordionHeader>
           <div class="text-xl w-full">
-            <h1>Prove of Marriage</h1>
+            <h1 class="m-2.5">Prove of Marriage</h1>
             <!-- Implement the progression bar -->
             <ProgressBar :value="progressionBarMarriage">
               {{ progressionBarMarriage }}/100
@@ -67,21 +77,20 @@
           </div>
         </AccordionContent>
       </AccordionPanel>
-      <button
-        class="border solid m-auto block mt-[1rem] w-4/5 h-auto p-[0.56rem]
-        bg-green-500 hover:bg-green-600"
-      >
-        Confirm
-      </button>
     </Accordion>
 
-    <div class="col-span-6 flex justify-center items-center p-5 m-5">
-      <!-- Here we need to apply some logic to check for all the value of the knob before we can click this button
-       1) Disable this button first before all the necessaary information have been filled in -->
-      <router-link to="">
-        <button label="Complete" @click="applicationProgression"></button>
+      <router-link to="/adoptionProgression">
+        <Button
+          class="border solid flex justify-center items-center mt-[15rem] mb-[0.5rem] p-[2rem] w-full h-auto p-[0.56rem] bg-green-500 hover:bg-green-600 hover:text-white
+          text-3xl"
+          :disabled="
+        progressionBarMale + progressionBarFemale + progressionBarMarriage ==
+        300"
+        >
+          Complete
+        </Button>
       </router-link>
-    </div>
+
   </section>
 </template>
 
@@ -92,20 +101,32 @@ import AccordionPanel from "primevue/accordionpanel";
 import AccordionHeader from "primevue/accordionheader";
 import AccordionContent from "primevue/accordioncontent";
 
+import Button from "primevue/button";
+
 import formMale from "./formMale.vue";
 import formFemale from "./formFemale.vue";
 import Introduction from "./introduction.vue";
 
 import ProgressBar from "primevue/progressbar";
 import formMarriage from "./formMarriage.vue";
+
 const progressionBarMale = ref(0);
 const progressionBarMarriage = ref(0);
+const progressionBarFemale = ref(0);
 
 //Function that receive the update value passed from the child component
 const handleProgressionFormMale = (value) => {
   console.log("Value passed from child component: " + value);
   progressionBarMale.value = value;
+
   console.log(progressionBarMale.value);
+};
+
+const handleProgressionFormFemale = (value) => {
+  console.log("Value passed from child component: " + value);
+  progressionBarFemale.value = value;
+
+  console.log(progressionBarFemale.value);
 };
 
 const handleProgressionFormMarriage = (value) => {

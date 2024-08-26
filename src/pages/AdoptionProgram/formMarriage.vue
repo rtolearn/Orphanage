@@ -42,7 +42,6 @@
 import { ref } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Message from "primevue/message";
-import validateFile from "@/system_information/function/validateFile";
 
 const emit = defineEmits("progressionBarMarriage");
 
@@ -61,6 +60,17 @@ const updateProgression = (index) => {
   } else {
     progressionBarMarriage.value += 0;
     emit("progressionBarMarriage", progressionBarMarriage.value);
+  }
+};
+
+
+
+
+const validateFile = (valueFile) => {
+  if (!valueFile) {
+    return "This field is required.";
+  } else {
+    return true;
   }
 };
 </script>
