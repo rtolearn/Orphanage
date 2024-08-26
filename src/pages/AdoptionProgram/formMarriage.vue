@@ -42,7 +42,7 @@
 import { ref } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Message from "primevue/message";
-import validateFile from "../system_information/function/validateFile";
+import validateFile from "@/system_information/function/validateFile";
 
 const emit = defineEmits("progressionBarMarriage");
 
