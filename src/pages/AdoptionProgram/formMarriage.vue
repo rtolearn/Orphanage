@@ -2,6 +2,7 @@
   <Form
     action="#"
     class="mt-8 p-5 grid grid-cols-6 gap-6 border-2 border-solid border-black rounded-md"
+     @submit="onSubmit"
   >
     <Message class="col-span-6">Marriage Evidence</Message>
 
@@ -29,11 +30,14 @@
     </div>
     <!-- Submit button -->
     <div class="col-span-6 flex justify-center items-center p-5">
-      <input
+      <Button
         type="submit"
         value="Submit"
+        label="Submit"
         class="bg-green-400 w-full h-auto p-1.5 rounded-md cursor-pointer hover:text-white"
-      />
+        :disabled="progressionBar < 95">
+     
+     </Button>
     </div>
   </Form>
 </template>
@@ -42,11 +46,16 @@
 import { ref } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Message from "primevue/message";
-
+import Button from "primevue/button";
 const emit = defineEmits("progressionBarMarriage");
-
+//Alert after submitting the form
+const onSubmit = () => {
+  progressionBar.value += 5;
+  emit("progressionBarMarriage", progressionBar.value);
+  alert("Form is submitted.");
+};
 //Progression Tacker
-let progressionBarMarriage = ref(0);
+let progressionBar = ref(0);
 // const progressionBartemp = ref(null);
 const arrTemp = ref([]);
 // Create a method to update the value to the parent component
@@ -55,16 +64,13 @@ const updateProgression = (index) => {
   if (!arrTemp.value.includes(index)) {
     arrTemp.value.push(index);
     console.log("Content of array" + arrTemp.value);
-    progressionBarMarriage.value += 100;
-    emit("progressionBarMarriage", progressionBarMarriage.value);
+    progressionBar.value += 95;
+    emit("progressionBarMarriage", progressionBar.value);
   } else {
-    progressionBarMarriage.value += 0;
-    emit("progressionBarMarriage", progressionBarMarriage.value);
+    progressionBar.value += 0;
+    emit("progressionBarMarriage", progressionBar.value);
   }
 };
-
-
-
 
 const validateFile = (valueFile) => {
   if (!valueFile) {
@@ -73,6 +79,7 @@ const validateFile = (valueFile) => {
     return true;
   }
 };
+
 </script>
 
 <style scoped>
