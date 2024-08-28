@@ -16,6 +16,11 @@
         <div
           class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right"
         >
+          <p
+            class="text-center text-sm sm:text-left text-gray-500 md:mt-4 md:block text-left"
+          >
+            Building Forever Families
+          </p>
           <h2
             class="text-center sm:text-left text-2xl font-bold text-gray-900 md:text-3xl text-left"
           >
@@ -23,20 +28,26 @@
           </h2>
 
           <p
-            class="text-center sm:text-left text-gray-500 md:mt-4 md:block text-left"
+            class="text-center  sm:text-left md:mt-4 md:block text-left"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas
-            tempus tellus etiam sed. Quam a scelerisque amet ullamcorper eu enim
-            et fermentum, augue. Aliquet amet volutpat quisque ut interdum
-            tincidunt duis.
+            Adoption is one of the most profound ways to change a child’s life.
+            At [Orphanage Name], we believe that every child deserves a loving
+            and supportive family. We are committed to guiding you through every
+            step of the adoption process, from the initial inquiry to welcoming
+            your new family member home. Adopting a child is a significant
+            decision, and we’re here to support you on this journey. Our
+            adoption process is designed to be transparent, thorough, and
+            centered around the best interests of the child. We work closely
+            with prospective parents to ensure that every match is built on a
+            foundation of love, stability, and mutual understanding.
           </p>
 
           <div class="mt-4 md:mt-8">
             <router-link to="/adoption">
               <button
-                class="items-left inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
+                class="inline-block sm:flex sm:justify-left rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
               >
-                Get Started Today
+                Find out more
               </button>
             </router-link>
           </div>

@@ -18,6 +18,11 @@
       <div
         class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right"
       >
+        <p
+          class="text-sm text-center sm:text-left text-gray-500 md:mt-4 md:block text-left"
+        >
+          Shop with a Purpose
+        </p>
         <h2
           class="text-center sm:text-left text-2xl font-bold text-gray-900 md:text-3xl text-left"
         >
@@ -25,20 +30,25 @@
         </h2>
 
         <p
-          class="text-center sm:text-left text-gray-500 md:mt-4 md:block text-left"
+          class="text-center sm:text-left  md:mt-4 md:block text-left"
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas
-          tempus tellus etiam sed. Quam a scelerisque amet ullamcorper eu enim
-          et fermentum, augue. Aliquet amet volutpat quisque ut interdum
-          tincidunt duis.
+          Our marketplace offers a selection of handcrafted items made by the
+          children and local artisans. By purchasing from our marketplace,
+          you’re not just acquiring a beautiful product—you’re directly
+          contributing to the well-being and future of our children. All
+          proceeds go towards funding our programs and supporting the orphanage.
+          The revenue generated from our marketplace goes directly into
+          providing better care, education, and opportunities for the children.
+          It also helps to sustain the orphanage’s day-to-day operations,
+          ensuring that we can continue our mission of transforming lives.
         </p>
 
         <div class="mt-4 md:mt-8">
           <router-link to="/market">
             <button
-              class="items-left inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
+              class="inline-block sm:flex sm:jsutify-left rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
             >
-              Get Started Today
+              Shop Now
             </button></router-link
           >
         </div>
