@@ -4,7 +4,7 @@
 // import NavigationBar from "./NavigationBar.vue";
 import Introduction from "./IntroductionSection.vue";
  import AboutUs from "./AboutUs.vue";
-// import VisionAndMission from "./VisionAndMission.vue";
+import VisionAndMission from "./VisionAndMission.vue";
 // import contentOrphanage from "./contentOrphanage.vue";
 // import SponsorAndDonation from "./SponsorAndDonation.vue";
 // import MarketPlace from "./MarketPlace.vue";

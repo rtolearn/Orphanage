@@ -33,10 +33,10 @@
       </figure>
     </div>
   </div>
-  <div class="w-4/5 m-auto display-block py-[0.5rem]">
-    <carousel :items-to-show="2" :autoplay="1000" :loop="true" :wrap-around="true" pause-autoplay-on-hover class="m-5">
+  <div class="w-4/5 h-auto m-auto display-block py-[0.5rem]">
+    <carousel :items-to-show="2" :autoplay="1000" :loop="true" :wrap-around="true" pause-autoplay-on-hover class="my-5">
       <slide v-for="image in data" :key="image.id">
-        <img :src="image.img" alt="Image" class="w-4/5 sm:w-2/5 h-auto"/>
+        <img :src="image.img" alt="Image" class="w-[3rem] h-[3rem] sm:w-[5rem] sm:h-[5rem]"/>
       </slide>
     </carousel>
   </div>
@@ -46,13 +46,31 @@
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide} from "vue3-carousel";
 // import {Pagination, Navigation} from "vue3-carousel";
+import googleIcon from "@/images/googleIcon.svg"
+import hyundaiIcon from "@/images/hyundaiIcon.svg"
+import instagramIcon from '@/images/instagram.svg'
+import spotifyIcon from '@/images/spotify.svg'
+import cocaColaIcon from '@/images/coca-cola.svg'
+import snapchat from '@/images/snapchat.svg'
+import twitter from '@/images/twitter.svg'
+import bmw from '@/images/bmw.svg'
+import facebook from '@/images/facebook.svg'
+import mcdonald from '@/images/mcdonald.svg'
+
 const data = [
-  {img: "https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg"},
-  {img: "https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg"},
-  {img: "https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg"},
-  {img: "https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg"},
-  {img:  "https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg"},
-]</script>
+  {img: googleIcon},
+  {img: hyundaiIcon},
+  {img: instagramIcon},
+  {img: spotifyIcon},
+  {img: cocaColaIcon},
+  {img: snapchat},
+  {img: twitter},
+  {img: bmw},
+  {img: facebook},
+  {img: mcdonald}
+]
+
+</script>
 <style scoped>
 .hero_section_background {
   position: relative;
