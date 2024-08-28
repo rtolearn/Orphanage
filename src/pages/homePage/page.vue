@@ -1,7 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 
 <script setup>
-import NavigationBar from "./NavigationBar.vue";
+import NavBar from "./NavBar.vue";
+// import NavigationBar from "./NavigationBar.vue";
 import Introduction from "./IntroductionSection.vue";
 import AboutUs from "./AboutUs.vue";
 import VisionAndMission from "./VisionAndMission.vue";
@@ -20,14 +21,15 @@ import FooterSection from "./FooterSection.vue";
 </script>
 
 <template>
-  <NavigationBar />
-  <Introduction />
-  <AboutUs />
-  <VisionAndMission />
-  <contentOrphanage />
-  <SponsorAndDonation />
-  <MarketPlace />
-  <AdoptionProgram />
-  <DeveloperIntroduction />
-  <FooterSection />
+	<NavBar />
+	<!-- <NavigationBar /> -->
+	<Introduction />
+	<AboutUs />
+	<VisionAndMission />
+	<contentOrphanage />
+	<SponsorAndDonation />
+	<MarketPlace />
+	<AdoptionProgram />
+	<DeveloperIntroduction />
+	<FooterSection />
 </template>
