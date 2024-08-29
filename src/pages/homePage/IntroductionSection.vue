@@ -65,10 +65,41 @@ import facebook from '@/images/facebook.svg'
 import mcdonald from '@/images/mcdonald.svg'
 
 const data = [
-  {img: "https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg"},
-  {img: "https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg"},
-  {img: "https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg"},
-  {img: "https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg"},
-  {img:  "https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg"},
+  {img: googleIcon},
+  {img: hyundaiIcon},
+  {img: instagramIcon},
+  {img: spotifyIcon},
+  {img:cocaColaIcon},
+  {img: snapchat},
+  {img: twitter},
+  {img: bmw},
+  {img: facebook},
+  {img: mcdonald}
 ]
 </script> 
+
+<style scoped>
+.hero_section_background{
+  position: relative;
+  height: auto;
+}
+
+.hero_section_background::before{
+  content: '';
+  position: 'absolute';
+  top: '0';
+  bottom: '0';
+  right: '0';
+  left: '0';
+
+  
+  background-image: url('@/images/hero_section_pic.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.34
+}
+
+
+
+</style>
