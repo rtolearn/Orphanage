@@ -4,14 +4,14 @@
     
       This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
     -->
-	<section id="donations">
+	<section id="donations" class="bg-gray-50">
 		<img
 			alt=""
 			src="https://images.unsplash.com/photo-1484959014842-cd1d967a39cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
 			class="sm:hidden h-full w-full object-cover sm:h-[calc(100%_-_2rem)] sm:self-end sm:rounded-ss-[30px] md:h-[calc(100%_-_4rem)] md:rounded-ss-[60px]"
 		/>
 
-    <div class="bg-cyan-200 sm:grid sm:grid-cols-2 sm:items-center">
+    <div class="sm:grid sm:grid-cols-2 sm:items-center">
       <div class="p-8 md:p-12 lg:px-16 lg:py-24">
         <div
           class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right"
@@ -28,7 +28,7 @@
           </h2>
 
           <p
-            class="text-sm text-center sm:text-left  md:mt-4 md:block text-left"
+            class="hidden sm:block text-sm text-center sm:text-left  md:mt-4 md:block text-left"
           >
             Every donation, big or small, plays a crucial role in the lives of
             the children at [Orphanage Name]. Your generosity enables us to

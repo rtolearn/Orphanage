@@ -8,7 +8,7 @@
 				<a href="/">
 					<img
 						class="w-full h-full object-contain"
-						src="@/assets/logo.png"
+						src="@/images/logo.png"
 						alt="Logo"
 					/>
 				</a>

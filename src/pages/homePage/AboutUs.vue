@@ -1,7 +1,7 @@
 <template>
   <div
     id="about"
-    class="card bg-neutral-200 m-auto block text-center w-full h-auto sm:flex"
+    class="card bg-gray-50 m-auto block text-center w-full h-auto sm:flex"
   >
     <div class=" w-[15rem] sm:w-[25rem] h-auto  p-5 m-auto block">
       <img :src="AboutUsImages" alt="About Us picture" />
