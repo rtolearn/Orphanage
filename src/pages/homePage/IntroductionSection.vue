@@ -1,5 +1,5 @@
 <template>
-  <div class="hero_section_background">
+  <div class="hero_section_background" id="home">
     <div class="relative z-10 w-4/5 h-auto py-[1rem] m-auto block">
       <img
         class="w-1/2 h-auto m-auto block"
@@ -42,9 +42,16 @@
   </div>
 </template>
 
-<script setup>
+<script setup> 
+
+
+
+
+
+
+// If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
 import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide} from "vue3-carousel";
+import { Carousel, Slide } from "vue3-carousel";
 // import {Pagination, Navigation} from "vue3-carousel";
 import googleIcon from "@/images/googleIcon.svg"
 import hyundaiIcon from "@/images/hyundaiIcon.svg"
@@ -58,40 +65,10 @@ import facebook from '@/images/facebook.svg'
 import mcdonald from '@/images/mcdonald.svg'
 
 const data = [
-  {img: googleIcon},
-  {img: hyundaiIcon},
-  {img: instagramIcon},
-  {img: spotifyIcon},
-  {img: cocaColaIcon},
-  {img: snapchat},
-  {img: twitter},
-  {img: bmw},
-  {img: facebook},
-  {img: mcdonald}
+  {img: "https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg"},
+  {img: "https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg"},
+  {img: "https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg"},
+  {img: "https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg"},
+  {img:  "https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg"},
 ]
-
-</script>
-<style scoped>
-.hero_section_background {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: auto; /* Adjust height as needed */
-}
-
-.hero_section_background::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("@/images/hero_section_pic.jpg");
-  background-size: cover; /* Ensure the background covers the entire element */
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.2; /* Adjust opacity here */
-  z-index: 1;
-}
-
-</style>
+</script> 

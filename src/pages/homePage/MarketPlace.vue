@@ -1,5 +1,5 @@
 <template>
-  <!--
+	<!--
       Heads up! 👋
     
       This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
@@ -7,7 +7,7 @@
 
   <section
     class="overflow-hidden bg-blue-200 sm:grid sm:grid-cols-2 sm:items-center"
-    id="market"
+    id="marketplace"
   >
     <img
       alt=""
@@ -30,25 +30,20 @@
         </h2>
 
         <p
-          class="text-center sm:text-left  md:mt-4 md:block text-left"
+          class="text-center sm:text-left text-gray-500 md:mt-4 md:block text-left"
         >
-          Our marketplace offers a selection of handcrafted items made by the
-          children and local artisans. By purchasing from our marketplace,
-          you’re not just acquiring a beautiful product—you’re directly
-          contributing to the well-being and future of our children. All
-          proceeds go towards funding our programs and supporting the orphanage.
-          The revenue generated from our marketplace goes directly into
-          providing better care, education, and opportunities for the children.
-          It also helps to sustain the orphanage’s day-to-day operations,
-          ensuring that we can continue our mission of transforming lives.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas
+          tempus tellus etiam sed. Quam a scelerisque amet ullamcorper eu enim
+          et fermentum, augue. Aliquet amet volutpat quisque ut interdum
+          tincidunt duis.
         </p>
 
         <div class="mt-4 md:mt-8">
           <router-link to="/market">
             <button
-              class="inline-block sm:flex sm:jsutify-left rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
+              class="items-left inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
             >
-              Shop Now
+              Get Started Today
             </button></router-link
           >
         </div>
