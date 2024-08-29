@@ -1,5 +1,5 @@
 <template>
-  <!--
+	<!--
       Heads up! 👋
     
       This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
@@ -7,7 +7,7 @@
 
   <section
     class="overflow-hidden bg-blue-200 sm:grid sm:grid-cols-2 sm:items-center"
-    id="market"
+    id="marketplace"
   >
     <img
       alt=""
@@ -18,6 +18,11 @@
       <div
         class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right"
       >
+        <p
+          class="text-sm text-center sm:text-left text-gray-500 md:mt-4 md:block text-left"
+        >
+          Shop with a Purpose
+        </p>
         <h2
           class="text-center sm:text-left text-2xl font-bold text-gray-900 md:text-3xl text-left"
         >

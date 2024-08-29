@@ -256,11 +256,14 @@
     </div>
     <!-- Submit button -->
     <div class="col-span-6 flex justify-center items-center p-5">
-      <input
+      <Button
         type="submit"
         value="Submit"
+        label="Submit"
         class="bg-green-400 w-full h-auto p-1.5 rounded-md cursor-pointer hover:text-white"
-      />
+        :disabled="progressionBar < 95"
+      >
+      </Button>
     </div>
   </Form>
 </template>
@@ -269,12 +272,15 @@
 import { ref, defineEmits } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Message from "primevue/message";
+import Button from "primevue/button";
 import industries from "@/system_information/data/industries.json";
 import states from "@/system_information/data/states.json";
 import careerStatus from "@/system_information/data/careerStatus.json";
 
 //Alert after submitting the form
 const onSubmit = () => {
+  progressionBar.value += 5;
+  emit("progressionBarMale", progressionBar.value);
   alert("Form is submitted.");
 };
 //Industry object
@@ -295,7 +301,7 @@ const formValues = ref({
 });
 
 // Create a emit variable to be used in the parent component
-const emit = defineEmits(["progressionBarEvent"]);
+const emit = defineEmits(["progressionBarMale"]);
 
 //Progression Tacker
 let progressionBar = ref(0);
@@ -304,14 +310,20 @@ const arrTemp = ref([]);
 // Create a method to update the value to the parent component
 const updateProgression = (index) => {
   console.log("Content Before push any value: " + arrTemp.value);
+
   if (!arrTemp.value.includes(index)) {
     arrTemp.value.push(index);
     console.log("Content of array" + arrTemp.value);
-    progressionBar.value += 10;
-    emit("progressionBarEvent", progressionBar.value);
+    if (index === 0) {
+      progressionBar.value += 5;
+    } else {
+      progressionBar.value += 10;
+    }
+
+    emit("progressionBarMale", progressionBar.value);
   } else {
     progressionBar.value += 0;
-    emit("progressionBarEvent", progressionBar.value);
+    emit("progressionBarMale", progressionBar.value);
   }
 };
 
@@ -321,7 +333,7 @@ const validateName = (valueName) => {
       if (arrTemp.value.includes(0)) {
         arrTemp.value.shift(0);
         progressionBar.value -= 10;
-        emit("progressionBarEvent", progressionBar.value);
+        emit("progressionBarMale", progressionBar.value);
       }
       return "Name can only contain alphabetic characters";
     } else {
@@ -340,7 +352,7 @@ const validateSelectionState = (valueState) => {
     if (arrTemp.value.includes(1)) {
       arrTemp.value.shift(1);
       progressionBar.value -= 10;
-      emit("progressionBarEvent", progressionBar.value);
+      emit("progressionBarMale", progressionBar.value);
     }
     return "This field is required";
   }
@@ -351,7 +363,7 @@ const validateEmail = (valueEmail) => {
       if (arrTemp.value.includes(2)) {
         arrTemp.value.shift(2);
         progressionBar.value -= 10;
-        emit("progressionBarEvent", progressionBar.value);
+        emit("progressionBarMale", progressionBar.value);
       }
       return "Please enter a valid email address.";
     } else {
@@ -369,7 +381,7 @@ const validatePhoneNumber = (valuePhone) => {
       if (arrTemp.value.includes(3)) {
         arrTemp.value.shift(3);
         progressionBar.value -= 10;
-        emit("progressionBarEvent", progressionBar.value);
+        emit("progressionBarMale", progressionBar.value);
       }
       return "Invalid phone number.";
     } else {
