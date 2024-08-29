@@ -34,5 +34,5 @@
 </template>
 
 <script setup>
-import AboutUsImages from "../AboutUsImages.svg";
+import AboutUsImages from "@/images/AboutUsImages.svg";
 </script>

@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <section class="bg-white" id="sign-in-form">
     <!-- Introduction Part for Sign In-->
