@@ -1,12 +1,20 @@
 <template>
   <div class="hero_section_background" id="home">
     <div class="relative z-10 w-4/5 h-auto py-[1rem] m-auto block">
+  <div class="hero_section_background" id="home">
+    <div class="relative z-10 w-4/5 h-auto py-[1rem] m-auto block">
       <img
         class="w-1/5 h-auto m-auto block"
         src="https://tailwindui.com/img/logos/workcation-logo-indigo-600.svg"
         alt=""
       />
       <figure class="mt-1 sm:mt-5 text-center">
+        <h5
+          class="text-[0.65rem] sm:text-lg text-gray-400 leading-8 sm:leading-10 font-semibold font-['Poppins'] w-full h-auto sm:mb-[1rem]"
+        >
+          YOUR GENEROSITY CAN CHANGE LIVES FOREVER
+        </h5>
+        
         <h5
           class="text-[0.65rem] sm:text-lg text-gray-400 leading-8 sm:leading-10 font-semibold font-['Poppins'] w-full h-auto sm:mb-[1rem]"
         >
@@ -50,13 +58,14 @@
         />
       </slide>
     </carousel>
-  </div>
+  </div></div></div>
 </template>
 
 <script setup>
 // If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide } from "vue3-carousel";
+
 // import {Pagination, Navigation} from "vue3-carousel";
 import googleIcon from "@/images/googleIcon.svg";
 import hyundaiIcon from "@/images/hyundaiIcon.svg";

@@ -12,25 +12,30 @@ const routes = [
         path:'/sign-in',
         name: 'sign-in',
         component: () => import('../pages/signIn/page.vue')
+        component: () => import('../pages/signIn/page.vue')
     },
     {
         path:'/sign-up',
         name: 'sign-up',
+        component: () => import('../pages/signUp/page.vue')
         component: () => import('../pages/signUp/page.vue')
     },
     {
         path:'/market',
         name:'market',
         component: () => import('@/pages/marketPlace/DisplayItemPage.vue' )
+        component: () => import('@/pages/marketPlace/DisplayItemPage.vue' )
     },
     {
         path:'/purchase',
         name:'purchase',
         component: () => import('@/pages/marketPlace/PurchasePage.vue' )
+        component: () => import('@/pages/marketPlace/PurchasePage.vue' )
     },
     {
         path: '/adoption',
         name: 'adoption',
+        component: () => import('@/pages/adoptionProgram/page.vue')
         component: () => import('@/pages/adoptionProgram/page.vue')
     },
     {
