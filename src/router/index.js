@@ -58,6 +58,11 @@ const routes = [
         name: 'equipment',
         component: () => import('@/pages/sponsor&donation/equipment.vue')
     },
+    {
+        path: '/scholarship',
+        name: 'scholarship',
+        component: () => import('@/pages/sponsor&donation/scholarship.vue')
+    }
     
 ];
 const router = createRouter({

@@ -62,7 +62,7 @@
           <template #title>Donation:</template>
           <template #subtitle>
             <div class="text-[1.1rem]">
-              <router-link to="">
+              <router-link to="/scholarship">
                 <div
                   class="flex justify-left items-center border solid black hover:bg-gray-300 my-1 hover:scale-105"
                 >
