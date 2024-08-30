@@ -27,7 +27,7 @@ import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 // Import the image
-import imageContent from "../AboutUsImages.svg";
+import imageContent from "@/images/AboutUsImages.svg";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";

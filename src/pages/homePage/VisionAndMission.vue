@@ -1,59 +1,95 @@
 <template>
-  <div
-    class="p-5 sm:flex sm:justify-center sm:items-center bg-green-300"
-    id="vision&mission"
-  >
-    <article
-      class="z-30 w-full sm:w-1/2 h-auto m-auto mb-10 mt-10 block rounded-xl bg-white p-4 ring ring-indigo-50"
-      
-      >
-      <div>
-        <strong
-          class="rounded border border-indigo-500 bg-indigo-500 px-3 py-1.5 text-lg sm:text-xl  font-medium text-white"
-        >
-          Vision
-        </strong>
-
-        <h3 class="mt-4 text-md sm:text-lg font-medium sm:text-xl leading-5">
-          <a>
-            "Every child deserves a chance to grow, learn, and thrive. Here, we
-            create that opportunity."
-          </a>
-        </h3>
-
-        <p class="mt-1 text-sm text-gray-700">
-          "Our vision is to create a nurturing and empowering environment where
-          every child has the opportunity to grow, learn, and thrive. We aspire
-          to be a beacon of hope and support, ensuring a brighter future for
-          children in need."
-        </p>
-      </div>
-    </article>
-
-    <article
-      class="z-40 w-full sm:w-1/2 h-auto m-auto mb-2.5  block rounded-xl bg-white p-4 ring ring-indigo-50"
+  <div class="bg-white" id="vision&mission">
+    <div class="text-center w-full m-auto p-5 block">
+      <h1 class="font-[Poppins] text-2xl font-bold p-5">Vision & Mission</h1>
+      <h5 class="font-[Poppins] text-sm">
+        Our vision is a world where every child, regardless of their background
+        or circumstances, has the opportunity to thrive. We strive to break the
+        cycle of poverty, abandonment, and despair by ensuring that all children
+        in our care grow up in an environment filled with love, compassion, and
+        opportunities. We envision a future where each child can realize their
+        full potential and contribute positively to society.
+      </h5>
+    </div>
+    <div
+      class="w-full h-auto p-5 sm:flex sm:justify-center sm:items-center gap-1 text-center"
     >
-      <div>
-        <strong
-          class="rounded border border-indigo-500 bg-indigo-500 px-3 py-1.5 text-lg sm:text-xl font-medium text-white"
+      <!-- First -->
+      <div
+        class="w-4/5 sm:w-1/3 h-auto m-auto mb-5 block rounded-xl bg-green-100 py-4 sm:py-10 px-3 shadow-inner-custom hover:cursor-pointer"
+      >
+        <img
+          :src="icon1"
+          alt="Icon 1"
+          class="w-[4rem] h-[4rem] mb-5 m-auto block"
+        />
+        <h4
+          class="w-full h-auto font-[Poppins] text-sm text-center  font-bold rounded border border-green-400 bg-green-800 text-white p-1"
         >
-          Mission
-        </strong>
-
-        <h3 class="mt-4 text-md sm:text-lg font-medium sm:text-xl leading-5">
-          <a>
-            "In our home, every child finds safety, love, and the support they
-            need to thrive."</a
-          >
-        </h3>
-
-        <p class="mt-1 text-sm text-gray-700">
-          "Our mission is to provide a safe and loving home for orphaned and
-          vulnerable children, offering them access to education, healthcare,
-          and emotional support. We are dedicated to nurturing their potential,
-          and promoting their well-being."
+          Provide Comprehensive Care
+        </h4>
+        <p class="hidden sm:block mt-1 sm:text-xs text-md text-white-500">
+          We are committed to offering a safe and nurturing environment where
+          every child’s basic needs—such as shelter, nutrition, and
+          healthcare—are met with care and compassion. Our goal is to ensure
+          that each child feels secure and supported, allowing them to focus on
+          growing and thriving.
         </p>
       </div>
-    </article>
+
+      <!-- Second -->
+      <div
+        class="w-4/5 sm:w-1/3 h-auto m-auto mb-5 block rounded-xl bg-green-100 py-4 sm:py-12 px-3 shadow-inner-custom hover:cursor-pointer"
+      >
+        <img
+          :src="icon2"
+          alt="Icon 2"
+          class="w-[4rem] h-[4rem] mb-5 m-auto block"
+        />
+        <h4
+          class="w-full h-auto font-[Poppins] text-sm text-center  font-bold rounded border border-green-400 bg-green-800 text-white p-1"
+        >
+          Empower Through Education
+        </h4>
+        <p class=" hidden sm:block mt-1 sm:text-xs text-md text-white-500">
+          Education is the key to breaking the cycle of poverty and providing a
+          brighter future. We strive to equip our children with quality
+          education and life skills, enabling them to pursue their dreams and
+          become confident, self-reliant individuals who can positively impact
+          their communities.
+        </p>
+      </div>
+
+      <!-- Third -->
+      <div
+        class="w-4/5 sm:w-1/3 h-auto m-auto mb-5 block rounded-xl bg-green-100 py-4 sm:py-10 px-3 shadow-inner-custom hover:cursor-pointer"
+      >
+        <img
+          :src="icon3"
+          alt="Icon 3"
+          class="w-[4rem] h-[4rem] mb-5 m-auto block"
+        />
+        <h4
+          class="w-full h-auto font-[Poppins] text-sm text-center  font-bold rounded border border-green-400 bg-green-800 text-white p-1"
+        >
+          Foster a Sense of Belonging
+        </h4>
+        <p class="hidden sm:block  mt-1 sm:text-xs text-md text-white-500">
+          We believe that every child deserves a place to call home and a
+          community that cares. By cultivating a supportive and loving
+          environment, we help our children build lasting relationships, develop
+          a strong sense of self-worth, and create a foundation for a hopeful
+          and fulfilling future.
+        </p>
+      </div>
+    </div>
   </div>
 </template>
+
+<script setup>
+import icon1 from "@/images/vision&mission_icon1.svg";
+import icon2 from "@/images/vision&mission_icon2.svg";
+import icon3 from "@/images/vision&mission_icon3.svg";
+</script>
+
+<style scoped></style>

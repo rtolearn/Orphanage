@@ -11,38 +11,49 @@ const routes = [
 	{
 		path: "/sign-in",
 		name: "sign-in",
-		component: () => import("../pages/signIn/signInPage.vue"),
+		component: () => import("../pages/signIn/page.vue"),
 	},
 	{
 		path: "/sign-up",
 		name: "sign-up",
-		component: () => import("../pages/signUp/signUpPage.vue"),
+		component: () => import("../pages/signUp/page.vue"),
 	},
 	{
 		path: "/market",
 		name: "market",
-		component: () => import("../pages/Marketplace/DisplayItemPage.vue"),
-	},
-	{
-		path: "/marketplace",
-		name: "marketplace",
-		component: () => import("../pages/Marketplace/MarketplacePage.vue"),
+		component: () => import("@/pages/marketPlace/DisplayItemPage.vue"),
 	},
 	{
 		path: "/purchase",
 		name: "purchase",
-		component: () => import("../pages/Marketplace/PurchasePage.vue"),
+		component: () => import("@/pages/marketPlace/PurchasePage.vue"),
 	},
 	{
 		path: "/adoption",
 		name: "adoption",
-		component: () => import("../pages/AdoptionProgram/page.vue"),
+		component: () => import("@/pages/adoptionProgram/page.vue"),
 	},
 	{
 		path: "/adoptionProgression",
 		name: "adoptionProgression",
 		component: () =>
-			import("../pages/AdoptionProgram/applicationProgression.vue"),
+			import("@/pages/adoptionProgram/applicationProgression.vue"),
+	},
+	{
+		path: "/sponsor&donation",
+		name: "sponsor&donation",
+		component: () => import("@/pages/sponsor&donation/page.vue"),
+	},
+	{
+		path: "/necessary",
+		name: "useItem",
+		component: () => import("@/pages/sponsor&donation/necessary.vue"),
+	},
+
+	{
+		path: "/equipment",
+		name: "equipment",
+		component: () => import("@/pages/sponsor&donation/equipment.vue"),
 	},
 ];
 const router = createRouter({

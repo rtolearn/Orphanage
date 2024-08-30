@@ -1,7 +1,11 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 
 <script setup>
+// import NavigationBar from "./NavigationBar.vue";
 import NavBar from "./NavBar.vue";
+// import NavigationBar from "./NavigationBar.vue";
+// import NavigationBar from "./NavigationBar.vue";
+
 // import NavigationBar from "./NavigationBar.vue";
 import Introduction from "./IntroductionSection.vue";
 import AboutUs from "./AboutUs.vue";
@@ -10,7 +14,7 @@ import contentOrphanage from "./contentOrphanage.vue";
 import SponsorAndDonation from "./SponsorAndDonation.vue";
 import MarketPlace from "./MarketPlace.vue";
 import AdoptionProgram from "./AdoptionProgram.vue";
-import DeveloperIntroduction from "./DeveloperIntroduction.vue";
+// import DeveloperIntroduction from "./DeveloperIntroduction.vue";
 import FooterSection from "./FooterSection.vue";
 // import signInPageIndividual from "./pages/signIn/signInPageIndividual.vue";
 // import signUpPageIndividual from "./pages/signUp/signUpPageIndividual.vue";
@@ -21,15 +25,16 @@ import FooterSection from "./FooterSection.vue";
 </script>
 
 <template>
-	<NavBar />
-	<!-- <NavigationBar /> -->
-	<Introduction />
-	<AboutUs />
-	<VisionAndMission />
-	<contentOrphanage />
-	<SponsorAndDonation />
-	<MarketPlace />
-	<AdoptionProgram />
-	<DeveloperIntroduction />
-	<FooterSection />
+  <div class="max-w-[1440px] mx-auto">
+    <NavBar />
+    <Introduction />
+    <AboutUs />
+    <VisionAndMission />
+    <contentOrphanage />
+    <SponsorAndDonation />
+    <MarketPlace />
+    <AdoptionProgram />
+    <!-- <DeveloperIntroduction /> -->
+    <FooterSection />
+  </div>
 </template>
