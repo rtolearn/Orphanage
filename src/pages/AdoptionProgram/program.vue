@@ -109,11 +109,11 @@ import AccordionPanel from "primevue/accordionpanel";
 import AccordionHeader from "primevue/accordionheader";
 import AccordionContent from "primevue/accordioncontent";
 import Button from "primevue/button";
-import formMale from "../formMale.vue";
-import formFemale from "../formFemale.vue";
-import Introduction from "../introduction.vue";
+import formMale from "./formMale.vue";
+import formFemale from "./formFemale.vue";
+import Introduction from "./introduction.vue";
 import ProgressBar from "primevue/progressbar";
-import formMarriage from "../formMarriage.vue";
+import formMarriage from "./formMarriage.vue";
 
 const progressionBarMale = ref(0);
 const progressionBarMarriage = ref(0);

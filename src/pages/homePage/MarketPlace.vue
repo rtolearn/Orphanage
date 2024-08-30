@@ -18,11 +18,7 @@
       <div
         class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right"
       >
-        <p
-          class="text-sm text-center sm:text-left text-gray-500 md:mt-4 md:block text-left"
-        >
-          Shop with a Purpose
-        </p>
+       
         <p
           class="text-sm text-center sm:text-left text-gray-500 md:mt-4 md:block text-left"
         >

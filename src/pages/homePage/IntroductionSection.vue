@@ -9,11 +9,7 @@
         alt=""
       />
       <figure class="mt-1 sm:mt-5 text-center">
-        <h5
-          class="text-[0.65rem] sm:text-lg text-gray-400 leading-8 sm:leading-10 font-semibold font-['Poppins'] w-full h-auto sm:mb-[1rem]"
-        >
-          YOUR GENEROSITY CAN CHANGE LIVES FOREVER
-        </h5>
+        
         
         <h5
           class="text-[0.65rem] sm:text-lg text-gray-400 leading-8 sm:leading-10 font-semibold font-['Poppins'] w-full h-auto sm:mb-[1rem]"

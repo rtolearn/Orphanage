@@ -17,11 +17,7 @@
         <div
           class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right"
         >
-          <p
-            class="text-center text-sm sm:text-left text-gray-500 md:mt-4 md:block text-left"
-          >
-            Building Forever Families
-          </p>
+        
           <p
             class="text-center text-sm sm:text-left text-gray-500 md:mt-4 md:block text-left"
           >
@@ -52,7 +48,7 @@
             <router-link to="/adoption">
               <button
                 class="inline-block sm:flex sm:justify-left rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
-                class="inline-block sm:flex sm:justify-left rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
+                
               >
                 Find out more
                 Find out more
@@ -74,6 +70,6 @@
 				src="https://images.unsplash.com/photo-1484959014842-cd1d967a39cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
 				class="hidden sm:block h-full w-full object-cover sm:h-[calc(100%_-_2rem)] sm:self-end sm:rounded-ss-[30px] md:h-[calc(100%_-_4rem)] md:rounded-ss-[60px]"
 			/>
-		</div>
-	</section>
+
+
 </template>

@@ -14,7 +14,7 @@ import contentOrphanage from "./contentOrphanage.vue";
 import SponsorAndDonation from "./SponsorAndDonation.vue";
 import MarketPlace from "./MarketPlace.vue";
 import AdoptionProgram from "./AdoptionProgram.vue";
-import DeveloperIntroduction from "./DeveloperIntroduction.vue";
+// import DeveloperIntroduction from "./DeveloperIntroduction.vue";
 import FooterSection from "./FooterSection.vue";
 // import signInPageIndividual from "./pages/signIn/signInPageIndividual.vue";
 // import signUpPageIndividual from "./pages/signUp/signUpPageIndividual.vue";
@@ -34,7 +34,7 @@ import FooterSection from "./FooterSection.vue";
     <SponsorAndDonation />
     <MarketPlace />
     <AdoptionProgram />
-    <DeveloperIntroduction />
+    <!-- <DeveloperIntroduction /> -->
     <FooterSection />
   </div>
 </template>
