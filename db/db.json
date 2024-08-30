@@ -217,27 +217,23 @@
       "userId": 1,
       "items": [
         {
-          "id": 2,
-          "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-          "itemName": "Toy Building Blocks",
-          "itemUnitPrice": 29.99,
-          "quantityAvailable": 40,
-          "quantity": 4
-        },
-        {
-          "id": 3,
-          "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-          "itemName": "Stuffed Animal",
-          "itemUnitPrice": 19.99,
-          "quantityAvailable": 50,
-          "quantity": 3
-        },
-        {
-          "id": 1,
+          "id": 8,
           "quantity": 1
         },
         {
-          "id": 6,
+          "id": 10,
+          "quantity": 1
+        },
+        {
+          "id": 11,
+          "quantity": 1
+        },
+        {
+          "id": 12,
+          "quantity": 1
+        },
+        {
+          "id": 13,
           "quantity": 1
         }
       ]

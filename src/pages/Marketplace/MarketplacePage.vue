@@ -1,6 +1,6 @@
 <template>
 	<NavBar />
-	<SearchBar @update:searchTerm="handleSearch" ref="searchBar" />
+	<SearchBar @update:searchTerm="handleSearch" ref="searchBarRef" />
 	<div
 		class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-4 bg-gray-50 p-6"
 	>

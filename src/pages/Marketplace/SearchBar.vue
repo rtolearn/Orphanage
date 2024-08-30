@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { computed, onMounted, onUpdated, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import api from "@/services/api";
 import CartItem from "./CartItem.vue";
 
@@ -113,8 +113,6 @@ export default {
 			}
 		};
 
-		onUpdated(fetchCartItems);
-
 		onMounted(fetchCartItems);
 
 		return {
@@ -125,6 +123,7 @@ export default {
 			totalCost,
 			onQuantityChanged,
 			onItemDeleted,
+			fetchCartItems,
 		};
 	},
 };
