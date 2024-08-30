@@ -16,11 +16,7 @@
         <div
           class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right"
         >
-          <p
-            class="text-center sm:text-left text-gray-500 md:mt-4 md:block text-left"
-          >
-            Give the Gift of Hope and Transformation
-          </p>
+          
           <p
             class="text-center sm:text-left text-gray-500 md:mt-4 md:block text-left"
           >

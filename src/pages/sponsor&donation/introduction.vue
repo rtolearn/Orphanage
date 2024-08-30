@@ -25,7 +25,7 @@
           <template #title>Sponsor:</template>
           <template #subtitle>
             <div class="text-[1.1rem]">
-              <router-link to="/equipment&necessary">
+              <router-link to="/equipment">
                 <div
                   class="flex justify-left items-center border solid black hover:bg-gray-300 my-1 hover:scale-105"
                 >
@@ -36,7 +36,7 @@
                   <h1>Equipment / Necessaries</h1>
                 </div>
               </router-link>
-              <router-link to="/usedItem">
+              <router-link to="/necessary">
                 <div
                   class="flex justify-left items-center border solid black hover:bg-gray-300 my-1 hover:scale-105"
                 >

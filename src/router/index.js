@@ -48,15 +48,15 @@ const routes = [
         component: () => import('@/pages/sponsor&donation/page.vue')       
     },
     {
-        path:'/usedItem',
+        path:'/necessary',
         name: 'useItem',
-        component: () => import('@/pages/sponsor&donation/usedItem.vue')
+        component: () => import('@/pages/sponsor&donation/necessary.vue')
     },
     
     {
-        path:'/equipment&necessary',
-        name: 'equipment&necessart',
-        component: () => import('@/pages/sponsor&donation/equipment&necessary.vue')
+        path:'/equipment',
+        name: 'equipment',
+        component: () => import('@/pages/sponsor&donation/equipment.vue')
     },
     
 ];
