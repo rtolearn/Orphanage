@@ -2,33 +2,47 @@
 	<nav class="">
 		<ul class="flex flex-col gap-8 lg:flex-row lg:gap-12">
 			<li>
-				<a :class="{ 'font-bold': currentSection === 'home' }" href="#home"
+				<a
+					:class="{ 'font-bold': isRootPath && currentSection === 'home' }"
+					:href="isRootPath ? '#home' : '/'"
 					>Home</a
 				>
 			</li>
 			<li>
-				<a :class="{ 'font-bold': currentSection === 'about' }" href="#about"
+				<a
+					:class="{ 'font-bold': currentSection === 'about' }"
+					:href="isRootPath ? '#about' : '/#about'"
 					>About</a
 				>
 			</li>
 			<li>
 				<a
-					:class="{ 'font-bold': currentSection === 'donations' }"
-					href="#donations"
+					:class="{
+						'font-bold':
+							currentSection === 'donations' || currentPath === '/donations',
+					}"
+					:href="isRootPath ? '#donations' : '/donations'"
 					>Donations</a
 				>
 			</li>
 			<li>
 				<a
-					:class="{ 'font-bold': currentSection === 'marketplace' }"
-					href="#marketplace"
+					:class="{
+						'font-bold':
+							currentSection === 'marketplace' ||
+							currentPath === '/marketplace',
+					}"
+					:href="isRootPath ? '#marketplace' : '/marketplace'"
 					>Marketplace</a
 				>
 			</li>
 			<li>
 				<a
-					:class="{ 'font-bold': currentSection === 'adoption' }"
-					href="#adoption"
+					:class="{
+						'font-bold':
+							currentSection === 'adoption' || currentPath === '/adoption',
+					}"
+					:href="isRootPath ? '#adoption' : '/adoption'"
 					>Adoption</a
 				>
 			</li>
@@ -38,9 +52,14 @@
 
 <script>
 import { ref, onMounted, onUnmounted } from "vue";
+import { useRoute } from "vue-router";
 
 export default {
 	setup() {
+		const route = useRoute();
+		const currentPath = route.path;
+		const isRootPath = route.path === "/";
+
 		const currentSection = ref("home");
 
 		const onScroll = () => {
@@ -62,15 +81,19 @@ export default {
 		};
 
 		onMounted(() => {
-			window.addEventListener("scroll", onScroll);
-			onScroll();
+			if (isRootPath) {
+				window.addEventListener("scroll", onScroll);
+				onScroll();
+			}
 		});
 
 		onUnmounted(() => {
-			window.removeEventListener("scroll", onScroll);
+			if (isRootPath) {
+				window.removeEventListener("scroll", onScroll);
+			}
 		});
 
-		return { currentSection };
+		return { isRootPath, currentPath, currentSection };
 	},
 };
 </script>
