@@ -21,23 +21,28 @@ const routes = [
 	{
 		path: "/market",
 		name: "market",
-		component: () => import("@/pages/marketPlace/DisplayItemPage.vue"),
+		component: () => import("@/pages/Marketplace/DisplayItemPage.vue"),
+	},
+	{
+		path: "/marketplace",
+		name: "marketplace",
+		component: () => import("@/pages/Marketplace/MarketplacePage.vue"),
 	},
 	{
 		path: "/purchase",
 		name: "purchase",
-		component: () => import("@/pages/marketPlace/PurchasePage.vue"),
+		component: () => import("@/pages/Marketplace/PurchasePage.vue"),
 	},
 	{
 		path: "/adoption",
 		name: "adoption",
-		component: () => import("@/pages/adoptionProgram/page.vue"),
+		component: () => import("@/pages/AdoptionProgram/page.vue"),
 	},
 	{
 		path: "/adoptionProgression",
 		name: "adoptionProgression",
 		component: () =>
-			import("@/pages/adoptionProgram/applicationProgression.vue"),
+			import("@/pages/AdoptionProgram/applicationProgression.vue"),
 	},
 	{
 		path: "/sponsor&donation",
