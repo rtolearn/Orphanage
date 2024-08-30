@@ -39,20 +39,22 @@ const routes = [
         component: () => import('@/pages/adoptionProgram/applicationProgression.vue')
     },
     {
-        path:'/sponsor',
-        name: 'sponsor',
-        component: () => import('@/pages/sponsor&donation/sponsor.vue')
-    },
-    {
-        path:'/donation',
-        name: 'donation',
-        component: () => import('@/pages/sponsor&donation/donation.vue')
-    },
-    {
         path:'/sponsor&donation',
         name: 'sponsor&donation',
         component: () => import('@/pages/sponsor&donation/page.vue')       
-    }
+    },
+    {
+        path:'/usedItem',
+        name: 'useItem',
+        component: () => import('@/pages/sponsor&donation/usedItem.vue')
+    },
+    
+    {
+        path:'/equipment&necessary',
+        name: 'equipment&necessart',
+        component: () => import('@/pages/sponsor&donation/equipment&necessary.vue')
+    },
+    
 ];
 const router = createRouter({
     history: createWebHistory(),

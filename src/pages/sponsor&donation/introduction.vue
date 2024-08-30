@@ -1,12 +1,17 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 
 <template>
-  <div class="max-w-[1440px] md:h-screen m-auto block bg-green-100">
+  <div class="max-w-[1440px] md:h-screen m-auto block bg-green-50">
     <div>
       <div class="py-10 sm:pt-[6rem]">
+        <router-link to="/">
+      <span class="pi pi-home mx-3"></span>
+    </router-link>
+
         <h1 class="font-bold text-lg sm:text-2xl text-center">
           Become our Sponsor or Donor
         </h1>
+        
       </div>
       <div
         class="w-full h-fit m-auto block p-5 text-md sm:text-xl md:flex md:justify-center md:items-center md:gap-10"
@@ -20,7 +25,7 @@
           <template #title>Sponsor:</template>
           <template #subtitle>
             <div class="text-[1.1rem]">
-              <router-link to="">
+              <router-link to="/equipment&necessary">
                 <div
                   class="flex justify-left items-center border solid black hover:bg-gray-300 my-1 hover:scale-105"
                 >
@@ -31,7 +36,7 @@
                   <h1>Equipment / Necessaries</h1>
                 </div>
               </router-link>
-              <router-link to="">
+              <router-link to="/usedItem">
                 <div
                   class="flex justify-left items-center border solid black hover:bg-gray-300 my-1 hover:scale-105"
                 >
