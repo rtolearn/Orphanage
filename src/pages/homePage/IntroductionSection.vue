@@ -1,6 +1,6 @@
 <template>
-  <div class="hero_section_background" id="home">
-    <div class="relative z-10 w-4/5 h-auto py-[1rem] m-auto block">
+
+    
   <div class="hero_section_background" id="home">
     <div class="relative z-10 w-4/5 h-auto py-[1rem] m-auto block">
       <img
@@ -54,7 +54,7 @@
         />
       </slide>
     </carousel>
-  </div></div></div>
+  </div>
 </template>
 
 <script setup>
@@ -109,5 +109,7 @@ const data = [
   background-repeat: no-repeat;
   opacity: 0.2; /* Adjust opacity here */
   z-index: 1;
+  width: full;
+  height: auto;
 }
 </style>

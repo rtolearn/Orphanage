@@ -21,7 +21,7 @@ const routes = [
  
     },
     {
-        path:'/market',
+        path:'/marketplace',
         name:'market',
         component: () => import('@/pages/marketPlace/DisplayItemPage.vue' )
      
@@ -50,13 +50,13 @@ const routes = [
     {
         path:'/necessary',
         name: 'useItem',
-        component: () => import('@/pages/sponsor&donation/necessary.vue')
+        component: () => import('@/pages/sponsor&donation/necessaryPage/page.vue')
     },
     
     {
         path:'/equipment',
         name: 'equipment',
-        component: () => import('@/pages/sponsor&donation/equipment.vue')
+        component: () => import('@/pages/sponsor&donation/equipmentPage/page.vue')
     },
     {
         path: '/scholarship',
