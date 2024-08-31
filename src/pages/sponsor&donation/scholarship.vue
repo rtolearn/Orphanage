@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <div class="card flex justify-center items-center font-[Poppins]">
       <Stepper value="1" class="w-4/5 h-auto">
