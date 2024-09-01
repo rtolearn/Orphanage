@@ -2,35 +2,34 @@
 <template>
   <div class="m-auto block">
     <Stepper :value="activeStep">
-      <StepComponent
-        v-for="step in stepInformation"
-        :key="step.id"
-        :value="step.value"
-        :title="step.title"
-        :component="step.component"
-        :button="step.button"
-        :callBackValue="step.callBackValue"
-        :callNextValue="step.callNextValue"
-        @stepChange="updateActiveStep"
-      />
+      <div v-for="(step, index) in stepInformation" :key="index">
+        <StepItem :value="step.value">
+          <!-- Display the title -->
+          <Step>{{ step.title }}</Step>
+          <StepPanel :activateCallback="activateCallback">
+            <!-- Component -->
+            <component :is="step.component" @currentStep="updateActiveStep" />
+          </StepPanel>
+        </StepItem>
+      </div>
     </Stepper>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 import Stepper from "primevue/stepper";
 import Overview from "./ScholarshipOverview.vue";
 import Requirement from "./ScholarshipRequirement.vue";
 import MeetingInformation from "./ScholarshipMeeting.vue";
 import Gratitude from "./ScholarshipGratitude.vue";
-import StepComponent from "./StepComponent.vue";
+
 
 //Create an object to store all the data
-// const collectData ={
-//   requirement: [],
-//   giver: [],
-// }
+const collectData = {
+  requirement: {},
+  giver: {},
+};
 const activeStep = ref(1);
 
 const stepInformation = [

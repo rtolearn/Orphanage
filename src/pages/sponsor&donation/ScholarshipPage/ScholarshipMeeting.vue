@@ -47,6 +47,10 @@
           <label for="date" class="block">Date:</label>
           <DatePicker v-model="date" name="date" placeholder="Select a date" />
         </div>
+        <div class="py-6 flex gap-2">
+          <Button severity="secondary" label="Back" @click="handleClick(2)"/>
+          <Button label="Next" @click="handleClick(4)"/>
+        </div>
       </div>
     </div>
   </div>
@@ -55,7 +59,10 @@
 <script setup>
 import { Field, ErrorMessage } from "vee-validate";
 import { ref } from "vue";
-
+const emit = defineEmits(['currentStep']);
+const handleClick = (value) =>{
+  emit('currentStep', value)
+}
 const date = ref();
 const validateName = (valueName) => {
   if (valueName && valueName.trim()) {
