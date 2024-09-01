@@ -62,10 +62,13 @@ export default {
 			} else {
 				const updatedQuantity = cartItem.value.quantity + 1;
 				const updatedCartItem = {
+					id: cartItem.value.id,
+					quantity: updatedQuantity,
+				};
+				cartItem.value = {
 					...cartItem.value,
 					quantity: updatedQuantity,
 				};
-				cartItem.value = updatedCartItem;
 				await api.updateCartItem(updatedCartItem);
 				emit("quantity-changed", updatedCartItem);
 			}
