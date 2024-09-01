@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col w-full">
+    <div class="flex flex-col w-full p-5">
             <div class="p-3 border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950">
               <!-- To-Do List Component -->
               <div>
@@ -38,6 +38,7 @@
 
 <script setup>
 import { reactive } from "vue";
+
 const toDoList = reactive({
   newTask: "",
   tasks: [],

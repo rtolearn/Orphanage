@@ -1,83 +1,76 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-
 <template>
   <div class="m-auto block">
-    <Stepper value="1">
-      <StepItem value="1">
-        <Step>Header I</Step>
-        <StepPanel v-slot="{ activateCallback }">
-          <!-- Introduction -->
-          <Overview />
-          <div class="py-6">
-            <Button label="Next" @click="activateCallback('2')" />
-          </div>
-        </StepPanel>
-      </StepItem>
-      <StepItem value="2">
-        <Step>Header II</Step>
-        <StepPanel v-slot="{ activateCallback }">
-          <!-- Fill in the requirement of the scholarship -->
-          <Requirement />
-          <div class="flex py-6 gap-2">
-            <Button
-              label="Back"
-              severity="secondary"
-              @click="activateCallback('1')"
-            />
-            <Button label="Next" @click="activateCallback('3')" />
-          </div>
-        </StepPanel>
-      </StepItem>
-      <StepItem value="3">
-        <Step>Header III</Step>
-        <StepPanel v-slot="{ activateCallback }">
-          <!-- Fill in the information of patron -->
-
-          <MeetingInformation />
-
-          <div class="flex py-6 gap-2">
-            <Button
-              label="Back"
-              severity="secondary"
-              @click="activateCallback('2')"
-            />
-            <Button label="Confirm" @click="activateCallback('4')" />
-          </div>
-        </StepPanel>
-      </StepItem>
-
-      <StepItem value="4">
-        <Step>Header III</Step>
-        <StepPanel >
-          <!-- FThanks all the participant-->
-
-          <Gratitude />
-
-          <div class="flex py-6 gap-2">
-            <router-link to="/sponsor&donation">
-              <Button
-              label="Complete"
-              severity="secondary"
-              @click="s"
-            > </Button>
-            </router-link>
-            
-
-          </div>
-        </StepPanel>
-      </StepItem>
+    <Stepper :value="activeStep">
+      <StepComponent
+        v-for="step in stepInformation"
+        :key="step.id"
+        :value="step.value"
+        :title="step.title"
+        :component="step.component"
+        :button="step.button"
+        :callBackValue="step.callBackValue"
+        :callNextValue="step.callNextValue"
+        @stepChange="updateActiveStep"
+      />
     </Stepper>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import Stepper from "primevue/stepper";
-import StepItem from "primevue/stepitem";
-import Step from "primevue/step";
-import StepPanel from "primevue/steppanel";
-
 import Overview from "./ScholarshipOverview.vue";
 import Requirement from "./ScholarshipRequirement.vue";
 import MeetingInformation from "./ScholarshipMeeting.vue";
 import Gratitude from "./ScholarshipGratitude.vue";
+import StepComponent from "./StepComponent.vue";
+
+//Create an object to store all the data
+// const collectData ={
+//   requirement: [],
+//   giver: [],
+// }
+const activeStep = ref(1);
+
+const stepInformation = [
+  {
+    value: 1,
+    title: "Overview",
+    component: Overview,
+    button: ["NextButton"],
+    callBackValue: null,
+    callNextValue: 2,
+  },
+  {
+    value: 2,
+    title: "Requirement",
+    component: Requirement,
+    button: ["BackButton", "NextButton"],
+    callBackValue: 1,
+    callNextValue: 3,
+  },
+  {
+    value: 3,
+    title: "Patron Information",
+    component: MeetingInformation,
+    button: ["BackButton", "ConfirmButton"],
+    callBackValue: 2,
+    callNextValue: 4,
+  },
+  {
+    value: 4,
+    title: "Thank you",
+    component: Gratitude,
+    button: ["BackButton", "CompleteButton"],
+    callBackValue: 3,
+    callNextValue: null,
+  },
+];
+
+const updateActiveStep = (nextStep) => {
+  if (nextStep !== null) {
+    activeStep.value = nextStep;
+  }
+};
 </script>
