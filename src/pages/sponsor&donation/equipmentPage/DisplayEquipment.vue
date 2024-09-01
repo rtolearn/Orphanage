@@ -1,9 +1,7 @@
 <template>
   <div class="w-4/5 h-auto m-auto">
     <!-- Display all the items needed in a list -->
-    <div
-      class="w-full h-auto m-auto block my-[1.5rem] border solid border-gray-200 rounded-lg"
-    >
+    <div class="w-full h-auto m-auto block my-[2rem] border solid border-gray-200 rounded-lg">
       <div
         v-for="(item, index) in props.data"
         :key="item.id"
@@ -19,14 +17,12 @@
               >
                 {{ item.itemName }}
               </h1>
-            </div>
+            </div> 
             <ProgressBar
               :value="(item.currentAmount / item.maxAmount) * 100"
               :max="item.maxAmount"
             >
-              <span class="text-[0.6rem] sm:text-[0.8rem]"
-                >{{ item.currentAmount }}/{{ item.maxAmount }}</span
-              >
+              <span class="text-[0.6rem] sm:text-[0.8rem]">{{ item.currentAmount }}/{{ item.maxAmount }}</span>
             </ProgressBar>
             <div
               class="block sm:flex sm:justify-between sm:items-center text-xs sm:text-lg md:text-base"
@@ -52,8 +48,7 @@
       </div>
     </div>
   </div>
-</template>
-
+</template> 
 <script setup>
 import ProgressBar from "primevue/progressbar";
 import {defineProps} from 'vue'

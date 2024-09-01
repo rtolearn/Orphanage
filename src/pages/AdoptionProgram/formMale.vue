@@ -357,6 +357,7 @@ const validateSelectionState = (valueState) => {
     return "This field is required";
   }
 };
+
 const validateEmail = (valueEmail) => {
   if (valueEmail) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valueEmail)) {

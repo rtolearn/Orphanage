@@ -2,39 +2,30 @@
 
 <script setup>
 // import NavigationBar from "./NavigationBar.vue";
-import NavBar from "./NavBar.vue";
-// import NavigationBar from "./NavigationBar.vue";
-// import NavigationBar from "./NavigationBar.vue";
+// import NavBar from "./NavBar.vue";
+import NavBar from "@/pages/HomePage/NavBar.vue"
 
-// import NavigationBar from "./NavigationBar.vue";
-import Introduction from "./IntroductionSection.vue";
-import AboutUs from "./AboutUs.vue";
-import VisionAndMission from "./VisionAndMission.vue";
-import contentOrphanage from "./contentOrphanage.vue";
-import SponsorAndDonation from "./SponsorAndDonation.vue";
-import MarketPlace from "./MarketPlace.vue";
-import AdoptionProgram from "./AdoptionProgram.vue";
-// import DeveloperIntroduction from "./DeveloperIntroduction.vue";
-import FooterSection from "./FooterSection.vue";
-// import signInPageIndividual from "./pages/signIn/signInPageIndividual.vue";
-// import signUpPageIndividual from "./pages/signUp/signUpPageIndividual.vue";
-// import signInPageCompany from "./pages/signIn/signInPageCompany.vue";
-// import signUpPageCompany from "./pages/signUp/signUpPageCompany.vue";
-// import DisplayItemPage from "./pages/Marketplace/DisplayItemPage.vue";
-// import PurchasePage from "./pages/Marketplace/PurchasePage.vue";
+import Introduction from "@/pages/HomePage/IntroductionSection.vue";
+import AboutUs from "@/pages/HomePage/AboutUs.vue";
+import VisionAndMission from "@/pages/HomePage/VisionAndMission.vue";
+import SponsorAndDonation from "@/pages/HomePage/Sponsor&Donation.vue";
+import MarketPlace from "@/pages/HomePage/MarketPlace.vue";
+import AdoptionProgram from "@/pages/HomePage/AdoptionProgram.vue";
+import FooterSection from "@/pages/HomePage/FooterSection.vue";
 </script>
 
 <template>
-  <div class="max-w-[1440px] mx-auto">
+  <div class="max-w-[1440px] mx-auto max-h-auto
+  ">
     <NavBar />
     <Introduction />
     <AboutUs />
     <VisionAndMission />
-    <contentOrphanage />
+    <!--<contentOrphanage />-->
     <SponsorAndDonation />
     <MarketPlace />
     <AdoptionProgram />
-    <!-- <DeveloperIntroduction /> -->
+
     <FooterSection />
   </div>
 </template>

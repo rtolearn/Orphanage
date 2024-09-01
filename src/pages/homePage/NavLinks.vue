@@ -19,9 +19,9 @@
 				<a
 					:class="{
 						'font-bold':
-							currentSection === 'donations' || currentPath === '/donations',
+							currentSection === 'donations' || currentPath === '/sponsor&donation',
 					}"
-					:href="isRootPath ? '#donations' : '/donations'"
+					:href="isRootPath ? '#donations' : '/sponsor&donation'"
 					>Donations</a
 				>
 			</li>

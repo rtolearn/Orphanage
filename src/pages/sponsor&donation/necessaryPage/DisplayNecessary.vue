@@ -36,7 +36,7 @@
                 <h1
                   class="text-[0.6rem] sm:text-sm md:text-base lg:text-lg xl:text-xl"
                 >
-                  <span>RM{{ item.maxAmount - item.currentAmount }}.00 </span>
+                  <span class="pump-animation">RM{{ item.maxAmount - item.currentAmount }}.00 </span>
                   left
                 </h1>
                 <button
@@ -67,4 +67,25 @@
     }
   })
   </script>
-  
+  <style scoped>
+  @keyframes pump {
+  0% {
+    transform: scale(1);
+    color: black; /* Initial color */
+  }
+  50% {
+    transform: scale(1.01);
+    color: red; /* Color when enlarged */
+  }
+  100% {
+    transform: scale(1);
+    color: black; /* Reset to initial color */
+  }
+}
+
+.pump-animation {
+  display: inline-block; /* Ensure the animation applies properly */
+  animation: pump 0.6s ease-in-out infinite; /* Animation duration and loop */
+}
+
+</style>

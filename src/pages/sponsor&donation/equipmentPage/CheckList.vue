@@ -4,7 +4,7 @@
       v-model="selectedItem"
       :options="data"
       optionLabel="itemName"
-      class="w-4/5 h-auto flex justify-center items-center m-auto my-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
+      class="w-4/5 h-auto flex justify-center items-center m-auto my-5 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
       placeholder="Here is the checklist for every item.."
       @change="scrollToItem"
     ></Select>

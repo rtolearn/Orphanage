@@ -1,7 +1,7 @@
 <template>
   <div
     id="about"
-    class="card bg-gray-50 m-auto block text-center w-full h-auto sm:flex"
+    class=" bg-gray-50 m-auto block text-center w-full h-auto sm:flex"
   >
     <div class=" w-[15rem] sm:w-[25rem] h-auto  p-5 m-auto block">
       <img :src="AboutUsImages" alt="About Us picture" />
@@ -18,7 +18,7 @@
           Dedicated to Nurturing Hope, Love, and a Brighter Future for Every
           Child.
         </h1>
-        <p class="mb-3">
+        <p class="hidden sm:block mb-3">
           At [Orphanage Name], we believe that every child deserves a safe and
           loving environment to grow, learn, and thrive. Founded on the
           principles of compassion and community, our orphanage is more than

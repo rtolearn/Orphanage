@@ -11,76 +11,31 @@
         full potential and contribute positively to society.
       </h5>
     </div>
+    <!-- Display item via loop -->
     <div
-      class="w-full h-auto p-5 sm:flex sm:justify-center sm:items-center gap-1 text-center"
+      class="w-full h-auto p-5 sm:flex sm:justify-center sm:items-center gap-4 text-center"
     >
-      <!-- First -->
-      <div
-        class="w-4/5 sm:w-1/3 h-auto m-auto mb-5 block rounded-xl bg-green-100 py-4 sm:py-10 px-3 shadow-inner-custom hover:cursor-pointer"
-      >
-        <img
-          :src="icon1"
-          alt="Icon 1"
-          class="w-[4rem] h-[4rem] mb-5 m-auto block"
-        />
-        <h4
-          class="w-full h-auto font-[Poppins] text-sm text-center  font-bold rounded border border-green-400 bg-green-800 text-white p-1"
+      <div v-for="item in displayContent" :key="item.id">
+        <!-- Item -->
+        <div
+          class="w-full h-auto m-auto mb-5 block rounded-xl bg-green-100 py-4 sm:py-10 px-3 shadow-inner-custom hover:cursor-pointer"
         >
-          Provide Comprehensive Care
-        </h4>
-        <p class="hidden sm:block mt-1 sm:text-xs text-md text-white-500">
-          We are committed to offering a safe and nurturing environment where
-          every child’s basic needs—such as shelter, nutrition, and
-          healthcare—are met with care and compassion. Our goal is to ensure
-          that each child feels secure and supported, allowing them to focus on
-          growing and thriving.
-        </p>
-      </div>
-
-      <!-- Second -->
-      <div
-        class="w-4/5 sm:w-1/3 h-auto m-auto mb-5 block rounded-xl bg-green-100 py-4 sm:py-12 px-3 shadow-inner-custom hover:cursor-pointer"
-      >
-        <img
-          :src="icon2"
-          alt="Icon 2"
-          class="w-[4rem] h-[4rem] mb-5 m-auto block"
-        />
-        <h4
-          class="w-full h-auto font-[Poppins] text-sm text-center  font-bold rounded border border-green-400 bg-green-800 text-white p-1"
-        >
-          Empower Through Education
-        </h4>
-        <p class=" hidden sm:block mt-1 sm:text-xs text-md text-white-500">
-          Education is the key to breaking the cycle of poverty and providing a
-          brighter future. We strive to equip our children with quality
-          education and life skills, enabling them to pursue their dreams and
-          become confident, self-reliant individuals who can positively impact
-          their communities.
-        </p>
-      </div>
-
-      <!-- Third -->
-      <div
-        class="w-4/5 sm:w-1/3 h-auto m-auto mb-5 block rounded-xl bg-green-100 py-4 sm:py-10 px-3 shadow-inner-custom hover:cursor-pointer"
-      >
-        <img
-          :src="icon3"
-          alt="Icon 3"
-          class="w-[4rem] h-[4rem] mb-5 m-auto block"
-        />
-        <h4
-          class="w-full h-auto font-[Poppins] text-sm text-center  font-bold rounded border border-green-400 bg-green-800 text-white p-1"
-        >
-          Foster a Sense of Belonging
-        </h4>
-        <p class="hidden sm:block  mt-1 sm:text-xs text-md text-white-500">
-          We believe that every child deserves a place to call home and a
-          community that cares. By cultivating a supportive and loving
-          environment, we help our children build lasting relationships, develop
-          a strong sense of self-worth, and create a foundation for a hopeful
-          and fulfilling future.
-        </p>
+          <img
+            :src="item.img"
+            alt="Icon 1"
+            class="w-[4rem] h-[4rem] mb-5 m-auto block"
+          />
+          <h4
+            class="w-full h-auto font-[Poppins] text-sm text-center font-bold rounded border border-green-400 bg-green-800 text-white px-3"
+          >
+            {{ item.title }}
+          </h4>
+          <p
+            class="hidden sm:block px-auto mt-1 sm:text-xs text-md text-white-500"
+          >
+            {{ item.content }}
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -90,6 +45,38 @@
 import icon1 from "@/images/vision&mission_icon1.svg";
 import icon2 from "@/images/vision&mission_icon2.svg";
 import icon3 from "@/images/vision&mission_icon3.svg";
+
+const displayContent = [
+  {
+    img: icon1,
+    title: "Provide Comprehensive Care",
+    content: `We are committed to offering a safe and nurturing environment where
+    every child’s basic needs—such as shelter, nutrition, and
+    healthcare—are met with care and compassion. Our goal is to ensure
+    that each child feels secure and supported, allowing them to focus on
+    growing and thriving.`,
+  },
+  {
+    img: icon2,
+    title: "Empower Through Education",
+    content: ` Education is the key to breaking the cycle of poverty and providing a
+          brighter future. We strive to equip our children with quality
+          education and life skills, enabling them to pursue their dreams and
+          become confident, self-reliant individuals who can positively impact
+          their communities.`,
+  },
+  {
+    img: icon3,
+    title: "Foster a Sense of Belonging",
+    content: `We believe that every child deserves a place to call home and a
+          community that cares. By cultivating a supportive and loving
+          environment, we help our children build lasting relationships, develop
+          a strong sense of self-worth, and create a foundation for a hopeful
+          and fulfilling future..`,
+  },
+];
 </script>
 
-<style scoped></style>
+<style scoped>
+/* Add any additional styles if needed */
+</style>

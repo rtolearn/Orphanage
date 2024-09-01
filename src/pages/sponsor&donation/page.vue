@@ -1,11 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import Introduction from './HomePage.vue'
+import HomePage from '@/pages/Sponsor&Donation/HomePage.vue'
+import NavBar from "@/pages/HomePage/NavBar.vue"
 </script> 
 
 <template>
-    <div id="sponsor&donation" class="max-w-[1440px] max-h-vh mx-auto">
-        <Introduction />
+    <div id="sponsor&donation" class="max-w-[1440px] h-screen mx-auto">
+        <NavBar />
+        <HomePage />
     </div>
     
 </template>

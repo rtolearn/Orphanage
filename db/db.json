@@ -1,210 +1,210 @@
 {
   "marketplaceItems": [
     {
-      "id": 1,
+      "id": "1",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Storybook",
       "itemUnitPrice": 15.99,
       "quantityAvailable": 25
     },
     {
-      "id": 2,
+      "id": "2",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Toy Building Blocks",
       "itemUnitPrice": 29.99,
       "quantityAvailable": 40
     },
     {
-      "id": 3,
+      "id": "3",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Stuffed Animal",
       "itemUnitPrice": 19.99,
       "quantityAvailable": 50
     },
     {
-      "id": 4,
+      "id": "4",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Backpack",
       "itemUnitPrice": 24.99,
       "quantityAvailable": 30
     },
     {
-      "id": 5,
+      "id": "5",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Crayons Set",
       "itemUnitPrice": 9.99,
       "quantityAvailable": 60
     },
     {
-      "id": 6,
+      "id": "6",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Drawing Pad",
       "itemUnitPrice": 12.99,
       "quantityAvailable": 55
     },
     {
-      "id": 7,
+      "id": "7",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Puzzle Game",
       "itemUnitPrice": 17.99,
       "quantityAvailable": 20
     },
     {
-      "id": 8,
+      "id": "8",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's T-shirt",
       "itemUnitPrice": 14.99,
       "quantityAvailable": 35
     },
     {
-      "id": 9,
+      "id": "9",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Water Bottle",
       "itemUnitPrice": 10.99,
       "quantityAvailable": 45
     },
     {
-      "id": 10,
+      "id": "10",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Lego Set",
       "itemUnitPrice": 34.99,
       "quantityAvailable": 15
     },
     {
-      "id": 11,
+      "id": "11",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Hat",
       "itemUnitPrice": 13.99,
       "quantityAvailable": 28
     },
     {
-      "id": 12,
+      "id": "12",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Coloring Book",
       "itemUnitPrice": 8.99,
       "quantityAvailable": 70
     },
     {
-      "id": 13,
+      "id": "13",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Toy Car",
       "itemUnitPrice": 18.99,
       "quantityAvailable": 22
     },
     {
-      "id": 14,
+      "id": "14",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Sneakers",
       "itemUnitPrice": 39.99,
       "quantityAvailable": 10
     },
     {
-      "id": 15,
+      "id": "15",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Educational Flashcards",
       "itemUnitPrice": 16.99,
       "quantityAvailable": 38
     },
     {
-      "id": 16,
+      "id": "16",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Sunglasses",
       "itemUnitPrice": 11.99,
       "quantityAvailable": 25
     },
     {
-      "id": 17,
+      "id": "17",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Toy Train Set",
       "itemUnitPrice": 27.99,
       "quantityAvailable": 14
     },
     {
-      "id": 18,
+      "id": "18",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Building Blocks",
       "itemUnitPrice": 21.99,
       "quantityAvailable": 18
     },
     {
-      "id": 19,
+      "id": "19",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Jacket",
       "itemUnitPrice": 29.99,
       "quantityAvailable": 12
     },
     {
-      "id": 20,
+      "id": "20",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Socks (3-pack)",
       "itemUnitPrice": 7.99,
       "quantityAvailable": 80
     },
     {
-      "id": 21,
+      "id": "21",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Play-Doh Set",
       "itemUnitPrice": 19.99,
       "quantityAvailable": 35
     },
     {
-      "id": 22,
+      "id": "22",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Watch",
       "itemUnitPrice": 22.99,
       "quantityAvailable": 20
     },
     {
-      "id": 23,
+      "id": "23",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Toy Airplane",
       "itemUnitPrice": 26.99,
       "quantityAvailable": 16
     },
     {
-      "id": 24,
+      "id": "24",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Gloves",
       "itemUnitPrice": 12.99,
       "quantityAvailable": 30
     },
     {
-      "id": 25,
+      "id": "25",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Storybook Collection",
       "itemUnitPrice": 34.99,
       "quantityAvailable": 22
     },
     {
-      "id": 26,
+      "id": "26",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Art Supplies Kit",
       "itemUnitPrice": 29.99,
       "quantityAvailable": 25
     },
     {
-      "id": 27,
+      "id": "27",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Pajamas",
       "itemUnitPrice": 20.99,
       "quantityAvailable": 28
     },
     {
-      "id": 28,
+      "id": "28",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Toy Drum Set",
       "itemUnitPrice": 24.99,
       "quantityAvailable": 14
     },
     {
-      "id": 29,
+      "id": "29",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Blanket",
       "itemUnitPrice": 17.99,
       "quantityAvailable": 32
     },
     {
-      "id": 30,
+      "id": "30",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Beanie",
       "itemUnitPrice": 10.99,
@@ -213,7 +213,7 @@
   ],
   "shoppingCarts": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 1,
       "items": [
         {
@@ -240,147 +240,75 @@
           "id": 2,
           "quantity": 1
         }
-      ],
-      "marketplaceItems": [
-    {
-      "id": 1,
-      "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
-      "itemName": "Wheelchair",
-      "itemUnitPrice": 100,
-      "quantityAvailable": 5
-    },
-    {
-      "id": 2,
-      "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
-      "itemName": "Crutches",
-      "itemUnitPrice": 8,
-      "quantityAvailable": 4
-    },
-    {
-      "id": 3,
-      "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
-      "itemName": "Walkers",
-      "itemUnitPrice": 6,
-      "quantityAvailable": 3
-    },
-    {
-      "id": 4,
-      "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
-      "itemName": "Hospital Beds",
-      "itemUnitPrice": 15,
-      "quantityAvailable": 5
-    },
-    {
-      "id": 5,
-      "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
-      "itemName": "Blood Pressure Monitors",
-      "itemUnitPrice": 7,
-      "quantityAvailable": 300
-    },
-    {
-      "id": 6,
-      "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
-      "itemName": "Thermometers",
-      "itemUnitPrice": 12,
-      "quantityAvailable": 5
-    },
-    {
-      "id": 7,
-      "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
-      "itemName": "First Aid Kits",
-      "itemUnitPrice": 20,
-      "quantityAvailable": 10
-    },
-    {
-      "id": 8,
-      "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
-      "itemName": "Computers",
-      "itemUnitPrice": 5,
-      "quantityAvailable": 10
-    },
-    {
-      "id": 9,
-      "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
-      "itemName": "Projectors",
-      "itemUnitPrice": 3,
-      "quantityAvailable": 2
-    },
-    {
-      "id": 10,
-      "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
-      "itemName": "Bicycles",
-      "itemUnitPrice": 10,
-      "quantityAvailable": 5
-    }
-  ]
+      ]
     }
   ],
   "equipment": [
     {
-      "id": 1,
+      "id": "1",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Wheelchair",
       "currentAmount": 412,
       "maxAmount": 592
     },
     {
-      "id": 2,
+      "id": "2",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Crutches",
       "currentAmount": 271,
       "maxAmount": 812
     },
     {
-      "id": 3,
+      "id": "3",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Walkers",
       "currentAmount": 193,
       "maxAmount": 301
     },
     {
-      "id": 4,
+      "id": "4",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Hospital Beds",
       "currentAmount": 402,
       "maxAmount": 640
     },
     {
-      "id": 5,
+      "id": "5",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Blood Pressure Monitors",
       "currentAmount": 371,
       "maxAmount": 540
     },
     {
-      "id": 6,
+      "id": "6",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Thermometers",
       "currentAmount": 100,
       "maxAmount": 220
     },
     {
-      "id": 7,
+      "id": "7",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "First Aid Kits",
       "currentAmount": 189,
       "maxAmount": 325
     },
     {
-      "id": 8,
+      "id": "8",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Computers",
       "currentAmount": 125,
       "maxAmount": 250
     },
     {
-      "id": 9,
+      "id": "9",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Projectors",
       "currentAmount": 100,
       "maxAmount": 200
     },
     {
-      "id": 10,
+      "id": "10",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Bicycles",
       "currentAmount": 300,
@@ -389,75 +317,74 @@
   ],
   "necessary": [
     {
-      "id": 1,
+      "id": "1",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Blankets",
       "currentAmount": 30,
       "maxAmount": 50
     },
     {
-      "id": 2,
+      "id": "2",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Towels",
       "currentAmount": 25,
       "maxAmount": 40
     },
     {
-      "id": 3,
+      "id": "3",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Soap",
       "currentAmount": 50,
       "maxAmount": 80
     },
     {
-      "id": 4,
+      "id": "4",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Toothpaste",
       "currentAmount": 40,
       "maxAmount": 60
     },
     {
-      "id": 5,
+      "id": "5",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Toothbrushes",
       "currentAmount": 35,
       "maxAmount": 60
     },
     {
-      "id": 6,
+      "id": "6",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Shampoo",
       "currentAmount": 30,
       "maxAmount": 50
     },
     {
-      "id": 7,
+      "id": "7",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Diapers",
       "currentAmount": 100,
       "maxAmount": 150
     },
     {
-      "id": 8,
+      "id": "8",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Baby Formula",
       "currentAmount": 60,
       "maxAmount": 100
     },
     {
-      "id": 9,
+      "id": "9",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Clothing Sets",
       "currentAmount": 50,
       "maxAmount": 80
     },
     {
-      "id": 10,
+      "id": "10",
       "itemImage": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
       "itemName": "Shoes",
       "currentAmount": 40,
       "maxAmount": 60
     }
   ]
-  
 }

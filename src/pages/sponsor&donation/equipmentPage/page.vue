@@ -1,12 +1,12 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import NavBar from "@/pages/homePage/NavBar.vue"
-import DisplayEquipment from "./DisplayEquipment.vue";
-import Title from './Title.vue'
-import CheckList from "./CheckList.vue";
+import NavBar from "@/pages/HomePage/NavBar.vue"
+import DisplayEquipment from "@/pages/Sponsor&Donation/DisplayEquipment.vue";
+import Title from '@/pages/Sponsor&Donation/Title.vue'
+import CheckList from "@/pages/Sponsor&Donation/CheckList.vue";
 import { ref, onMounted } from "vue";
 import axios from "axios";
-
+ 
 // Define a reactive variable to store the data
 const data = ref([]);
 

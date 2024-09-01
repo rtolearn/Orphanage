@@ -1,9 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import NavBar from "@/pages/homePage/NavBar.vue"
-import DisplayEquipment from "./DisplayNecessary.vue";
-import Title from './Title.vue'
-import CheckList from "./CheckList.vue";
+import DisplayEquipment from "@/pages/sponsor&donation/EquipmentPage/DisplayEquipment.vue";
+import Title from '@/pages/sponsor&donation/EquipmentPage/Title.vue'
+import CheckList from "@/pages/sponsor&donation/EquipmentPage/CheckList.vue";
 import { ref, onMounted } from "vue";
 import axios from "axios";
 

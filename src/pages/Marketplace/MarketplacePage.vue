@@ -10,15 +10,16 @@
 			:key="item.id"
 			@cart-updated="onCartUpdated"
 		/>
+	
 	</div>
 </template>
 
 <script>
 import { onMounted, ref, computed } from "vue";
 import api from "@/services/api";
-import NavBar from "@/pages/homePage/NavBar.vue";
-import SearchBar from "./SearchBar.vue";
-import ItemCard from "./ItemCard.vue";
+import NavBar from "@/pages/HomePage/NavBar.vue";
+import SearchBar from "@/pages/MarketPlace/SearchBar.vue";
+import ItemCard from "@/pages/MarketPlace/ItemCard.vue";
 
 export default {
 	components: {
