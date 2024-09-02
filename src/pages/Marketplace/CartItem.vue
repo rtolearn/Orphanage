@@ -1,6 +1,6 @@
 <template>
 	<div class="bg-white rounded-3xl flex gap-4 p-2">
-		<Toast />
+		<Toast position="bottom-left" group="bl" />
 		<div class="rounded-2xl overflow-hidden w-[30%]">
 			<img :src="cartItem.itemImage" alt="" />
 		</div>
@@ -58,6 +58,7 @@ export default {
 					summary: "Maximum Quantity Reached",
 					detail: "You have reached the maximum quantity available",
 					life: 3000,
+					group: "bl",
 				});
 			} else {
 				const updatedQuantity = cartItem.value.quantity + 1;
@@ -81,6 +82,7 @@ export default {
 					summary: "Minimum Quantity Reached",
 					detail: "You have reached the minimum quantity available",
 					life: 3000,
+					group: "bl",
 				});
 			} else {
 				const updatedQuantity = cartItem.value.quantity - 1;

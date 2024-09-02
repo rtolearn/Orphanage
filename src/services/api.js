@@ -84,6 +84,19 @@ const addCartItem = async (newItem) => {
 	}
 };
 
+const clearCart = async () => {
+	try {
+		const response = await apiClient.get("/shoppingCarts/1");
+		const shoppingCart = response.data;
+
+		shoppingCart.items = [];
+
+		await apiClient.put(`/shoppingCarts/${shoppingCart.id}`, shoppingCart);
+	} catch (error) {
+		console.error("Error clearing cart:", error);
+	}
+};
+
 export default {
 	getMarketplaceItems() {
 		return apiClient.get("/marketplaceItems");
@@ -107,4 +120,5 @@ export default {
 	updateCartItem,
 	deleteCartItem,
 	addCartItem,
+	clearCart,
 };
