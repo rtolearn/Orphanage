@@ -8,7 +8,12 @@
           <Step>{{ step.title }}</Step>
           <StepPanel :activateCallback="activateCallback">
             <!-- Component -->
-            <component :is="step.component" @currentStep="updateActiveStep" />
+            <component
+              :is="step.component"
+              @currentStep="updateActiveStep"
+              @collectDataRequirement="collectedDataRequirement"
+              @collectDataPatron="collectedDataPatron"
+            />
           </StepPanel>
         </StepItem>
       </div>
@@ -17,19 +22,29 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import Stepper from "primevue/stepper";
 import Overview from "./ScholarshipOverview.vue";
 import Requirement from "./ScholarshipRequirement.vue";
 import MeetingInformation from "./ScholarshipMeeting.vue";
 import Gratitude from "./ScholarshipGratitude.vue";
 
-
 //Create an object to store all the data
-const collectData = {
-  requirement: {},
-  giver: {},
+const dataStorage = reactive({
+  requirement: [],
+  patron: {},
+});
+
+//Method to handle the requirement data
+const collectedDataRequirement= (tasks) => {
+  dataStorage.requirement = [...tasks];
+  console.log(dataStorage.requirement);
 };
+//Method to handle the information of patron
+const collectedDataPatron = (information) => {
+  dataStorage.patron = information
+  console.log(dataStorage.patron)
+}
 const activeStep = ref(1);
 
 const stepInformation = [

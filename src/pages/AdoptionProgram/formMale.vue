@@ -17,7 +17,6 @@
         name="name"
         class="mt-1 p-3 w-full rounded-md border border-solid border-gray-350 bg-white text-sm text-gray-700 shadow-sm"
         placeholder="Name"
-        required
         :rules="validateName"
       />
       <ErrorMessage name="name" v-slot="{ message }">
@@ -26,7 +25,6 @@
         </span>
       </ErrorMessage>
     </div>
-
     <!-- Validation of State Selection -->
     <div
       class="col-span-6 sm:col-span-6 border border-solid border-gray-350 flex justify-between items-center"
@@ -56,7 +54,6 @@
         <span class="background-gray"> Malaysia </span>
       </div>
     </div>
-
     <!-- Validation of email ---->
     <div class="col-span-6">
       <Field
@@ -90,7 +87,6 @@
         </span>
       </ErrorMessage>
     </div>
-
     <!-- Validation of Career Status -->
     <div class="p-1 col-span-6 w-full border border-solid border-gray-350">
       <Field
@@ -112,7 +108,6 @@
         </span>
       </ErrorMessage>
     </div>
-
     <!-- No validation for this part -->
     <div class="col-span-6" v-if="careerStatusMale == 'others'">
       <Field

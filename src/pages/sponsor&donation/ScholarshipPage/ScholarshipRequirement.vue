@@ -33,8 +33,8 @@
           </li>
         </ol>
         <div class="py-6 flex gap-2">
-          <Button severity="secondary" label="Back" @click="handleClick(1)"/>
-          <Button label="Next" @click="handleClick(3)"/>
+          <Button severity="secondary" label="Back" @click="handleClick(1)" />
+          <Button label="Next" @click="handleClick(3)" />
         </div>
       </div>
     </div>
@@ -43,10 +43,18 @@
 <script setup>
 import { reactive } from "vue";
 
-const emit = defineEmits(['currentStep']);
-const handleClick = (value) =>{
-  emit('currentStep', value)
-}
+const emit = defineEmits(["currentStep", "collectDataRequirement"]);
+
+const handleClick = (value) => {
+  if(toDoList.tasks.length >= 3){
+    emit("collectDataRequirement", [...toDoList.tasks]);
+  emit("currentStep", value);
+  }
+  else{
+    alert("At least three requirements are listed")
+  }
+  
+};
 
 const toDoList = reactive({
   newTask: "",
@@ -63,6 +71,4 @@ function addTask() {
 function removeTask(index) {
   toDoList.tasks.splice(index, 1);
 }
-
-
 </script>
