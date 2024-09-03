@@ -1,5 +1,4 @@
 {
-  
   "marketplaceItems": [
     {
       "id": "1",
@@ -389,6 +388,19 @@
     }
   ],
   "scholarship": [
-
+    {
+      "userId": 1,
+      "sponsor": [
+        {
+          "id": 1,
+          "arrayRequirement": ["GPA 3.5", "Fluent in English" ,"ACtive in cocurriculum"],
+          "name": "1000",
+          "email": "yangyang@gmail.com",
+          "fund": "10000",
+          "meetingDate": "13/5/2025",
+          "status": "pending"
+        }
+      ]
+    }
   ]
 }

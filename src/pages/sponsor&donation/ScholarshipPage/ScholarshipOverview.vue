@@ -92,6 +92,6 @@ import ScholarshipIcon from "@/images/scholarship.png";
 
 const emit = defineEmits(['currentStep']);
 const handleClick = () =>{
-  emit('currentStep', 2)
+  emit('currentStep', `2`)
 }
 </script>

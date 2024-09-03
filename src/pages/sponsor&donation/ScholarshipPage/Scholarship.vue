@@ -13,6 +13,7 @@
               @currentStep="updateActiveStep"
               @collectDataRequirement="collectedDataRequirement"
               @collectDataPatron="collectedDataPatron"
+              :submitData="dataStorage"
             />
           </StepPanel>
         </StepItem>
@@ -28,6 +29,10 @@ import Overview from "./ScholarshipOverview.vue";
 import Requirement from "./ScholarshipRequirement.vue";
 import MeetingInformation from "./ScholarshipMeeting.vue";
 import Gratitude from "./ScholarshipGratitude.vue";
+// Define activateCallback if needed
+const activateCallback = () => {
+  console.log("Step activated");
+};
 
 //Create an object to store all the data
 const dataStorage = reactive({
@@ -35,21 +40,21 @@ const dataStorage = reactive({
   patron: {},
 });
 
-//Method to handle the requirement data
-const collectedDataRequirement= (tasks) => {
+//Method to handle the requirement data (array)
+const collectedDataRequirement = (tasks) => {
   dataStorage.requirement = [...tasks];
   console.log(dataStorage.requirement);
 };
-//Method to handle the information of patron
+//Method to handle the information of patron (object)
 const collectedDataPatron = (information) => {
-  dataStorage.patron = information
-  console.log(dataStorage.patron)
-}
+  dataStorage.patron = information;
+  console.log(dataStorage.patron);
+};
 const activeStep = ref(1);
 
 const stepInformation = [
   {
-    value: 1,
+    value: "1",
     title: "Overview",
     component: Overview,
     button: ["NextButton"],
@@ -57,7 +62,7 @@ const stepInformation = [
     callNextValue: 2,
   },
   {
-    value: 2,
+    value: "2",
     title: "Requirement",
     component: Requirement,
     button: ["BackButton", "NextButton"],
@@ -65,15 +70,15 @@ const stepInformation = [
     callNextValue: 3,
   },
   {
-    value: 3,
-    title: "Patron Information",
+    value: "3",
+    title: "Schedule A Meeting",
     component: MeetingInformation,
     button: ["BackButton", "ConfirmButton"],
     callBackValue: 2,
     callNextValue: 4,
   },
   {
-    value: 4,
+    value: "4",
     title: "Thank you",
     component: Gratitude,
     button: ["BackButton", "CompleteButton"],

@@ -36,6 +36,25 @@
           </span>
         </div>
 
+        <!-- Selection for affordable fund -->
+        <div class="my-3">
+          <label for="fund" class="block">Select Affordable Fund:</label>
+          <select
+            id="fund"
+            v-model="data.fund"
+            class="mt-1 p-3 w-full rounded-md border border-solid border-gray-350 bg-white text-sm text-gray-700 shadow-sm"
+            required
+          >
+            <option value="">--Select a fund--</option>
+            <option v-for="amount in fundOptions" :key="amount" :value="amount">
+              RM{{ amount }}
+            </option>
+          </select>
+          <span v-if="errors.fund" class="text-red-500 text-sm">{{
+            errors.fund
+          }}</span>
+        </div>
+
         <!-- Date Picker for meeting (interview) -->
         <div class="card flex justify-center my-3">
           <label for="date" class="block">Date:</label>
@@ -55,7 +74,7 @@
           <button
             type="button"
             class="bg-gray-300 p-2 rounded"
-            @click="handleClick(2)"
+            @click="handleClick(`2`)"
           >
             Back
           </button>
@@ -71,13 +90,17 @@
 <script setup>
 import { ref } from "vue";
 //Define the emit event
-const emit = defineEmits(["CurrentStep"]);
+const emit = defineEmits(["currentStep", "collectDataPatron"]);
 // Declare an object to collect the data of the form
 const data = ref({
   name: "",
   email: "",
+  fundRange: "",
   date: "",
 });
+
+// Array of affordable fund options
+const fundOptions = [10000, 20000, 30000, 40000, 50000]; // Add more as needed
 
 const errors = ref({}); // For storing validation errors
 
@@ -103,18 +126,20 @@ const onSubmit = () => {
   if (!data.value.date) {
     errors.value.date = "This field is required";
   }
-
+  // Validate fund selection
+  if (!data.value.fund) {
+    errors.value.fund = "Please select a fund.";
+  }
   // If no errors, submit the form (you can add your submission logic here)
   if (!errors.value.name && !errors.value.email && !errors.value.date) {
-    emit("CurrentStep", 4);
-    alert("Form submitted successfully!");
-    // Add your submission logic here
+    emit("collectDataPatron", data);
+    emit("currentStep", `4`);
   }
 };
 
 const handleClick = (value) => {
   // Handle back button click (you can add your logic here)
-  emit("CurrentStep", 2);
+  emit("CurrentStep", value);
   console.log("Going back to step:", value);
 };
 </script>
