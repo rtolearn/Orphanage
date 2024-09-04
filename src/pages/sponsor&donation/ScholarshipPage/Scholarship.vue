@@ -1,11 +1,17 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
+
+  <!-- Navigation Bar -->
+  <NavBar />
+    <!-- Title -->
+     <Title />
+  <!-- Form -->
   <div class="m-auto block">
-    <Stepper :value="activeStep">
+    <Stepper :value="activeStep" >
       <div v-for="(step, index) in stepInformation" :key="index">
-        <StepItem :value="step.value">
+        <StepItem :value="step.value" class="text-base md:text-lg">
           <!-- Display the title -->
-          <Step>{{ step.title }}</Step>
+          <Step >{{ step.title }}</Step>
           <StepPanel :activateCallback="activateCallback">
             <!-- Component -->
             <component
@@ -29,6 +35,8 @@ import Overview from "./ScholarshipOverview.vue";
 import Requirement from "./ScholarshipRequirement.vue";
 import MeetingInformation from "./ScholarshipMeeting.vue";
 import Gratitude from "./ScholarshipGratitude.vue";
+import NavBar from "@/pages/HomePage/NavBar.vue";
+import Title from "./ScholarshipTitle.vue"
 // Define activateCallback if needed
 const activateCallback = () => {
   console.log("Step activated");
@@ -50,7 +58,7 @@ const collectedDataPatron = (information) => {
   dataStorage.patron = information;
   console.log(dataStorage.patron);
 };
-const activeStep = ref(1);
+const activeStep = ref("1");
 
 const stepInformation = [
   {

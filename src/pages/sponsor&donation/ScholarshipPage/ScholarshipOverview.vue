@@ -6,7 +6,7 @@
       <div class="m-5">
         <div class="flex justify-left items-center gap-5 m-1">
           <img :src="ScholarshipIcon" class="w-[2.5rem] h-auto" />
-          <h1>Scholarship</h1>
+          <h1 class="text-lg sm:text-xl md:text-2xl">Scholarship</h1>
         </div>
         <hr class="border-black border-t-2" />
         <div>
@@ -74,11 +74,12 @@
                 education.
               </li>
             </ul>
-            <div class="py-6 flex gap-2">
-              <Button
+            <div class="py-6 flex gap-2 text-sm sm:text-base">
+              <button
                 label="Next"
+                 class="bg-green-500 text-white py-2 px-4 rounded"
                 @click="handleClick"
-              />
+              >Next</button>
             </div>
           </div>
         </div>

@@ -32,9 +32,9 @@
             </button>
           </li>
         </ol>
-        <div class="py-6 flex gap-2">
-          <Button severity="secondary" label="Back" @click="handleClick(`1`)" />
-          <Button label="Next" @click="handleClick(`3`)" />
+        <div class="py-6 flex gap-2 text-sm sm:text-base">
+          <button  class="bg-gray-300 py-2 px-4 rounded" @click="handleClick(`1`, `Back`)">Back</button>
+          <button  class="bg-green-500 text-white py-2 px-4 rounded" @click="handleClick(`3`, `Next`)" > Next</button>
         </div>
       </div>
     </div>
@@ -45,10 +45,13 @@ import { reactive } from "vue";
 
 const emit = defineEmits(["currentStep", "collectDataRequirement"]);
 
-const handleClick = (value) => {
-  if(toDoList.tasks.length >= 3){
+const handleClick = (value, name) => {
+  if(toDoList.tasks.length >= 3 && name === 'Next'){
     emit("collectDataRequirement", [...toDoList.tasks]);
   emit("currentStep", value);
+  }
+  else if(name === "Back"){
+    emit("currentStep", value);
   }
   else{
     alert("At least three requirements are listed")

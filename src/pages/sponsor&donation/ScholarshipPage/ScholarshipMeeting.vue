@@ -45,7 +45,7 @@
             class="mt-1 p-3 w-full rounded-md border border-solid border-gray-350 bg-white text-sm text-gray-700 shadow-sm"
             required
           >
-            <option value="">--Select a fund--</option>
+            <option value="" disabled selected>--Select a fund--</option>
             <option v-for="amount in fundOptions" :key="amount" :value="amount">
               RM{{ amount }}
             </option>
@@ -70,15 +70,17 @@
           </span>
         </div>
 
-        <div class="py-6 flex gap-2">
+        <div class="p-6 flex gap-2 text-sm sm:text-base">
           <button
-            type="button"
-            class="bg-gray-300 p-2 rounded"
+            class="bg-gray-300 py-2 px-4 rounded"
             @click="handleClick(`2`)"
           >
             Back
           </button>
-          <button type="submit" class="bg-blue-500 text-white p-2 rounded">
+          <button
+            class="bg-green-500 text-white py-2 px-4 rounded"
+            type="submit"
+          >
             Next
           </button>
         </div>
@@ -95,7 +97,7 @@ const emit = defineEmits(["currentStep", "collectDataPatron"]);
 const data = ref({
   name: "",
   email: "",
-  fundRange: "",
+  fund: "",
   date: "",
 });
 

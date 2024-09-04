@@ -35,7 +35,7 @@ const updateCartItem = async (updatedItem) => {
 
 const deleteCartItem = async (itemId) => {
   try {
-    const response = await apiClient.get("/shoppingCarts/1");
+    const response = await apiClient.get("/shoppingCarts/"+itemId);
     const shoppingCart = response.data;
 
     const itemIndex = shoppingCart.items.findIndex(
@@ -83,13 +83,22 @@ const addCartItem = async (newItem) => {
     throw error;
   }
 };
+
+
+
+
+
+
+
+
 // Function to post or update data to the JSON server
 const postScholarshipData = async (data) => {
+
   try {
     let response;
 
     // If no userId is provided, create a new scholarship entry
-    response = await apiClient.post("/scholarship", data);
+    response = await apiClient.post("/scholarship`${userId}`", data);
 
     return response.data;
   } catch (error) {
@@ -99,7 +108,7 @@ const postScholarshipData = async (data) => {
 };
 
 // Fetch scholarship data for a specific user by userId
-const getUserID = async (userId) => {
+const checkUserID = async (userId) => {
   try {
     const response = await apiClient.get("/scholarship");
     // Find the scholarship data for the given userId
@@ -116,12 +125,19 @@ const getUserID = async (userId) => {
 };
 
 // Fetch existing sponsor data for a specific user by userId
-const getExistingSponsor = async (userId) => {
+const getExistingSponsor = async (userID) => {
   try {
-    const response = await apiClient.get(`/scholarship${userId}`);
+    const response = await apiClient.get(`/scholarship`);
 
     if (response) {
-      return response.data.item.sponsor;
+      //Apply the knowledge of loop to get the sponsor according to the userID
+      for(let i=0; i<response.data.length; i++){
+          if(response.data[i].userID === userID){
+            console.log((response.data[i].sponsor))
+            return (response.data[i].sponsor);
+          }
+      }
+    
     } else {
       return false;
     }
@@ -133,7 +149,7 @@ const getExistingSponsor = async (userId) => {
 // Update scholarship data for a specific user by userId
 const updateScholarshipData = async (userId, updatedSponsor) => {
   try {
-   await apiClient.put(`/scholarship/${userId}`, updatedSponsor);
+   await apiClient.put(`/scholarship`, updatedSponsor);
   } catch (error) {
     console.error("Error updating scholarship data:", error);
     throw error;
@@ -164,7 +180,10 @@ export default {
   deleteCartItem,
   addCartItem,
   postScholarshipData,
-  getUserID,
+  checkUserID,
   updateScholarshipData,
   getExistingSponsor,
 };
+
+
+
