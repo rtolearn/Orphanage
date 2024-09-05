@@ -1,82 +1,147 @@
 <template>
-  <div class="flex flex-col h-auto m-5">
+  <form @submit.prevent="onSubmit" class="flex flex-col h-auto m-5">
     <div
       class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 font-medium"
     >
-      <!--  Schedule a meeting-->
-      <!-- Name of patron -->
       <div class="m-5">
+        <!-- Name of patron -->
         <div class="my-3 block">
           <label for="name" class="block">Name:</label>
-          <Field
+          <input
             type="text"
             id="name"
-            name="name"
+            v-model="data.name"
             class="mt-1 p-3 w-full rounded-md border border-solid border-gray-350 bg-white text-sm text-gray-700 shadow-sm"
             placeholder="Name"
             required
-            :rules="validateName"
           />
-          <ErrorMessage name="name" v-slot="{ message }">
-            <span class="text-red-500 text-sm">
-              {{ message }}
-            </span>
-          </ErrorMessage>
+          <span v-if="errors.name" class="text-red-500 text-sm">
+            {{ errors.name }}
+          </span>
         </div>
-        <!-- Gmail for contact / future communication -->
+
+        <!-- Email for contact / future communication -->
         <div class="my-3">
-          <label for="name" class="block">Email:</label>
-          <Field
+          <label for="email" class="block">Email:</label>
+          <input
             type="email"
             id="email"
-            name="email"
-            :rules="validateEmail"
+            v-model="data.email"
             class="mt-1 p-3 w-2/5 rounded-md border border-solid border-gray-350 text-sm text-gray-700 shadow-sm"
             placeholder="Email"
             required
           />
-          <ErrorMessage name="email" v-slot="{ message }">
-            <span class="text-red-500 text-sm">
-              {{ message }}
-            </span>
-          </ErrorMessage>
+          <span v-if="errors.email" class="text-red-500 text-sm">
+            {{ errors.email }}
+          </span>
         </div>
-        <!-- Select a date for meeting (interview)-->
 
-        <div class="card flex justify-center">
+        <!-- Selection for affordable fund -->
+        <div class="my-3">
+          <label for="fund" class="block">Select Affordable Fund:</label>
+          <select
+            id="fund"
+            v-model="data.fund"
+            class="mt-1 p-3 w-full rounded-md border border-solid border-gray-350 bg-white text-sm text-gray-700 shadow-sm"
+            required
+          >
+            <option value="" disabled selected>--Select a fund--</option>
+            <option v-for="amount in fundOptions" :key="amount" :value="amount">
+              RM{{ amount }}
+            </option>
+          </select>
+          <span v-if="errors.fund" class="text-red-500 text-sm">{{
+            errors.fund
+          }}</span>
+        </div>
+
+        <!-- Date Picker for meeting (interview) -->
+        <div class="card flex justify-center my-3">
           <label for="date" class="block">Date:</label>
-          <DatePicker v-model="date" name="date" placeholder="Select a date" />
+          <input
+            type="date"
+            id="date"
+            v-model="data.date"
+            class="mt-1 p-3 rounded-md border border-solid border-gray-350 bg-white text-sm text-gray-700 shadow-sm"
+            required
+          />
+          <span v-if="errors.date" class="text-red-500 text-sm">
+            {{ errors.date }}
+          </span>
+        </div>
+
+        <div class="p-6 flex gap-2 text-sm sm:text-base">
+          <button
+            class="bg-gray-300 py-2 px-4 rounded"
+            @click="handleClick(`2`)"
+          >
+            Back
+          </button>
+          <button
+            class="bg-green-500 text-white py-2 px-4 rounded"
+            type="submit"
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script setup>
-import { Field, ErrorMessage } from "vee-validate";
 import { ref } from "vue";
+//Define the emit event
+const emit = defineEmits(["currentStep", "collectDataPatron"]);
+// Declare an object to collect the data of the form
+const data = ref({
+  name: "",
+  email: "",
+  fund: "",
+  date: "",
+});
 
-const date = ref();
-const validateName = (valueName) => {
-  if (valueName && valueName.trim()) {
-    if (/[^a-zA-Z\s]/.test(valueName)) {
-      return "Name can only contain alphabetic characters";
-    } else {
-      return true;
-    }
-  } else {
-    return "This field is required";
+// Array of affordable fund options
+const fundOptions = [10000, 20000, 30000, 40000, 50000]; // Add more as needed
+
+const errors = ref({}); // For storing validation errors
+
+const onSubmit = () => {
+  // Clear previous errors
+  errors.value = {};
+
+  // Validate name
+  if (!data.value.name || !data.value.name.trim()) {
+    errors.value.name = "This field is required";
+  } else if (/[^a-zA-Z\s]/.test(data.value.name)) {
+    errors.value.name = "Name can only contain alphabetic characters";
+  }
+
+  // Validate email
+  if (!data.value.email) {
+    errors.value.email = "This field is required";
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.value.email)) {
+    errors.value.email = "Please enter a valid email address.";
+  }
+
+  // Validate date
+  if (!data.value.date) {
+    errors.value.date = "This field is required";
+  }
+  // Validate fund selection
+  if (!data.value.fund) {
+    errors.value.fund = "Please select a fund.";
+  }
+  // If no errors, submit the form (you can add your submission logic here)
+  if (!errors.value.name && !errors.value.email && !errors.value.date) {
+    emit("collectDataPatron", data);
+    emit("currentStep", `4`);
   }
 };
-const validateEmail = (valueEmail) => {
-  if (valueEmail) {
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valueEmail)) {
-      return "Please enter a valid email address.";
-    } else {
-      return true;
-    }
-  } else {
-    return "This field is required";
-  }
+
+const handleClick = (value) => {
+  // Handle back button click (you can add your logic here)
+  emit("CurrentStep", value);
+  console.log("Going back to step:", value);
 };
 </script>

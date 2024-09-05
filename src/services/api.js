@@ -35,7 +35,7 @@ const updateCartItem = async (updatedItem) => {
 
 const deleteCartItem = async (itemId) => {
 	try {
-		const response = await apiClient.get("/shoppingCarts/1");
+		const response = await apiClient.get("/shoppingCarts/" + itemId);
 		const shoppingCart = response.data;
 
 		const itemIndex = shoppingCart.items.findIndex(
@@ -97,6 +97,69 @@ const clearCart = async () => {
 	}
 };
 
+// Function to post or update data to the JSON server
+const postScholarshipData = async (data) => {
+	try {
+		let response;
+
+		// If no userId is provided, create a new scholarship entry
+		response = await apiClient.post("/scholarship`${userId}`", data);
+
+		return response.data;
+	} catch (error) {
+		console.error("Error posting data:", error);
+		throw error;
+	}
+};
+
+// Fetch scholarship data for a specific user by userId
+const checkUserID = async (userId) => {
+	try {
+		const response = await apiClient.get("/scholarship");
+		// Find the scholarship data for the given userId
+		const userID = response.data.find((item) => item.userId === userId);
+		if (userID) {
+			return userID;
+		} else {
+			return false;
+		}
+	} catch (error) {
+		console.error("Error fetching scholarship data:", error);
+		throw error;
+	}
+};
+
+// Fetch existing sponsor data for a specific user by userId
+const getExistingSponsor = async (userID) => {
+	try {
+		const response = await apiClient.get(`/scholarship`);
+
+		if (response) {
+			//Apply the knowledge of loop to get the sponsor according to the userID
+			for (let i = 0; i < response.data.length; i++) {
+				if (response.data[i].userID === userID) {
+					console.log(response.data[i].sponsor);
+					return response.data[i].sponsor;
+				}
+			}
+		} else {
+			return false;
+		}
+	} catch (error) {
+		console.error("Error fetching scholarship data:", error);
+		throw error;
+	}
+};
+// Update scholarship data for a specific user by userId
+const updateScholarshipData = async (userId, updatedSponsor) => {
+	try {
+		await apiClient.put(`/scholarship`, updatedSponsor);
+	} catch (error) {
+		console.error("Error updating scholarship data:", error);
+		throw error;
+	}
+};
+
 export default {
 	getMarketplaceItems() {
 		return apiClient.get("/marketplaceItems");
@@ -121,4 +184,8 @@ export default {
 	deleteCartItem,
 	addCartItem,
 	clearCart,
+	postScholarshipData,
+	checkUserID,
+	updateScholarshipData,
+	getExistingSponsor,
 };

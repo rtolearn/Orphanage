@@ -1,41 +1,68 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
+
+  <!-- Navigation Bar -->
+  <NavBar />
+    <!-- Title -->
+     <Title />
+  <!-- Form -->
   <div class="m-auto block">
-    <Stepper :value="activeStep">
-      <StepComponent
-        v-for="step in stepInformation"
-        :key="step.id"
-        :value="step.value"
-        :title="step.title"
-        :component="step.component"
-        :button="step.button"
-        :callBackValue="step.callBackValue"
-        :callNextValue="step.callNextValue"
-        @stepChange="updateActiveStep"
-      />
+    <Stepper :value="activeStep" >
+      <div v-for="(step, index) in stepInformation" :key="index">
+        <StepItem :value="step.value" class="text-base md:text-lg">
+          <!-- Display the title -->
+          <Step >{{ step.title }}</Step>
+          <StepPanel :activateCallback="activateCallback">
+            <!-- Component -->
+            <component
+              :is="step.component"
+              @currentStep="updateActiveStep"
+              @collectDataRequirement="collectedDataRequirement"
+              @collectDataPatron="collectedDataPatron"
+              :submitData="dataStorage"
+            />
+          </StepPanel>
+        </StepItem>
+      </div>
     </Stepper>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { reactive, ref } from "vue";
 import Stepper from "primevue/stepper";
 import Overview from "./ScholarshipOverview.vue";
 import Requirement from "./ScholarshipRequirement.vue";
 import MeetingInformation from "./ScholarshipMeeting.vue";
 import Gratitude from "./ScholarshipGratitude.vue";
-import StepComponent from "./StepComponent.vue";
+import NavBar from "@/pages/HomePage/NavBar.vue";
+import Title from "./ScholarshipTitle.vue"
+// Define activateCallback if needed
+const activateCallback = () => {
+  console.log("Step activated");
+};
 
 //Create an object to store all the data
-// const collectData ={
-//   requirement: [],
-//   giver: [],
-// }
-const activeStep = ref(1);
+const dataStorage = reactive({
+  requirement: [],
+  patron: {},
+});
+
+//Method to handle the requirement data (array)
+const collectedDataRequirement = (tasks) => {
+  dataStorage.requirement = [...tasks];
+  console.log(dataStorage.requirement);
+};
+//Method to handle the information of patron (object)
+const collectedDataPatron = (information) => {
+  dataStorage.patron = information;
+  console.log(dataStorage.patron);
+};
+const activeStep = ref("1");
 
 const stepInformation = [
   {
-    value: 1,
+    value: "1",
     title: "Overview",
     component: Overview,
     button: ["NextButton"],
@@ -43,7 +70,7 @@ const stepInformation = [
     callNextValue: 2,
   },
   {
-    value: 2,
+    value: "2",
     title: "Requirement",
     component: Requirement,
     button: ["BackButton", "NextButton"],
@@ -51,15 +78,15 @@ const stepInformation = [
     callNextValue: 3,
   },
   {
-    value: 3,
-    title: "Patron Information",
+    value: "3",
+    title: "Schedule A Meeting",
     component: MeetingInformation,
     button: ["BackButton", "ConfirmButton"],
     callBackValue: 2,
     callNextValue: 4,
   },
   {
-    value: 4,
+    value: "4",
     title: "Thank you",
     component: Gratitude,
     button: ["BackButton", "CompleteButton"],

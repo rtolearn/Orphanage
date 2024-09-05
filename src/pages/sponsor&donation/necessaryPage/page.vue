@@ -1,9 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import NavBar from "@/pages/homePage/NavBar.vue"
-import DisplayEquipment from "@/pages/sponsor&donation/EquipmentPage/DisplayEquipment.vue";
-import Title from '@/pages/sponsor&donation/EquipmentPage/Title.vue'
-import CheckList from "@/pages/sponsor&donation/EquipmentPage/CheckList.vue";
+import NavBar from "@/pages/HomePage/NavBar.vue";
+import DisplayEquipment from "./DisplayEquipment.vue";
+import Title from "./Title.vue";
+import CheckList from "./CheckList.vue";
 import { ref, onMounted } from "vue";
 import axios from "axios";
 
@@ -24,13 +24,15 @@ onMounted(() => {
 });
 </script>
 
-
 <template>
-    <div class="max-w-[1440px] mx-auto max-h-auto">
+  <div class="max-w-[1440px] mx-auto max-h-auto">
     <NavBar />
-    <Title />
-    <CheckList :data="data" />
-    <DisplayEquipment :data="data"/>
+    <div class="sticky top-[6%] bg-white z-10 opacity-1">
+      <Title />
+      <CheckList :data="data" />
     </div>
-    
+    <div class="z-1">
+      <DisplayEquipment :data="data" />
+    </div>
+  </div>
 </template>
