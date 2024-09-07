@@ -40,7 +40,7 @@ const routes = [
     {
         path:'/adoptionProgression',
         name: 'adoptionProgression',
-        component: () => import('@/pages/AdoptionProgram/applicationProgression.vue')
+        component: () => import('@/pages/AdoptionProgram/ApplicationProgression.vue')
     },
     {
         path:'/sponsor&donation',
