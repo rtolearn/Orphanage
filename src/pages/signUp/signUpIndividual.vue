@@ -1,9 +1,8 @@
 <template>
   <Form
-    action="#"
     class="mt-8 p-5 grid content-center grid-cols-6 gap-6 border-2 border-solid border-black rounded-md"
-    @submit = "handleSignUp"
-    >
+    @submit="handleSignUp"
+  >
     <h1 class="col-span-6 text-center m-2.5 text-lg sm:text-xl">Sign Up</h1>
 
     <!-- Validation of First Name -->
@@ -74,7 +73,9 @@
     </div>
 
     <!-- Validation of State Selection -->
-    <div class="col-span-6 sm:col-span-6 border border-solid border-gray-350 flex justify-between items-center">
+    <div
+      class="col-span-6 sm:col-span-6 border border-solid border-gray-350 flex justify-between items-center"
+    >
       <Field
         v-model="signUpIndividual.state"
         as="select"
@@ -173,13 +174,15 @@
     </div>
 
     <!-- Submit Button -->
-    <div class="col-span-6 m-auto block text-center sm:flex sm:items-center sm:gap-4 sm:justify-center">
-      <button
+    <div
+      class="col-span-6 m-auto block text-center sm:flex sm:items-center sm:gap-4 sm:justify-center"
+    >
+      <Button
         class="m-auto block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
         type="submit"
       >
         Create an account
-      </button>
+      </Button>
       <p class="mt-4 text-sm text-gray-500 sm:mt-0">
         Don't have an account yet?
         <span class="text-gray-700 hover:underline hover:text-blue-500">
@@ -194,13 +197,15 @@
 import { ref } from "vue";
 import states from "@/system_information/data/states.json";
 import genderType from "@/system_information/data/gender.json";
-import validateName from "@/system_information/function/validateName.js";
-import validateEmail from "@/system_information/function/validateEmail.js";
-import validatePhoneNumber from "@/system_information/function/validatePhoneNumber.js";
-import validateSelectionInput from "@/system_information/function/validateSelectionInput.js";
-import validateEmptyContent from "@/system_information/function/validateEmptyContent.js";
+import validateName from "@/pages/Data&Functions/function/validateName.js";
+import validateEmail from "@/pages/Data&Functions/function/validateEmail.js";
+import validatePhoneNumber from "@/pages/Data&Functions/function/validatePhoneNumber.js";
+import validateSelectionInput from "@/pages/Data&Functions/function/validateSelectionInput.js";
+import validateEmptyContent from "@/pages/Data&Functions/function/validateEmptyContent.js";
 import { Form, Field, ErrorMessage } from "vee-validate";
-import {signUp} from '@/clients/authentication'
+import { supabase } from "@/clients/supabaseClient";
+import { useRouter } from "vue-router";
+
 const signUpIndividual = ref({
   first_name: "",
   last_name: "",
@@ -214,20 +219,51 @@ const signUpIndividual = ref({
   address: "",
 });
 
+const router = useRouter();
+
 const handleSignUp = async () => {
   try {
-    const user = await signUp(signUpIndividual);
-    if (user) {
-      console.log('Signed up user:', user);
-      // Handle successful sign-up (e.g., save user profile or redirect)
+    const { error } = await supabase.auth.signUp({
+      email: signUpIndividual.value.email,
+      password: signUpIndividual.value.password,
+    });
+
+    if (error) {
+      throw error;
     }
-    else{
-      console.log("No user has been signed up")
+
+    // Proceed with inserting user data into your database
+    // Need to discuss with teammate,
+    //if wanna disbaled the policy or change the way to insert the users' data
+    const { error: insertError } = await supabase.from("signUp").insert([
+      {
+        first_name: signUpIndividual.value.first_name,
+        last_name: signUpIndividual.value.last_name,
+        age: signUpIndividual.value.age,
+        gender: signUpIndividual.value.gender,
+        state: signUpIndividual.value.state,
+        email: signUpIndividual.value.email,
+        phone_number: signUpIndividual.value.phone_number,
+        password: signUpIndividual.value.password,
+        password_confirmation: signUpIndividual.value.password_confirmation,
+        address: signUpIndividual.value.address,
+      },
+    ]);
+    if (insertError) {
+      alert("Information cannot be store");
+    } else if (
+      signUpIndividual.value.password !==
+      signUpIndividual.value.password_confirmation
+    ) {
+      alert("The password and password confirmation are not matched");
+    } else {
+      alert("Sign Up successfully!");
     }
+    // (Optional)
+
+    router.push({ path: "/sign-in" });
   } catch (error) {
-    console.error('Sign up error:', error);
+    alert(error.message);
   }
-}; 
-
-
+};
 </script>

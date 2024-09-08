@@ -18,6 +18,7 @@ import InputNumber from "primevue/inputnumber";
 import router from "@/router/index.js";
 import SelectButton from "primevue/selectbutton";
 import ToastService from "primevue/toastservice";
+import { createPinia } from 'pinia';
 // import Accordion from 'primevue/accordion';
 // import AccordionPanel from 'primevue/accordionpanel';
 // import AccordionHeader from 'primevue/accordionheader';
@@ -27,6 +28,7 @@ import "./assets/main.css";
 import "./assets/style.scss";
 
 const app = createApp(App);
+const pinia = createPinia();
 app.use(PrimeVue, {
 	theme: {
 		preset: Aura,
@@ -40,7 +42,7 @@ app.use(PrimeVue, {
 	ripple: true,
 });
 app.use(ToastService);
-
+app.use(pinia);
 app.component("Breadcrumb", Breadcrumb);
 app.component("Menubar", Menubar);
 app.directive("Ripple", Ripple);

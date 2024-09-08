@@ -6,7 +6,7 @@
     <h1 class="col-span-6 text-center m-2.5 text-lg sm:text-xl">Sign Up</h1>
 
     <!-- Company Name Validation -->
-    <div class="col-span-6 ">
+    <div class="col-span-6">
       <Field
         v-model="signUpCompany.name"
         type="text"
@@ -22,9 +22,12 @@
     </div>
 
     <!-- Company Starting Date Validation -->
-   
+
     <div class="col-span-6 sm:col-span-3">
-      <label for="starting_date" class="block text-sm font-medium text-gray-700">
+      <label
+        for="starting_date"
+        class="block text-sm font-medium text-gray-700"
+      >
         Company started at:
       </label>
       <Field
@@ -42,7 +45,10 @@
 
     <!-- Career Industry Validation -->
     <div class="col-span-6 sm:col-span-3">
-      <label for="starting_date" class="block text-sm font-medium text-gray-700">
+      <label
+        for="starting_date"
+        class="block text-sm font-medium text-gray-700"
+      >
         Career Industry:
       </label>
       <Field
@@ -52,10 +58,12 @@
         name="industry"
         :rules="validateSelectionInput"
       >
-        <option value="" disabled selected>
-         Involved / Involving
-        </option>
-        <option v-for="industry in industries" :key="industry" :value="industry">
+        <option value="" disabled selected>Involved / Involving</option>
+        <option
+          v-for="industry in industries"
+          :key="industry"
+          :value="industry"
+        >
           {{ industry }}
         </option>
       </Field>
@@ -66,11 +74,13 @@
 
     <!-- State Selection Validation -->
     <div class="col-span-6 sm:col-span-6 flex flex-col">
-      <label for="state" class="block text-sm font-medium text-gray-700 mb-1+">State / Region</label>
+      <label for="state" class="block text-sm font-medium text-gray-700 mb-1+"
+        >State / Region</label
+      >
       <Field
         as="select"
         v-model="signUpCompany.state_select"
-        class="mt-1 p-2.5 w-full rounded-md border border-solid border-gray-450 text-gray-700  text-sm"
+        class="mt-1 p-2.5 w-full rounded-md border border-solid border-gray-450 text-gray-700 text-sm"
         name="state"
         :rules="validateSelectionInput"
       >
@@ -179,10 +189,12 @@
     </div>
 
     <!-- Create Account Button -->
-    <div class="col-span-6 m-auto block text-center sm:flex sm:items-center sm:gap-4 sm:justify-center">
+    <div
+      class="col-span-6 m-auto block text-center sm:flex sm:items-center sm:gap-4 sm:justify-center"
+    >
       <button
         class="m-auto block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-        @click="createAccountCompany"
+        @click="handleSignUp"
       >
         Create an account
       </button>
@@ -200,11 +212,11 @@
 import { ref } from "vue";
 import states from "@/system_information/data/states.json";
 import { Form, Field, ErrorMessage } from "vee-validate";
-import validateName from "@/system_information/function/validateName.js";
-import validateEmail from "@/system_information/function/validateEmail.js";
-import validatePhoneNumber from "@/system_information/function/validatePhoneNumber.js";
-import validateSelectionInput from "@/system_information/function/validateSelectionInput.js";
-import validateEmptyContent from "@/system_information/function/validateEmptyContent.js";
+import validateName from "@/pages/Data&Functions/function/validateName.js";
+import validateEmail from "@/pages/Data&Functions/function/validateEmail.js";
+import validatePhoneNumber from "@/pages/Data&Functions/function/validatePhoneNumber.js";
+import validateSelectionInput from "@/pages/Data&Functions/function/validateSelectionInput.js";
+import validateEmptyContent from "@/pages/Data&Functions/function/validateEmptyContent.js";
 
 const signUpCompany = ref({
   name: "",
@@ -218,4 +230,26 @@ const signUpCompany = ref({
   SSN: "",
   address: "",
 });
+import { supabase } from "@/clients/supabaseClient";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const handleSignUp = async () => {
+  try {
+    const { error } = await supabase.auth.signUp({
+      email: signUpCompany.value.email,
+      password: signUpCompany.value.password,
+    });
+
+    if (error) {
+      throw error;
+    }
+
+    // Proceed with inserting user data into your database
+    // (Optional)
+    alert("Sign Up successfully!");
+    router.push({ path: "/sign-in" });
+  } catch (error) {
+    alert(error.message);
+  }
+};
 </script>

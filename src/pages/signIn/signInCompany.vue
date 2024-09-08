@@ -55,26 +55,26 @@
 
     <!-- Part for user to create account -->
     <div
-        class="mt-5 text-center sm:flex sm:items-center sm:gap-4 sm:justify-center"
+      class="mt-5 text-center sm:flex sm:items-center sm:gap-4 sm:justify-center"
+    >
+      <button
+        class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
       >
-        <button
-          class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-        >
-          Create an account
-        </button>
-        <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-          Don't have an account yet?
-          <span class="text-gray-700 hover:underline hover:text-blue-500">
-            <router-link to="/sign-up"> Sign Up </router-link>
-          </span>
-        </p>
-      </div>
+        Create an account
+      </button>
+      <p class="mt-4 text-sm text-gray-500 sm:mt-0">
+        Don't have an account yet?
+        <span class="text-gray-700 hover:underline hover:text-blue-500">
+          <router-link to="/sign-up"> Sign Up </router-link>
+        </span>
+      </p>
+    </div>
   </Form>
 </template>
 
 <script setup>
-import validateEmail from "@/system_information/function/validateEmail.js";
-import validateEmptyContent from "@/system_information/function/validateEmptyContent.js";
+import validateEmail from "@/pages/Data&Functions/function/validateEmail.js";
+import validateEmptyContent from "@/pages/Data&Functions/function/validateEmptyContent.js";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { ref } from "vue";
 
