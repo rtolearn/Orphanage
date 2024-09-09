@@ -2,7 +2,7 @@
 <template>
   <Form
     action="#"
-    class="mt-8 p-5 grid grid-cols-6 gap-6 border-2 border-solid border-black rounded-md"
+    class="mt-8 p-8 grid grid-cols-6 gap-6 border-2 border-solid border-black rounded-md"
     @submit="onSubmit"
   >
     <h1 class="col-span-6 text-center m-2.5 text-lg sm:text-xl">
@@ -12,12 +12,12 @@
     <!-- Validation of name -->
     <div class="col-span-6">
       <Field
+        v-model="formValues.name"
         type="text"
         id="name"
         name="name"
         class="mt-1 p-3 w-full rounded-md border border-solid border-gray-350 bg-white text-sm text-gray-700 shadow-sm"
         placeholder="Name"
-        required
         :rules="validateName"
       />
       <ErrorMessage name="name" v-slot="{ message }">
@@ -26,7 +26,6 @@
         </span>
       </ErrorMessage>
     </div>
-
     <!-- Validation of State Selection -->
     <div
       class="col-span-6 sm:col-span-6 border border-solid border-gray-350 flex justify-between items-center"
@@ -34,11 +33,12 @@
       <div class="w-full">
         <div class="col-span-6">
           <Field
+            v-model="formValues.state"
             as="select"
             class="m-3 p-1 w-4/5 rounded-sm border border-solid border-gray-450 text-gray-700 sm:text-sm block"
             name="state"
             :rules="validateSelectionState"
-            @blur="updateProgression(1)"
+            @change="updateProgression(1)"
           >
             <option value="" selected disabled>Select State</option>
             <option v-for="state in states" :key="state" :value="state">
@@ -56,10 +56,10 @@
         <span class="background-gray"> Malaysia </span>
       </div>
     </div>
-
     <!-- Validation of email ---->
     <div class="col-span-6">
       <Field
+        v-model="formValues.email"
         type="email"
         id="email"
         name="email"
@@ -77,6 +77,7 @@
     <!-- Validation of Phone Number -->
     <div class="col-span-6">
       <Field
+        v-model="formValues.phone_number"
         type="phone"
         id="contact_number"
         name="contact_number"
@@ -90,16 +91,15 @@
         </span>
       </ErrorMessage>
     </div>
-
     <!-- Validation of Career Status -->
     <div class="p-1 col-span-6 w-full border border-solid border-gray-350">
       <Field
-        v-model="careerStatusMale"
+        v-model="formValues.career_status"
         as="select"
         class="m-3 p-1 w-4/5 rounded-sm border border-solid border-gray-450 text-gray-700 sm:text-sm block"
         name="career_status"
         :rules="validateSelectionInput"
-        @blur="updateProgression(4)"
+        @change="updateProgression(4)"
       >
         <option value="" disabled selected>Career Status</option>
         <option v-for="status in careerStatus" :key="status" :value="status">
@@ -112,10 +112,10 @@
         </span>
       </ErrorMessage>
     </div>
-
     <!-- No validation for this part -->
     <div class="col-span-6" v-if="careerStatusMale == 'others'">
       <Field
+        v-model="formValues.career_status_other"
         type="text"
         id="career_status_other"
         name="career_status_other"
@@ -126,14 +126,15 @@
     <!-- Validation of Career Industry -->
     <div
       class="p-1 col-span-6 w-full border border-solid border-gray-350"
-      v-if="careerStatusMale !== ''"
+      v-if="formValues.career_status !== ''"
     >
       <Field
+        v-model="formValues.industry_select"
         as="select"
         class="m-3 p-1 w-4/5 rounded-sm border border-solid border-gray-450 text-gray-700 sm:text-sm block"
         name="career_industry"
         :rules="validateSelectionInput"
-        @blur="updateProgression(5)"
+        @change="updateProgression(5)"
       >
         <option value="" disabled selected>
           Career Industry Involved / Involving
@@ -153,7 +154,7 @@
       </ErrorMessage>
     </div>
     <Message class="col-span-6">Identity Evidence:</Message>
-    <!-- Validation for medical check (physically) -->
+    <!-- Validation for Idnetification Card -->
     <div class="col-span-6">
       <div>
         <h1>Identication Card:</h1>
@@ -258,7 +259,7 @@
     <div class="col-span-6 flex justify-center items-center p-5">
       <Button
         type="submit"
-        value="Submit"
+        value="Submit_Female"
         label="Submit"
         class="bg-green-400 w-full h-auto p-1.5 rounded-md cursor-pointer hover:text-white"
         :disabled="progressionBar < 95"
@@ -281,30 +282,30 @@ import Button from "primevue/button";
 const careerStatusMale = ref("");
 const formValues = ref({
   name: "",
+  state: "",
   IC_number: "",
   email: "",
-  contact_number: "",
-  careerStatus: "",
+  phone_number: "",
+  career_status: "",
   career_status_other: "",
-  industrySelect: "",
+  industry_select: "",
   medical_check_physically: "",
-  medical_check_physically_status: false,
   medical_check_mentally: "",
-  medical_check_mentally_status: false,
   salary_slip: "",
 });
 
 // Create a emit variable to be used in the parent component
-const emit = defineEmits(["progressionBarFemale"]);
+const emit = defineEmits(["progressionBar"]);
 
 //Alert after submitting the form
 const onSubmit = () => {
   progressionBar.value += 5;
-  emit("progressionBarFemale", progressionBar.value);
+  emit("progressionBar", progressionBar.value, 1);
+  console.log("Form that emit to the parent: " + formValues.value)
+  emit("collectData", formValues.value, 1)
+  console.log(formValues.value)
   alert("Form is submitted.");
 };
-
-
 
 //Progression Tacker
 let progressionBar = ref(0);
@@ -322,10 +323,10 @@ const updateProgression = (index) => {
       progressionBar.value += 10;
     }
 
-    emit("progressionBarFemale", progressionBar.value);
+    emit("progressionBar", progressionBar.value, 1);
   } else {
     progressionBar.value += 0;
-    emit("progressionBarFemale", progressionBar.value);
+    emit("progressionBar", progressionBar.value, 1);
   }
 };
 //Only the
@@ -335,7 +336,7 @@ const validateName = (valueName) => {
       if (arrTemp.value.includes(0)) {
         arrTemp.value.shift(0);
         progressionBar.value -= 10;
-        emit("progressionBarFemale", progressionBar.value);
+        emit("progressionBar", progressionBar.value, 1);
       }
       return "Name can only contain alphabetic characters";
     } else {
@@ -354,7 +355,7 @@ const validateSelectionState = (valueState) => {
     if (arrTemp.value.includes(1)) {
       arrTemp.value.shift(1);
       progressionBar.value -= 10;
-      emit("progressionBarFemale", progressionBar.value);
+      emit("progressionBar", progressionBar.value, 1);
     }
     return "This field is required";
   }
@@ -365,7 +366,7 @@ const validateEmail = (valueEmail) => {
       if (arrTemp.value.includes(2)) {
         arrTemp.value.shift(2);
         progressionBar.value -= 10;
-        emit("progressionBarFemale", progressionBar.value);
+        emit("progressionBar", progressionBar.value, 1);
       }
       return "Please enter a valid email address.";
     } else {
@@ -383,7 +384,7 @@ const validatePhoneNumber = (valuePhone) => {
       if (arrTemp.value.includes(3)) {
         arrTemp.value.shift(3);
         progressionBar.value -= 10;
-        emit("progressionBarFemale", progressionBar.value);
+        emit("progressionBar", progressionBar.value, 1);
       }
       return "Invalid phone number.";
     } else {

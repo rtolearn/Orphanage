@@ -2,7 +2,7 @@
 <template>
   <Form
     action="#"
-    class="mt-8 p-5 grid grid-cols-6 gap-6 border-2 border-solid border-black rounded-md"
+    class="mt-8 p-8 grid grid-cols-6 gap-6 border-2 border-solid border-black rounded-md"
     @submit="onSubmit"
   >
     <h1 class="col-span-6 text-center m-2.5 text-lg sm:text-xl">
@@ -12,6 +12,7 @@
     <!-- Validation of name -->
     <div class="col-span-6">
       <Field
+        v-model="formValues.name"
         type="text"
         id="name"
         name="name"
@@ -32,11 +33,12 @@
       <div class="w-full">
         <div class="col-span-6">
           <Field
+            v-model="formValues.state"
             as="select"
             class="m-3 p-1 w-4/5 rounded-sm border border-solid border-gray-450 text-gray-700 sm:text-sm block"
             name="state"
             :rules="validateSelectionState"
-            @blur="updateProgression(1)"
+            @change="updateProgression(1)"
           >
             <option value="" selected disabled>Select State</option>
             <option v-for="state in states" :key="state" :value="state">
@@ -57,6 +59,7 @@
     <!-- Validation of email ---->
     <div class="col-span-6">
       <Field
+        v-model="formValues.email"
         type="email"
         id="email"
         name="email"
@@ -74,6 +77,7 @@
     <!-- Validation of Phone Number -->
     <div class="col-span-6">
       <Field
+        v-model="formValues.phone_number"
         type="phone"
         id="contact_number"
         name="contact_number"
@@ -90,12 +94,12 @@
     <!-- Validation of Career Status -->
     <div class="p-1 col-span-6 w-full border border-solid border-gray-350">
       <Field
-        v-model="careerStatusMale"
+        v-model="formValues.career_status"
         as="select"
         class="m-3 p-1 w-4/5 rounded-sm border border-solid border-gray-450 text-gray-700 sm:text-sm block"
         name="career_status"
         :rules="validateSelectionInput"
-        @blur="updateProgression(4)"
+        @change="updateProgression(4)"
       >
         <option value="" disabled selected>Career Status</option>
         <option v-for="status in careerStatus" :key="status" :value="status">
@@ -111,6 +115,7 @@
     <!-- No validation for this part -->
     <div class="col-span-6" v-if="careerStatusMale == 'others'">
       <Field
+        v-model="formValues.career_status_other"
         type="text"
         id="career_status_other"
         name="career_status_other"
@@ -121,14 +126,15 @@
     <!-- Validation of Career Industry -->
     <div
       class="p-1 col-span-6 w-full border border-solid border-gray-350"
-      v-if="careerStatusMale !== ''"
+      v-if="formValues.career_status !== ''"
     >
       <Field
+        v-model="formValues.industry_select"
         as="select"
         class="m-3 p-1 w-4/5 rounded-sm border border-solid border-gray-450 text-gray-700 sm:text-sm block"
         name="career_industry"
         :rules="validateSelectionInput"
-        @blur="updateProgression(5)"
+        @change="updateProgression(5)"
       >
         <option value="" disabled selected>
           Career Industry Involved / Involving
@@ -148,7 +154,7 @@
       </ErrorMessage>
     </div>
     <Message class="col-span-6">Identity Evidence:</Message>
-    <!-- Validation for medical check (physically) -->
+    <!-- Validation for Idnetification Card -->
     <div class="col-span-6">
       <div>
         <h1>Identication Card:</h1>
@@ -253,10 +259,10 @@
     <div class="col-span-6 flex justify-center items-center p-5">
       <Button
         type="submit"
-        value="Submit"
+        value="submit_male"
         label="Submit"
         class="bg-green-400 w-full h-auto p-1.5 rounded-md cursor-pointer hover:text-white"
-        :disabled="progressionBar < 95"
+        :disabled="progressionBarMale < 95"
       >
       </Button>
     </div>
@@ -272,37 +278,30 @@ import industries from "@/system_information/data/industries.json";
 import states from "@/system_information/data/states.json";
 import careerStatus from "@/system_information/data/careerStatus.json";
 
-//Alert after submitting the form
-const onSubmit = () => {
-  progressionBar.value += 5;
-  emit("progressionBarMale", progressionBar.value);
-  alert("Form is submitted.");
-};
+
 //Industry object
 const careerStatusMale = ref("");
 const formValues = ref({
   name: "",
+  state: "",
   IC_number: "",
   email: "",
-  contact_number: "",
-  careerStatus: "",
+  phone_number: "",
+  career_status: "",
   career_status_other: "",
-  industrySelect: "",
+  industry_select: "",
   medical_check_physically: "",
-  medical_check_physically_status: false,
   medical_check_mentally: "",
-  medical_check_mentally_status: false,
   salary_slip: "",
 });
 
 // Create a emit variable to be used in the parent component
-const emit = defineEmits(["progressionBarMale"]);
-
+const emit = defineEmits(["progressionBar", "collectData"]);
 //Progression Tacker
-let progressionBar = ref(0);
-// const progressionBartemp = ref(null);
+let progressionBarMale = ref(0);
+//Create an array to store the index, so that we can know which index has been stored already
 const arrTemp = ref([]);
-// Create a method to update the value to the parent component
+// Create a method to update the value to the parent component ----------------------------------
 const updateProgression = (index) => {
   console.log("Content Before push any value: " + arrTemp.value);
 
@@ -310,25 +309,36 @@ const updateProgression = (index) => {
     arrTemp.value.push(index);
     console.log("Content of array" + arrTemp.value);
     if (index === 0) {
-      progressionBar.value += 5;
+      progressionBarMale.value += 5;
     } else {
-      progressionBar.value += 10;
+      progressionBarMale.value += 10;
     }
 
-    emit("progressionBarMale", progressionBar.value);
+    emit("progressionBar", progressionBarMale.value, 0);
   } else {
-    progressionBar.value += 0;
-    emit("progressionBarMale", progressionBar.value);
+    progressionBarMale.value += 0;
+    emit("progressionBar", progressionBarMale.value, 0);
   }
 };
 
+//Alert after submitting the form --------------------------------------------------
+const onSubmit = () => {
+  progressionBarMale.value += 5;
+  emit("progressionBar", progressionBarMale.value, 0);
+  console.log("Form that emit to the parent: " + formValues.value)
+  emit("collectData", formValues.value, 0)
+  console.log(formValues.value);
+  alert("Data stored");
+};
+
+//Validation Function-------------------------------------------------------------
 const validateName = (valueName) => {
   if (valueName && valueName.trim()) {
     if (/[^a-zA-Z\s]/.test(valueName)) {
       if (arrTemp.value.includes(0)) {
         arrTemp.value.shift(0);
-        progressionBar.value -= 10;
-        emit("progressionBarMale", progressionBar.value);
+        progressionBarMale.value -= 10;
+        emit("progressionBar", progressionBarMale.value, 0);
       }
       return "Name can only contain alphabetic characters";
     } else {
@@ -346,8 +356,8 @@ const validateSelectionState = (valueState) => {
   } else {
     if (arrTemp.value.includes(1)) {
       arrTemp.value.shift(1);
-      progressionBar.value -= 10;
-      emit("progressionBarMale", progressionBar.value);
+      progressionBarMale.value -= 10;
+      emit("progressionBar", progressionBarMale.value, 0);
     }
     return "This field is required";
   }
@@ -358,8 +368,8 @@ const validateEmail = (valueEmail) => {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valueEmail)) {
       if (arrTemp.value.includes(2)) {
         arrTemp.value.shift(2);
-        progressionBar.value -= 10;
-        emit("progressionBarMale", progressionBar.value);
+        progressionBarMale.value -= 10;
+        emit("progressionBar", progressionBarMale.value, 0);
       }
       return "Please enter a valid email address.";
     } else {
@@ -376,8 +386,8 @@ const validatePhoneNumber = (valuePhone) => {
     if (!/^[+]?[0-9]{10,15}$/.test(valuePhone.trim())) {
       if (arrTemp.value.includes(3)) {
         arrTemp.value.shift(3);
-        progressionBar.value -= 10;
-        emit("progressionBarMale", progressionBar.value);
+        progressionBarMale.value -= 10;
+        emit("progressionBar", progressionBarMale.value, 0);
       }
       return "Invalid phone number.";
     } else {
@@ -404,6 +414,9 @@ const validateFile = (valueFile) => {
     return true;
   }
 };
+
+
+
 </script>
 
 <style scoped>

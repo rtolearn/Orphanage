@@ -1,8 +1,8 @@
 <template>
   <Form
     action="#"
-    class="mt-8 p-5 grid grid-cols-6 gap-6 border-2 border-solid border-black rounded-md"
-     @submit="onSubmit"
+    class="mt-8  p-8 grid grid-cols-6 gap-6 border-2 border-solid border-black rounded-md"
+    @submit="onSubmit"
   >
     <Message class="col-span-6">Marriage Evidence</Message>
 
@@ -14,6 +14,7 @@
         class="col-span-6 flex flex-col sm:flex-row mt-3.5 gap-6 items-center justify-center"
       >
         <Field
+          v-model="fileValue.fileInput"
           name="marriageEvidence"
           type="file"
           :rules="validateFile"
@@ -35,9 +36,9 @@
         value="Submit"
         label="Submit"
         class="bg-green-400 w-full h-auto p-1.5 rounded-md cursor-pointer hover:text-white"
-        :disabled="progressionBar < 95">
-     
-     </Button>
+        :disabled="progressionBar < 95"
+      >
+      </Button>
     </div>
   </Form>
 </template>
@@ -47,11 +48,15 @@ import { ref } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Message from "primevue/message";
 import Button from "primevue/button";
-const emit = defineEmits("progressionBarMarriage");
+//Declare an object to store the value of file input
+const fileValue = ref({
+  fileInput: ""
+})
+const emit = defineEmits(["progressionBar"]);
 //Alert after submitting the form
 const onSubmit = () => {
   progressionBar.value += 5;
-  emit("progressionBarMarriage", progressionBar.value);
+  emit("progressionBar", progressionBar.value, 2);
   alert("Form is submitted.");
 };
 //Progression Tacker
@@ -65,10 +70,10 @@ const updateProgression = (index) => {
     arrTemp.value.push(index);
     console.log("Content of array" + arrTemp.value);
     progressionBar.value += 95;
-    emit("progressionBarMarriage", progressionBar.value);
+    emit("progressionBar", progressionBar.value, 2);
   } else {
     progressionBar.value += 0;
-    emit("progressionBarMarriage", progressionBar.value);
+    emit("progressionBar", progressionBar.value, 2);
   }
 };
 
@@ -79,7 +84,6 @@ const validateFile = (valueFile) => {
     return true;
   }
 };
-
 </script>
 
 <style scoped>
