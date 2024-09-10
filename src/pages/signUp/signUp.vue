@@ -225,7 +225,6 @@ const router = useRouter();
 const handleSignUp = async () => {
   try {
     const { error } = await supabase.auth.signUp({
-      name: signUpIndividual.value.first_name,
       email: signUpIndividual.value.email,
       password: signUpIndividual.value.password,
     });
@@ -237,7 +236,7 @@ const handleSignUp = async () => {
     // Proceed with inserting user data into your database
     // Need to discuss with teammate,
     //if wanna disbaled the policy or change the way to insert the users' data
-    const { error: insertError } = await supabase.from("signUp").insert([
+    const { error: insertError } = await supabase.from("sign_up").insert([
       {
         first_name: signUpIndividual.value.first_name,
         last_name: signUpIndividual.value.last_name,
@@ -245,7 +244,7 @@ const handleSignUp = async () => {
         gender: signUpIndividual.value.gender,
         state: signUpIndividual.value.state,
         email: signUpIndividual.value.email,
-        phone_number: signUpIndividual.value.phone_number,
+        contact_number: signUpIndividual.value.phone_number,
         address: signUpIndividual.value.address,
       },
     ]);

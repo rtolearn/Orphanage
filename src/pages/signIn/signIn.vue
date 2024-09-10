@@ -106,7 +106,8 @@ const router = useRouter();
 //--------------------------------
 
 // Function to handle sign in---------------------------
-const handleSignIn = async () => {
+async function handleSignIn () {
+  
   try {
     const { data, error } = await supabase.auth.signInWithPassword({
       email: signInIndividual.value.email,
@@ -124,7 +125,7 @@ const handleSignIn = async () => {
       if (data.user) {
         const userId = data.user.id; // Extract the user ID from the response
         console.log("User ID being saved:", userId); // Log the user ID
-        messageStore.setUserId(Number(userId)); // Save the user ID in the store
+        messageStore.setUserId(userId); // Save the user ID in the store
       } else {
         console.error("User object not found in the response:", data);
       }
@@ -137,7 +138,7 @@ const handleSignIn = async () => {
   } catch (error) {
     alert(error.message);
   }
-};
+}
 
 // -----------------------------------------------------
 </script>
