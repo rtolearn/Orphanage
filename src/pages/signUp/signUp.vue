@@ -221,45 +221,47 @@ const signUpIndividual = ref({
 });
 
 const router = useRouter();
-
 const handleSignUp = async () => {
   try {
-    const { error } = await supabase.auth.signUp({
+    const { data, error: signUpError } = await supabase.auth.signUp({
       email: signUpIndividual.value.email,
       password: signUpIndividual.value.password,
     });
 
-    if (error) {
-      throw error;
+    if (signUpError) {
+      throw signUpError;
     }
 
-    // Proceed with inserting user data into your database
-    // Need to discuss with teammate,
-    //if wanna disbaled the policy or change the way to insert the users' data
-    const { error: insertError } = await supabase.from("sign_up").insert([
-      {
-        first_name: signUpIndividual.value.first_name,
-        last_name: signUpIndividual.value.last_name,
-        age: signUpIndividual.value.age,
-        gender: signUpIndividual.value.gender,
-        state: signUpIndividual.value.state,
-        email: signUpIndividual.value.email,
-        contact_number: signUpIndividual.value.phone_number,
-        address: signUpIndividual.value.address,
-      },
-    ]);
-    if (insertError) {
-      alert("Information cannot be store");
-    } else if (
-      signUpIndividual.value.password !==
-      signUpIndividual.value.password_confirmation
-    ) {
-      alert("The password and password confirmation are not matched");
-    } else {
-      alert("Sign Up successfully!");
-    }
-    // (Optional)
+    // Use the user ID from the sign-up response
+    if (data) {
+      const userId = data.user.id; // This is the UUID of the signed-up user
+      console.log(userId);
+      // Proceed with inserting user data into your database
+      const { error: insertError } = await supabase.from("sign_up").insert([
+        {
+          user_id: userId, // Include the user ID here
+          first_name: signUpIndividual.value.first_name,
+          last_name: signUpIndividual.value.last_name,
+          age: signUpIndividual.value.age,
+          gender: signUpIndividual.value.gender,
+          state: signUpIndividual.value.state,
+          email: signUpIndividual.value.email,
+          contact_number: signUpIndividual.value.phone_number,
+          address: signUpIndividual.value.address,
+        },
+      ]);
 
+      if (insertError) {
+        alert("Information cannot be stored");
+      } else if (
+        signUpIndividual.value.password !==
+        signUpIndividual.value.password_confirmation
+      ) {
+        alert("The password and password confirmation are not matched");
+      } else {
+        alert("Sign Up successfully!");
+      }
+    }
     router.push({ path: "/sign-in" });
   } catch (error) {
     alert(error.message);
