@@ -195,8 +195,8 @@
 
 <script setup>
 import { ref } from "vue";
-import states from "@/system_information/data/states.json";
-import genderType from "@/system_information/data/gender.json";
+import states from "@/pages/Data&Functions/data/states.json";
+import genderType from "@/pages/Data&Functions/data/gender.json";
 import validateName from "@/pages/Data&Functions/function/validateName.js";
 import validateEmail from "@/pages/Data&Functions/function/validateEmail.js";
 import validatePhoneNumber from "@/pages/Data&Functions/function/validatePhoneNumber.js";
@@ -205,6 +205,7 @@ import validateEmptyContent from "@/pages/Data&Functions/function/validateEmptyC
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { supabase } from "@/clients/supabaseClient";
 import { useRouter } from "vue-router";
+// import { signUp } from "@/clients/authentication";
 
 const signUpIndividual = ref({
   first_name: "",
@@ -224,6 +225,7 @@ const router = useRouter();
 const handleSignUp = async () => {
   try {
     const { error } = await supabase.auth.signUp({
+      name: signUpIndividual.value.first_name,
       email: signUpIndividual.value.email,
       password: signUpIndividual.value.password,
     });
@@ -244,8 +246,6 @@ const handleSignUp = async () => {
         state: signUpIndividual.value.state,
         email: signUpIndividual.value.email,
         phone_number: signUpIndividual.value.phone_number,
-        password: signUpIndividual.value.password,
-        password_confirmation: signUpIndividual.value.password_confirmation,
         address: signUpIndividual.value.address,
       },
     ]);

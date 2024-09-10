@@ -114,18 +114,30 @@ const handleSignIn = async () => {
     });
 
     if (error) {
-      //Throw the error so that the error will be caught by the else statement below
+      // Throw the error so that the error will be caught by the catch block
       throw error;
     }
+
     if (data) {
       alert("Login successful");
-      //Call the function to update the global user log in status
+      // Check if data.user exists before accessing user ID
+      if (data.user) {
+        const userId = data.user.id; // Extract the user ID from the response
+        console.log("User ID being saved:", userId); // Log the user ID
+        messageStore.setUserId(Number(userId)); // Save the user ID in the store
+      } else {
+        console.error("User object not found in the response:", data);
+      }
+      
+      // Call the function to update the global user login status
       updateMessage();
+      // Redirect to home or another route
       router.push({ path: "./" });
     }
   } catch (error) {
     alert(error.message);
   }
 };
+
 // -----------------------------------------------------
 </script>

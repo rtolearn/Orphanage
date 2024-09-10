@@ -1,6 +1,6 @@
 <template>
   <div
-    class="sticky top-0 h-[62px] flex items-center px-6 justify-between bg-white z-50"
+    class="sticky top-0 h-[62px] flex items-center px-1 justify-between bg-white z-50"
   >
     <div class="flex">
       <!-- Logo -->
@@ -25,14 +25,9 @@
     <NavLinks class="hidden lg:block" />
     <!-- Log In / Sign Up -->
     <div>
-      <!-- //Display the avatar if the user log in their account -->
-
-      <div v-if="statusAvatar" class="flex justify-center items-center gap-4">
-        <Avatar :image="avatarImg" class="mr-2" size="large" shape="circle" />
-        <div class="flex gap-1">
-          <h1>Welcome!</h1>
-          <h1 class="font-bold">Chen Yang</h1>
-        </div>
+      <div v-if="statusAvatar">
+        <!-- Component for users' profile -->
+        <Profile :profileName="fullName" />
       </div>
       <div v-if="!statusAvatar" class="flex gap-4">
         <Button label="Log In" as="router-link" to="/sign-in" outlined />
@@ -43,21 +38,48 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import NavLinks from "./NavLinks.vue";
-//Import Avatar from 'primevue/avatar';
+import Profile from "../Profile/page.vue";
+import { useMessageStore } from "@/store/messageStore";
+import { supabase } from "@/clients/supabaseClient";
 
 const visible = ref(false);
-
-//Import global variable
-import { useMessageStore } from "@/store/messageStore";
 const messageStore = useMessageStore();
-const statusAvatar = messageStore.statusLogIn;
+const statusAvatar = ref(messageStore.statusLogIn); // Initialize with store value
+
+// Watch for changes in statusLogIn from the store
+watch(
+  () => messageStore.statusLogIn,
+  (newStatus) => {
+    statusAvatar.value = newStatus; // Update statusAvatar whenever statusLogIn changes
+  }
+);
+const userId = messageStore.userId;
 console.log(messageStore.statusLogIn);
 
-//Import the image for avatar for temporary usage
-import avatarImg from "@/images/avatarPic.jpg";
-
+const fullName = ref("");
 //Get the information from the user and then display his name in the column there
-//Confirm with teammate of the relationship between the entity first
+const dynamicUserName = async () => {
+  try {
+    const { data, error } = await supabase
+      .from("signUp")
+      .select("first_name", "last_name")
+      .eq("user_id", userId)
+      .single();
+    if (error) {
+      throw error;
+    } else {
+      fullName.value = `${data.first_name} ${data.last_name}`;
+    }
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
+// //Check the status when the component is mounted and call the function to fetch the username
+
+if (statusAvatar.value) {
+  dynamicUserName();
+}
 </script>

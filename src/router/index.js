@@ -62,6 +62,11 @@ const routes = [
         path: '/scholarship',
         name: 'scholarship',
         component: () => import('@/pages/Sponsor&Donation/ScholarshipPage/Scholarship.vue')
+    },
+    {
+        path:'/profile',
+        name: 'profile',
+        component: () => import('@/pages/Profile/page.vue')
     }
     
 ];

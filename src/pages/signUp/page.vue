@@ -25,37 +25,15 @@
       </p>
     </div>
 
-    <!-- Toggel button to choose which identity to sign in -->
-    <div class="flex justify-center items-center mt-5 mb-0 text-sm">
-      <SelectButton
-        v-model="selectedOption"
-        :options="options"
-        aria-labelledby="basic"
-
-      />
-    </div>
-    
     <!-- Part of the form to sign in -->
     <div class="w-4/5 lg:w-3/5 h-full m-auto block mt-5">
       <!-- For the form of individual -->
-      <div v-show="selectedOption === 'Individual'">
-        <signUpIndividual />
-      </div>
 
-      <!-- For the form of Company -->
-      <div v-show="selectedOption === 'Company'">
-        <signUpCompany />
-      </div>
+      <signUp />
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from "vue";
-
-import signUpIndividual from './signUpIndividual.vue'
-import signUpCompany from "./signUpCompany.vue";
-const options = ref(["Individual", "Company"]);
-const selectedOption = ref("Individual");
-
+import signUp from "./signUp.vue";
 </script>
