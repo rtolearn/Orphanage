@@ -32,6 +32,10 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  imageURL: {
+    type: String,
+    required: true
+  }
 });
 
 //Decalre an emit
@@ -58,12 +62,13 @@ const handleSignOut = () => {
 import { supabase } from "@/clients/supabaseClient";
 
 const userId = ref(store.userId);
-const imageUrl = ref("");
 
 //Function for handling updation of data
 const handleUpdate = async () => {
   visible.value = false;
   emits("visibility", visible.value);
+  console.log("Link of image before being stored in the sign_Up" + props.updatedValue.first_name)
+
   try {
     // Update user profile information in the database
     const { error } = await supabase
@@ -74,7 +79,7 @@ const handleUpdate = async () => {
         contact_number: props.updatedValue.contact_number,
         state: props.updatedValue.state,
         address: props.updatedValue.address,
-        image_url: imageUrl, // Include image URL if it exists
+        image_url: props.imageURL, // Include image URL if it exists
       })
       .eq("user_id", userId.value);
 

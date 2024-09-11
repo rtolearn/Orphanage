@@ -20,11 +20,15 @@
       >Update your information.</span
     >
     <!-- Upload file -->
-    <ModalDialogFile />
+    <ModalDialogFile @imageURL="handleImageURL" />
     <!-- Input Field -->
-    <ModalDialogInputField @valueFileInput="handleFileInput"/>
+    <ModalDialogInputField @valueFileInput="handleFileInput" />
     <!-- Profile Button -->
-    <ModalDialogButton :updatedValue="updatedValue" @visibility="handleVisibility"/>
+    <ModalDialogButton
+      :updatedValue="updatedValue"
+      :imageURL="imageURL"
+      @visibility="handleVisibility"
+    />
   </Dialog>
 </template>
 
@@ -51,15 +55,21 @@ const openPosition = (pos) => {
 };
 
 //Take the values from the ModalDialogField before passing it to the ModalDialogButton
-const updatedValue = ref({})
+const updatedValue = ref({});
 const handleFileInput = (value) => {
-  updatedValue.value = {...value}
+  console.log(value);
+  updatedValue.value = { ...value };
 };
 
 //Handle the value of visible (passed from the ModalDialogButton)
 const handleVisibility = (value) => {
   visible.value = value;
-  console.log("after passing value: " + visible.value)
-}
+  console.log("after passing value: " + visible.value);
+};
 
+const imageURL = ref("");
+//Handle the image's URL
+const handleImageURL = (value) => {
+  imageURL.value = value;
+};
 </script>

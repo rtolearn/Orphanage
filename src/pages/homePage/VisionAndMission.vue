@@ -13,29 +13,30 @@
     </div>
     <!-- Display item via loop -->
     <div
-      class="w-full h-auto p-5 sm:flex sm:justify-center sm:items-center gap-4 text-center"
+      class="w-full p-5 flex flex-col md:flex-row md:justify-center  gap-4 text-center"
     >
-      <div v-for="item in displayContent" :key="item.id">
+      <div
+        v-for="item in displayContent"
+        :key="item.id"
+        class="w-full  block rounded-xl bg-green-100 py-4 sm:py-10 px-3 shadow-inner-custom hover:cursor-pointer"
+      >
         <!-- Item -->
-        <div
-          class="w-full h-auto m-auto mb-5 block rounded-xl bg-green-100 py-4 sm:py-10 px-3 shadow-inner-custom hover:cursor-pointer"
+
+        <img
+          :src="item.img"
+          alt="Icon 1"
+          class="w-[4rem] h-[4rem] mb-5 m-auto block"
+        />
+        <h4
+          class="w-full h-auto font-[Poppins] text-sm text-center font-bold rounded border border-green-400 bg-green-800 text-white px-3"
         >
-          <img
-            :src="item.img"
-            alt="Icon 1"
-            class="w-[4rem] h-[4rem] mb-5 m-auto block"
-          />
-          <h4
-            class="w-full h-auto font-[Poppins] text-sm text-center font-bold rounded border border-green-400 bg-green-800 text-white px-3"
-          >
-            {{ item.title }}
-          </h4>
-          <p
-            class="hidden sm:block px-auto mt-1 sm:text-xs text-md text-white-500"
-          >
-            {{ item.content }}
-          </p>
-        </div>
+          {{ item.title }}
+        </h4>
+        <p
+          class="px-auto mt-1 text-xs sm:text-base text-white-500"
+        >
+          {{ item.content }}
+        </p>
       </div>
     </div>
   </div>

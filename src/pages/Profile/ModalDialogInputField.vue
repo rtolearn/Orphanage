@@ -10,7 +10,7 @@
         input.title
       }}</label>
       <InputText
-        v-model="input.value"
+        v-model="updatedValue[input.id]"
         :id="input.id"
         class="w-full"
         autocomplete="off"
@@ -21,45 +21,49 @@
 </template>
 
 <script setup>
+import {reactive, watch} from "vue";
 //Declare an object to store all the updated value
-const updatedValue = {
+const updatedValue = reactive({
   first_name: "",
   last_name: "",
   email: "",
   contact_number: "",
   state: "",
   address: "",
-};
+}) 
 //Object for input field
 const inputField = [
   {
     title: "First Name",
     id: "first_name",
-    value: updatedValue.first_name,
+
   },
   {
     title: "Last Name",
     id: "last_name",
-    value: updatedValue.last_name,
+
   },
   {
     title: "Contact Number",
     id: "contact_number",
-    value: updatedValue.contact_number,
+
   },
   {
     title: "State",
     id: "state",
-    value: updatedValue.state,
+
   },
   {
     title: "Address",
     id: "address",
-    value: updatedValue.address,
   },
 ];
 
 const emit = defineEmits(['valueFileInput'])
-emit("valueFileInput", updatedValue)
+// Watch for changes in the updatedValue object
+watch(updatedValue, (newValue) => {
+    console.log(newValue)
+  emit('valueFileInput', newValue); // Emit the updated value automatically when it changes
+}, { deep: true }); // Use deep to watch for changes in nested objects
 </script>
 
