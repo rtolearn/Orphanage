@@ -1,6 +1,6 @@
 <template>
   <div
-    class="sticky top-0 h-[62px] flex items-center px-6 justify-between bg-white z-50"
+    class="sticky top-0 h-[62px] flex items-center px-1 justify-between bg-white z-50"
   >
     <div class="flex">
       <!-- Logo -->
@@ -24,25 +24,62 @@
     <!-- Menu -->
     <NavLinks class="hidden lg:block" />
     <!-- Log In / Sign Up -->
-    <div class="flex gap-4">
-      <Button label="Log In" as="router-link" to="/sign-in" outlined />
-      <Button label="Sign Up" as="router-link" to="/sign-up" />
+    <div>
+      <div v-if="statusAvatar">
+        <!-- Component for users' profile -->
+        <Profile :profileName="fullName" />
+      </div>
+      <div v-if="!statusAvatar" class="flex gap-4">
+        <Button label="Log In" as="router-link" to="/sign-in" outlined />
+        <Button label="Sign Up" as="router-link" to="/sign-up" />
+      </div>
     </div>
   </div>
 </template>
 
-<script>
-import { ref } from "vue";
+<script setup>
+import { ref, watch } from "vue";
 import NavLinks from "./NavLinks.vue";
+import Profile from "../Profile/page.vue";
+import { useMessageStore } from "@/store/messageStore";
+import { supabase } from "@/clients/supabaseClient";
 
-export default {
-  components: { NavLinks },
-  setup() {
-    const visible = ref(false);
+const visible = ref(false);
+const messageStore = useMessageStore();
+const statusAvatar = ref(messageStore.statusLogIn); // Initialize with store value
 
-    return { visible };
-  },
+// Watch for changes in statusLogIn from the store
+watch(
+  () => messageStore.statusLogIn,
+  (newStatus) => {
+    statusAvatar.value = newStatus; // Update statusAvatar whenever statusLogIn changes
+  }
+);
+const userId = messageStore.userId;
+console.log(messageStore.statusLogIn);
+
+const fullName = ref("");
+//Get the information from the user and then display his name in the column there
+const dynamicUserName = async () => {
+  try {
+    const { data, error } = await supabase
+      .from("sign_up")
+      .select("first_name, last_name")
+      .eq("user_id", userId)
+      .single();
+    if (error) {
+      throw error;
+    } else {
+      fullName.value = `${data.first_name} ${data.last_name}`;
+    }
+  } catch (error) {
+    alert(error.message);
+  }
 };
-</script>
 
-<style></style>
+// //Check the status when the component is mounted and call the function to fetch the username
+
+if (statusAvatar.value) {
+  dynamicUserName();
+}
+</script>

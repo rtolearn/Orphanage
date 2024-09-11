@@ -113,7 +113,7 @@
       </ErrorMessage>
     </div>
     <!-- No validation for this part -->
-    <div class="col-span-6" v-if="careerStatusMale == 'others'">
+    <div class="col-span-6" v-if="formValues.career_status  == 'others'">
       <Field
         v-model="formValues.career_status_other"
         type="text"
@@ -274,13 +274,12 @@ import { ref, defineEmits } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Message from "primevue/message";
 import Button from "primevue/button";
-import industries from "@/system_information/data/industries.json";
-import states from "@/system_information/data/states.json";
-import careerStatus from "@/system_information/data/careerStatus.json";
+import industries from "../Data&Functions/data/industries"
+import states from "../Data&Functions/data/states";
+import careerStatus from "../Data&Functions/data/careerStatus";
 
 
 //Industry object
-const careerStatusMale = ref("");
 const formValues = ref({
   name: "",
   state: "",

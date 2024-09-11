@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <section class="bg-white" id="sign-in-form">
     <!-- Introduction Part for Sign In-->
@@ -23,35 +24,17 @@
       </p>
     </div>
 
-    <!-- Toggel button to choose which identity to sign in -->
-    <div class="flex justify-center items-center mt-5 mb-0 text-sm">
-      <SelectButton
-        v-model="selectedOption"
-        :options="options"
-        aria-labelledby="basic"
-
-      />
-    </div>
+ 
 
     <!-- Part of the form to sign in -->
     <div class="w-4/5 lg:w-3/5 h-full m-auto block mt-5">
-      <!-- For the form of individual -->
-      <div v-show="selectedOption === 'Individual'">
-          <signInIndividual />
-      </div>
-
-      <!-- For the form of Company -->
-      <div v-show="selectedOption === 'Company'">
-          <signInCompany />
-      </div>
+          <signIn />
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import signInIndividual  from "./signInIndividual.vue";
-import signInCompany from "./signInCompany.vue";
-const options = ref(["Individual", "Company"]);
-const selectedOption = ref("Individual");
+
+import signIn  from "./signIn.vue"
+
 </script>
