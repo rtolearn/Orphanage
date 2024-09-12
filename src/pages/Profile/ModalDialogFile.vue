@@ -29,18 +29,48 @@
 </template>
 
 <script setup>
-import { ref} from "vue";
-import avatarImg from "@/images/avatarPic.jpg"; // Default avatar
-import { supabase } from "@/clients/supabaseClient"; // Supabase client
+import { ref, onMounted } from "vue";
+import avatarImg from "@/images/avatarPic.jpg";
+import { supabase } from "@/clients/supabaseClient";
 
-const src = ref(null); // Reactive ref to store image preview
-const errorMessage = ref(null); // Reactive ref for error messages
-const emits = defineEmits(['imageURL'])
+const src = ref(null);
+const errorMessage = ref(null);
+const emits = defineEmits(["imageURL"]);
+
+// Function to display the user's profile picture as default
+onMounted(async () => {
+  try {
+    // Get the currently authenticated user
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+    if (userError || !user) {
+      alert("User is not authenticated.");
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from("sign_up")
+      .select("image_url")
+      .eq("user_id", user.id)
+      .single();
+
+    src.value = data.image_url;
+    emits("imageURL", src.value);
+    if (error) {
+      throw error;
+    }
+  } catch (error) {
+    alert(error.message);
+  }
+});
 // Function triggered when the user selects a file
 const onFileSelect = async (event) => {
   const file = event.files[0]; // Get the selected file
   if (!file) {
     errorMessage.value = "No file selected.";
+
     return;
   }
 
@@ -84,11 +114,11 @@ const onFileSelect = async (event) => {
 
     if (urlError || !data.publicUrl) {
       throw urlError;
-    }else{
-      console.log("image URL emitted: " + data.publicUrl)
-      emits("imageURL", data.publicUrl)
+    } else {
+      console.log("image URL emitted: " + data.publicUrl);
+      emits("imageURL", data.publicUrl);
     }
-  
+
     // Successfully uploaded the image
     console.log("Image uploaded successfully!");
   } catch (err) {

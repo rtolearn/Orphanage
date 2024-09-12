@@ -44,7 +44,10 @@ const fetchUserProfilePicture = async () => {
       .select("image_url")
       .eq("user_id", user.id)
       .single();
-      userProfilePicture.value = data.image_url;
+   
+    userProfilePicture.value = data.image_url;
+      
+     
     if (error) {
       throw error;
     }

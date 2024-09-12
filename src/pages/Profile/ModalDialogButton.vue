@@ -26,7 +26,22 @@
 <script setup>
 import { useMessageStore } from "@/store/messageStore";
 import { ref } from "vue";
+import * as yup from "yup";
+import { supabase } from "@/clients/supabaseClient";
 
+// Define your validation schema
+const validationSchema = yup.object().shape({
+  first_name: yup.string().required("First name is required"),
+  last_name: yup.string().required("Last name is required"),
+  contact_number: yup
+    .string()
+    .required("Contact number is required")
+    .matches(/^\d{11}$/, "Contact number must be 10 digits"),
+  state: yup.string().required("State is required"),
+  address: yup.string().required("Address is required"),
+});
+
+// Define props
 const props = defineProps({
   updatedValue: {
     type: Object,
@@ -34,43 +49,39 @@ const props = defineProps({
   },
   imageURL: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
-//Decalre an emit
+// Declare emits
 const emits = defineEmits(["visibility"]);
 const visible = ref(false);
 
 const store = useMessageStore();
 const message = ref(store.statusLogIn);
+const userId = ref(store.userId);
 
-//Function for handling cancel button
+// Function for handling cancel button
 const handleCancel = () => {
   visible.value = false;
-  console.log("cancal profile status: " + visible.value);
   emits("visibility", visible.value);
 };
 
-//Function for handling signing out
+// Function for handling signing out
 const handleSignOut = () => {
   store.clearStorage();
   store.setStatus(!message.value);
   visible.value = false; // Close the dialog
   emits("visibility", visible.value);
 };
-import { supabase } from "@/clients/supabaseClient";
 
-const userId = ref(store.userId);
-
-//Function for handling updation of data
+// Function for handling the update of data
 const handleUpdate = async () => {
-  visible.value = false;
-  emits("visibility", visible.value);
-  console.log("Link of image before being stored in the sign_Up" + props.updatedValue.first_name)
-
   try {
-    // Update user profile information in the database
+    // Validate the updatedValue
+    await validationSchema.validate(props.updatedValue, { abortEarly: false });
+
+    // Update user's data
     const { error } = await supabase
       .from("sign_up")
       .update({
@@ -87,8 +98,21 @@ const handleUpdate = async () => {
       throw error;
     }
     alert("Data updated");
-  } catch (error) {
-    alert(error.message);
+
+    // Close the modal dialog
+    visible.value = false;
+    emits("visibility", visible.value);
+  } catch (err) {
+    // Handle validation errors
+    if (err.errors) {
+      alert(err.errors.join(", ")); // Show all validation errors
+    } else {
+      alert("Error updating data: " + err.message);
+    }
   }
 };
 </script>
+
+<style scoped>
+/* Add any required styles here */
+</style>
