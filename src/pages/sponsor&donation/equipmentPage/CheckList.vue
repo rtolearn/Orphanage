@@ -3,8 +3,8 @@
     <Select
       v-model="selectedItem"
       :options="data"
-      optionLabel="itemName"
-      class=" w-4/5 h-auto flex justify-center items-center m-auto my-5 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
+      optionLabel="item_name"
+      class="sticky w-4/5 h-auto flex justify-center items-center m-auto my-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
       placeholder="Here is the checklist for every item.."
       @change="scrollToItem"
     ></Select>
@@ -12,24 +12,31 @@
 </template>
 
 <script setup>
-import {ref, defineProps} from "vue"
+import { ref, defineProps } from "vue";
+
 // Define props to receive data from the parent component
 const props = defineProps({
   data: {
     type: Array,
-    required: true
-  }
+    required: true,
+  },
 });
+
 // Define a reactive variable for the selected item
 const selectedItem = ref(null);
+
 // Scroll to the selected item
 const scrollToItem = () => {
   if (selectedItem.value) {
-    const index = props.data.findIndex(item => item.id === selectedItem.value.id); // Use id to find the index
+    const index = props.data.findIndex(
+      (item) => item.id === selectedItem.value.id
+      
+    );
+    console.log(selectedItem.value + selectedItem.value.id)
     if (index !== -1) {
       const element = document.getElementById(`item-${index}`);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "center",  });
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }
   }

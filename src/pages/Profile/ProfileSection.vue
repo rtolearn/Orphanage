@@ -40,7 +40,7 @@ const fetchUserProfilePicture = async () => {
   }
   try {
     const { data, error } = await supabase
-      .from("sign_up")
+      .from("users")
       .select("image_url")
       .eq("user_id", user.id)
       .single();

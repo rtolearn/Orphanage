@@ -51,7 +51,7 @@ onMounted(async () => {
     }
 
     const { data, error } = await supabase
-      .from("sign_up")
+      .from("users")
       .select("image_url")
       .eq("user_id", user.id)
       .single();
@@ -70,17 +70,13 @@ const onFileSelect = async (event) => {
   const file = event.files[0]; // Get the selected file
   if (!file) {
     errorMessage.value = "No file selected.";
-
     return;
   }
-
   // Reset any previous error
   errorMessage.value = null;
-
   try {
     // Create a temporary URL for the image to display in an <img> tag
     src.value = URL.createObjectURL(file); // This allows for immediate preview
-
     // Get the currently authenticated user
     const {
       data: { user },
@@ -90,10 +86,8 @@ const onFileSelect = async (event) => {
       errorMessage.value = "User is not authenticated.";
       return;
     }
-
     // Construct the file path using the user's ID
     const filePath = `UserProfilePicture/${user.id}/${file.name}`;
-
     // Upload the file to Supabase Storage, overwriting if it already exists
     const { error: uploadError } = await supabase.storage
       .from("UserProfilePicture") // Use your Supabase bucket name
@@ -101,12 +95,10 @@ const onFileSelect = async (event) => {
         cacheControl: "3600", // Adjust cache if necessary
         upsert: true, // This ensures the image is overwritten if the same name exists
       });
-
     if (uploadError) {
       throw uploadError;
     }
     // Declare an Emit Event to send back to value to the HomePage
-
     // Retrieve the public URL of the latest file
     const { data, error: urlError } = supabase.storage
       .from("UserProfilePicture")
@@ -118,7 +110,6 @@ const onFileSelect = async (event) => {
       console.log("image URL emitted: " + data.publicUrl);
       emits("imageURL", data.publicUrl);
     }
-
     // Successfully uploaded the image
     console.log("Image uploaded successfully!");
   } catch (err) {

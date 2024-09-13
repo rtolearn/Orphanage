@@ -36,7 +36,7 @@ const validationSchema = yup.object().shape({
   contact_number: yup
     .string()
     .required("Contact number is required")
-    .matches(/^\d{11}$/, "Contact number must be 10 digits"),
+    .matches(/^\d{11}$/, "Contact number must be 11 digits"),
   state: yup.string().required("State is required"),
   address: yup.string().required("Address is required"),
 });
@@ -80,10 +80,10 @@ const handleUpdate = async () => {
   try {
     // Validate the updatedValue
     await validationSchema.validate(props.updatedValue, { abortEarly: false });
-
+console.log("imge Url pass into the button component: " + props.imageURL)
     // Update user's data
     const { error } = await supabase
-      .from("sign_up")
+      .from("users")
       .update({
         first_name: props.updatedValue.first_name,
         last_name: props.updatedValue.last_name,
