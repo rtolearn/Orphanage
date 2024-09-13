@@ -13,20 +13,22 @@
 		</div>
 		<!-- Display item via loop -->
 		<div
-			class="w-full p-5 flex flex-col md:flex-row justify-center gap-4 text-center"
+			class="w-full p-5 flex flex-col md:flex-row md:justify-center gap-4 text-center"
 		>
 			<div
 				v-for="item in displayContent"
 				:key="item.id"
 				class="w-full block rounded-xl bg-green-100 py-4 sm:py-10 px-3 shadow-inner-custom hover:cursor-pointer"
 			>
+				<!-- Item -->
+
 				<img
 					:src="item.img"
 					alt="Icon 1"
 					class="w-[4rem] h-[4rem] mb-5 m-auto block"
 				/>
 				<h4
-					class="w-full h-auto text-sm text-center font-bold rounded border border-green-400 bg-green-800 text-white px-3"
+					class="w-full h-auto font-[Poppins] text-sm text-center font-bold rounded border border-green-400 bg-green-800 text-white px-3"
 				>
 					{{ item.title }}
 				</h4>
