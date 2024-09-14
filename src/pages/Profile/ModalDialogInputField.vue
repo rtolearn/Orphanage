@@ -60,7 +60,7 @@ onMounted(async () => {
     }
     //Retrieve the data
     const { data, error } = await supabase
-      .from("sign_up")
+      .from("users")
       .select("*")
       .eq("user_id", user.id)
       .single();

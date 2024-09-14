@@ -63,7 +63,7 @@ const fullName = ref("");
 const dynamicUserName = async () => {
   try {
     const { data, error } = await supabase
-      .from("sign_up")
+      .from("users")
       .select("first_name, last_name")
       .eq("user_id", userId)
       .single();

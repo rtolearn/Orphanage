@@ -13,21 +13,21 @@
           class="w-fit h-auto m-auto block card flex justify-between items-center px-5 sm:px-10"
         >
           <div class="card-items flex justify-left items-center">
-            <img :src="item.itemImage" class="w-1/5 h-auto" />
+            <img :src="item.item_image" class="w-1/5 h-auto" />
             <div class="ml-2 w-4/5">
               <div class="flex justify-between items-end">
                 <h1
                   class="text-sm font-medium sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl"
                 >
-                  {{ item.itemName }}
+                  {{ item.item_name }}
                 </h1>
               </div>
               <ProgressBar
-                :value="(item.currentAmount / item.maxAmount) * 100"
-                :max="item.maxAmount"
+                :value="(item.current_amount / item.max_amount) * 100"
+                :max="item.max_amount"
               >
                 <span class="text-[0.6rem] sm:text-[0.8rem]"
-                  >{{ item.currentAmount }}/{{ item.maxAmount }}</span
+                  >{{ item.current_amount }}/{{ item.max_amount }}</span
                 >
               </ProgressBar>
               <div
@@ -36,7 +36,7 @@
                 <h1
                   class="text-[0.6rem] sm:text-sm md:text-base lg:text-lg xl:text-xl"
                 >
-                  <span class="pump-animation">RM{{ item.maxAmount - item.currentAmount }}.00 </span>
+                  <span class="pump-animation">RM{{ item.max_amount - item.current_amount }}.00 </span>
                   left
                 </h1>
                 <button

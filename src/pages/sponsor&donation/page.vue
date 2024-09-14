@@ -5,7 +5,7 @@ import NavBar from "@/pages/HomePage/NavBar.vue"
 </script> 
 
 <template>
-    <div id="sponsor&donation" class="max-w-[1440px] h-screen mx-auto">
+    <div id="sponsor&donation" class="max-w-[1440px] min-h-screen mx-auto">
         <NavBar />
         <HomePage />
     </div>
