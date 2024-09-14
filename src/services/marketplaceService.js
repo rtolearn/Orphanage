@@ -19,29 +19,37 @@ const fetchMarketplaceItems = async () => {
 	}
 };
 
-const addCartItem = async (itemId, quantity) => {
+const updateMarketplaceItemQuantity = async (itemId, updatedQuantity) => {
 	try {
-		// Fetch the user's cart ID from shopping_carts based on user_id
-		const { data: cartData, error: cartError } = await supabase
-			.from("shopping_carts")
-			.select("cart_id")
-			.eq("user_id", userId)
-			.single();
+		console.log("Updating item quantity:", itemId, updatedQuantity);
 
-		if (cartError || !cartData) {
-			throw new Error("Could not find shopping cart for the user.");
+		const { data, error } = await supabase
+			.from("marketplace_items")
+			.update({ quantity_available: updatedQuantity })
+			.eq("item_id", itemId);
+
+		if (error) {
+			throw error;
 		}
 
-		const cartId = cartData.cart_id;
+		return { success: true, data };
+	} catch (error) {
+		console.error("Error updating marketplace item quantity:", error.message);
+		return { success: false, error: error.message };
+	}
+};
 
-		// Insert the new item into cart_items
-		const { data, error } = await supabase.from("cart_items").insert([
-			{
-				cart_id: cartId,
-				item_id: itemId,
-				quantity: quantity,
-			},
-		]);
+const addCartItem = async (itemId, quantity) => {
+	try {
+		const { data, error } = await supabase
+			.from("cart_items")
+			.insert([
+				{
+					item_id: itemId,
+					quantity: quantity,
+				},
+			])
+			.select();
 
 		if (error) {
 			throw error;
@@ -54,6 +62,42 @@ const addCartItem = async (itemId, quantity) => {
 	}
 };
 
+const deleteCartItem = async (cartItemId) => {
+	try {
+		const { error } = await supabase
+			.from("cart_items")
+			.delete()
+			.eq("cart_item_id", cartItemId);
+
+		if (error) {
+			throw error;
+		}
+
+		return { success: true };
+	} catch (error) {
+		console.error("Error deleting item from cart:", error.message);
+		return { success: false, error: error.message };
+	}
+};
+
+const updateCartItemQuantity = async (cartItemId, updatedQuantity) => {
+	try {
+		const { data, error } = await supabase
+			.from("cart_items")
+			.update({ quantity: updatedQuantity })
+			.eq("cart_item_id", cartItemId);
+
+		if (error) {
+			throw error;
+		}
+
+		return { success: true, data };
+	} catch (error) {
+		console.error("Error updating item quantity in cart:", error.message);
+		return { success: false, error: error.message };
+	}
+};
+
 const fetchCartItems = async () => {
 	if (!userId) {
 		console.error("No user is logged in");
@@ -61,20 +105,6 @@ const fetchCartItems = async () => {
 	}
 
 	try {
-		// Step 1: Get the shopping cart ID for the logged-in user
-		const { data: cartData, error: cartError } = await supabase
-			.from("shopping_carts")
-			.select("cart_id")
-			.eq("user_id", userId)
-			.single();
-
-		if (cartError) {
-			throw new Error(`Error fetching shopping cart: ${cartError.message}`);
-		}
-
-		const cartId = cartData.cart_id;
-
-		// Step 2: Get cart items and join with marketplace_items for item details
 		const { data: cartItemsData, error: cartItemsError } = await supabase
 			.from("cart_items")
 			.select(
@@ -85,11 +115,11 @@ const fetchCartItems = async () => {
           item_id, 
           item_name, 
           item_image_url, 
-          unit_price
+          unit_price,
+					quantity_available
         )
       `
-			)
-			.eq("cart_id", cartId);
+			);
 
 		if (cartItemsError) {
 			throw new Error(`Error fetching cart items: ${cartItemsError.message}`);
@@ -102,4 +132,11 @@ const fetchCartItems = async () => {
 	}
 };
 
-export { fetchMarketplaceItems, addCartItem, fetchCartItems };
+export {
+	fetchMarketplaceItems,
+	updateMarketplaceItemQuantity,
+	addCartItem,
+	deleteCartItem,
+	updateCartItemQuantity,
+	fetchCartItems,
+};
