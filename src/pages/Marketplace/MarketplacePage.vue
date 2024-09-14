@@ -11,7 +11,7 @@
 		<ItemCard
 			v-for="item in filteredItems"
 			:item="item"
-			:key="item.id"
+			:key="item.item_id"
 			@cart-updated="onCartUpdated"
 		/>
 	</div>
@@ -19,7 +19,6 @@
 
 <script>
 import { onMounted, ref, computed } from "vue";
-import api from "@/services/api";
 import NavBar from "@/pages/HomePage/NavBar.vue";
 import SearchBar from "@/pages/MarketPlace/SearchBar.vue";
 import ItemCard from "@/pages/MarketPlace/ItemCard.vue";
@@ -38,8 +37,7 @@ export default {
 
 		const fetchItems = async () => {
 			try {
-				const response = await fetchMarketplaceItems();
-				items.value = response;
+				items.value = await fetchMarketplaceItems();
 			} catch (error) {
 				console.error("Error fetching items:", error);
 			}

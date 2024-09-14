@@ -2,11 +2,13 @@
 	<div class="bg-white rounded-3xl flex gap-4 p-2">
 		<Toast position="bottom-left" group="bl" />
 		<div class="rounded-2xl overflow-hidden w-[30%]">
-			<img :src="cartItem.itemImage" alt="" />
+			<img :src="cartItem.marketplace_items.item_image_url" alt="" />
 		</div>
 		<div class="flex flex-col grow justify-between py-2">
 			<div class="flex justify-between">
-				<h3 class="font-semibold">{{ cartItem.itemName }}</h3>
+				<h3 class="font-semibold">
+					{{ cartItem.marketplace_items.item_name }}
+				</h3>
 				<Button
 					icon="pi pi-trash"
 					severity="danger"
@@ -18,7 +20,9 @@
 			</div>
 			<div class="flex justify-between">
 				<div class="flex justify-between items-center">
-					<p class="font-medium text-sm">RM{{ cartItem.itemUnitPrice }}</p>
+					<p class="font-medium text-sm">
+						RM{{ cartItem.marketplace_items.unit_price }}
+					</p>
 				</div>
 				<div class="flex justify-between items-center">
 					<div class="flex bg-gray-50 rounded-full py-1 items-center">

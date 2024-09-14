@@ -27,7 +27,7 @@
 <script>
 import { ref } from "vue";
 import { useToast } from "primevue/usetoast";
-import api from "@/services/api";
+import { addCartItem } from "@/services/marketplaceService";
 
 export default {
 	props: {
@@ -71,11 +71,11 @@ export default {
 
 		const addToCart = async () => {
 			try {
-				const response = await api.addCartItem({
-					id: props.item.id,
-					quantity: quantity.value,
-				});
-				if (response && response.status === 200) {
+				const response = await addCartItem(props.item.item_id, quantity.value);
+
+				console.log(response);
+
+				if (response && response.success) {
 					toast.add({
 						severity: "success",
 						summary: "Item Added to Cart",

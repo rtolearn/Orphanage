@@ -1,6 +1,8 @@
 import { supabase } from "@/clients/supabaseClient";
 import { useMessageStore } from "@/store/messageStore";
 
+const userId = useMessageStore().userId; // Get the userId from the store
+
 const fetchMarketplaceItems = async () => {
 	try {
 		const { data, error } = await supabase
@@ -10,11 +12,6 @@ const fetchMarketplaceItems = async () => {
 		if (error) {
 			throw new Error(`Error fetching marketplace items: ${error.message}`);
 		}
-
-		if (data) {
-			console.log("Marketplace items fetched successfully:", data);
-		}
-
 		return data;
 	} catch (error) {
 		console.error("Error fetching marketplace items:", error.message);
@@ -22,9 +19,42 @@ const fetchMarketplaceItems = async () => {
 	}
 };
 
-const fetchCartItems = async () => {
-	const userId = useMessageStore().userId; // Get the userId from the store
+const addCartItem = async (itemId, quantity) => {
+	try {
+		// Fetch the user's cart ID from shopping_carts based on user_id
+		const { data: cartData, error: cartError } = await supabase
+			.from("shopping_carts")
+			.select("cart_id")
+			.eq("user_id", userId)
+			.single();
 
+		if (cartError || !cartData) {
+			throw new Error("Could not find shopping cart for the user.");
+		}
+
+		const cartId = cartData.cart_id;
+
+		// Insert the new item into cart_items
+		const { data, error } = await supabase.from("cart_items").insert([
+			{
+				cart_id: cartId,
+				item_id: itemId,
+				quantity: quantity,
+			},
+		]);
+
+		if (error) {
+			throw error;
+		}
+
+		return { success: true, data };
+	} catch (error) {
+		console.error("Error adding item to cart:", error.message);
+		return { success: false, error: error.message };
+	}
+};
+
+const fetchCartItems = async () => {
 	if (!userId) {
 		console.error("No user is logged in");
 		return;
@@ -72,4 +102,4 @@ const fetchCartItems = async () => {
 	}
 };
 
-export { fetchMarketplaceItems, fetchCartItems };
+export { fetchMarketplaceItems, addCartItem, fetchCartItems };
