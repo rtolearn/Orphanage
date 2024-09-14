@@ -1,4 +1,8 @@
 <template>
+
+
+
+  <h1 class="text-2xl font-bold mt-10">Fill in the form:</h1>
   <div class="flex flex-col min-h-screen">
     <!-- Accordion Section -->
     <div class="flex-grow w-full h-auto m-auto">
@@ -30,7 +34,7 @@
                 <component
                   :is="content.component"
                   @progressionBar="handleProgressionForm"
-                  
+                  @collectData="handleCollectedData"
                 />
               </div>
             </AccordionContent>
@@ -40,10 +44,10 @@
     </div>
 
     <!-- Submit Button always at the bottom -->
-    <div class="w-full h-auto p-5">
+    <div class="w-full h-auto">
       <SubmitButton
         :totalProgressionValue="totalProgression"
-        
+        :dataBeforeSubmit="collectedData"
       />
     </div>
   </div>
@@ -62,7 +66,7 @@ import ProgressBar from "primevue/progressbar";
 import SubmitButton from "./FormSubmitButton.vue";
 
 import { ref, markRaw } from "vue";
-// Display the content of the form 
+// Display the content of the form
 const contentForm = ref([
   {
     valueForm: "0",
@@ -105,7 +109,13 @@ const handleProgressionForm = (value, index) => {
   );
   console.log(contentForm.value[index].progressionBar);
 };
-
-
-
+const collectedData = ref([]);
+//Function to collect all the data
+const handleCollectedData = (objValue, index) => {
+  collectedData.value[index] = objValue;
+  console.log(
+    "Value passed from the children to the parent: " +
+      JSON.stringify(collectedData.value[index])
+  );
+};
 </script>

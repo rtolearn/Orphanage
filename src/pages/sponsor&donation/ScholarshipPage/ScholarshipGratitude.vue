@@ -4,8 +4,10 @@
       class="text-center border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 font-medium"
     >
       <div class="m-auto w-auto h-auto p-10">
-        <h1 class=" font-bold text-center text-lg sm:text-xl md:text-2xl pb-5">Thank you</h1>
-        <div class="text-gray-500 text-base sm:text-lg font-medium ">
+        <h1 class="font-bold text-center text-lg sm:text-xl md:text-2xl pb-5">
+          Thank you
+        </h1>
+        <div class="text-gray-500 text-base sm:text-lg font-medium">
           <p>
             Thank you for participating in this program. Your generosity is
             highly appreciated.
@@ -32,7 +34,8 @@
 </template>
 
 <script setup>
-import {useRouter} from "vue-router"
+import { useRouter } from "vue-router";
+
 const router = useRouter();
 const props = defineProps({
   submitData: {
@@ -46,53 +49,45 @@ const emit = defineEmits(["currentStep"]);
 const handleClick = (value) => {
   emit("currentStep", value);
 };
-// const handleDataSubmission = async () => {
-//   let dataToSubmit = {
-//     arrRequirement: [...props.submitData.requirement],
-//     name: props.submitData.patron.name,
-//     email: props.submitData.patron.email,
-//     fund: props.submitData.patron.fundRange,
-//     meetingDate: props.submitData.patron.date,
-//     status: "Pending",
-//   };
-//   try {
-//     // Value of userID
-//     const existingUserID = await api.checkUserID(1);
-//     const existingSponsor = ref([]);
 
-//     if (existingUserID) {
-//       // Get the sponsor data of the existingUserID
-//       existingSponsor.value = await api.getExistingSponsor(existingUserID);
-//     }
+//Push the data into supabase
+import { supabase } from "@/clients/supabaseClient";
+import {ref } from 'vue'
+const userId = ref("")
+const handleDataSubmission = async () => {
+  console.log("Data before submiting to the supabase" + props.submitData);
 
-//     if (existingUserID && existingSponsor.value) {
-//       // Ensure that existingSponsor.value is an array
-//       existingSponsor.value.push(dataToSubmit);
+  try {
+    const { data:{user}, error: getIdError} = await supabase.auth.getUser();
+    if (getIdError) {
+      throw getIdError;
+    }else{
+      userId.value = user.id
+    }
+    const {error: insertError } = await supabase
+      .from("donation_scholarship")
+      .insert([
+        {
+          requirement: props.submitData.requirement,
+          donor_name: props.submitData.patron.name,
+          donor_email: props.submitData.patron.email,
+          amount: props.submitData.patron.fund,
+          meeting_date: props.submitData.patron.date,
+          user_id: userId.value,
+        },
+      ]);
+    if (insertError) {
+      throw insertError;
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
 
-//       await api.updateScholarshipData(existingUserID, existingSponsor.value);
-//     } else {
-//       // If the user does not exist, create a new entry
-//       const newDataToSubmit = {
-//         sponsor: [dataToSubmit], // Wrap dataToSubmit in an array
-//       };
+  alert(
+    `All the information are stored,
+    please wait for the updates via your email for futher discussion`
+  );
 
-//       // Post new scholarship data
-//       await api.postScholarshipData(newDataToSubmit);
-//     }
-
-//     // Handle success
-//     console.log("Data submitted successfully");
-//     alert("Your submission was successful! Thank you for your participation.");
-//   } catch (error) {
-//     // Handle error
-//     console.error("Error submitting data:", error);
-//     alert("There was an error submitting your data. Please try again.");
-//   }
-// };
-
-const handleDataSubmission = () => {
-  console.log(props.submitData);
-  alert("All the information are stored")
-  router.push("/sponsor&donation")
+  router.push("/sponsor&donation");
 };
 </script>

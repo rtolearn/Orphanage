@@ -47,12 +47,10 @@
           >
             <option value="" disabled selected>--Select a fund--</option>
             <option v-for="amount in fundOptions" :key="amount" :value="amount">
-              RM{{ amount }}
+              {{ amount }}
             </option>
           </select>
-          <span v-if="errors.fund" class="text-red-500 text-sm">{{
-            errors.fund
-          }}</span>
+          <span v-if="errors.fund" class="text-red-500 text-sm">{{ errors.fund }}</span>
         </div>
 
         <!-- Date Picker for meeting (interview) -->
@@ -62,18 +60,17 @@
             type="date"
             id="date"
             v-model="data.date"
+            :min="minDate"
             class="mt-1 p-3 rounded-md border border-solid border-gray-350 bg-white text-sm text-gray-700 shadow-sm"
             required
           />
-          <span v-if="errors.date" class="text-red-500 text-sm">
-            {{ errors.date }}
-          </span>
+          <span v-if="errors.date" class="text-red-500 text-sm">{{ errors.date }}</span>
         </div>
 
         <div class="p-6 flex gap-2 text-sm sm:text-base">
           <button
             class="bg-gray-300 py-2 px-4 rounded"
-            @click="handleClick(`2`)"
+            @click="handleClick('2')"
           >
             Back
           </button>
@@ -91,8 +88,11 @@
 
 <script setup>
 import { ref } from "vue";
+import * as Yup from "yup";
+
 //Define the emit event
 const emit = defineEmits(["currentStep", "collectDataPatron"]);
+
 // Declare an object to collect the data of the form
 const data = ref({
   name: "",
@@ -102,46 +102,48 @@ const data = ref({
 });
 
 // Array of affordable fund options
-const fundOptions = [10000, 20000, 30000, 40000, 50000]; // Add more as needed
+const fundOptions = ["<RM10000", "<RM20000", "<RM30000", "<RM40000", "<RM50000"]; 
+// Get today's date for date picker (min date)
+const today = new Date();
+const minDate = today.toISOString().split("T")[0]; // Format date as YYYY-MM-DD
 
-const errors = ref({}); // For storing validation errors
+// Store validation errors
+const errors = ref({});
 
-const onSubmit = () => {
-  // Clear previous errors
+// Define Yup validation schema
+const schema = Yup.object().shape({
+  name: Yup.string()
+    .required("This field is required")
+    .matches(/^[a-zA-Z\s]+$/, "Name can only contain alphabetic characters"),
+  email: Yup.string()
+    .email("Please enter a valid email address")
+    .required("This field is required"),
+  fund: Yup.string()
+    .required("Please select a fund."),
+  date: Yup.string()
+    .required("This field is required"),
+});
+
+// Validate and handle form submission
+const onSubmit = async () => {
   errors.value = {};
 
-  // Validate name
-  if (!data.value.name || !data.value.name.trim()) {
-    errors.value.name = "This field is required";
-  } else if (/[^a-zA-Z\s]/.test(data.value.name)) {
-    errors.value.name = "Name can only contain alphabetic characters";
-  }
+  try {
+    await schema.validate(data.value, { abortEarly: true });
 
-  // Validate email
-  if (!data.value.email) {
-    errors.value.email = "This field is required";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.value.email)) {
-    errors.value.email = "Please enter a valid email address.";
-  }
-
-  // Validate date
-  if (!data.value.date) {
-    errors.value.date = "This field is required";
-  }
-  // Validate fund selection
-  if (!data.value.fund) {
-    errors.value.fund = "Please select a fund.";
-  }
-  // If no errors, submit the form (you can add your submission logic here)
-  if (!errors.value.name && !errors.value.email && !errors.value.date) {
+    // If validation passes, submit the form
     emit("collectDataPatron", data);
-    emit("currentStep", `4`);
+    emit("currentStep", "4");
+  } catch (err) {
+    // If validation fails, populate errors
+    err.inner.forEach((error) => {
+      errors.value[error.path] = error.message;
+    });
   }
 };
 
 const handleClick = (value) => {
-  // Handle back button click (you can add your logic here)
-  emit("CurrentStep", value);
+  emit("currentStep", value);
   console.log("Going back to step:", value);
 };
 </script>

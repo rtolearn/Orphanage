@@ -109,7 +109,7 @@ const onFileSelect = async (event) => {
     } else {
       console.log("image URL emitted: " + data.publicUrl);
       emits("imageURL", data.publicUrl);
-    }
+    }+
     // Successfully uploaded the image
     console.log("Image uploaded successfully!");
   } catch (err) {

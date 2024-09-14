@@ -45,14 +45,14 @@ const activateCallback = () => {
 
 //Create an object to store all the data
 const dataStorage = reactive({
-  requirement: [],
+  requirement: "",
   patron: {},
 });
 
 //Method to handle the requirement data (array)
-const collectedDataRequirement = (tasks) => {
-  dataStorage.requirement = [...tasks];
-  console.log(dataStorage.requirement);
+const collectedDataRequirement = (requirement) => {
+  dataStorage.requirement = requirement;
+  // console.log(dataStorage.requirement);
 };
 //Method to handle the information of patron (object)
 const collectedDataPatron = (information) => {

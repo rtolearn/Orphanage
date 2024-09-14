@@ -37,7 +37,7 @@
             as="select"
             class="m-3 p-1 w-4/5 rounded-sm border border-solid border-gray-450 text-gray-700 sm:text-sm block"
             name="state"
-            :rules="validateSelectionState"
+            :rules="validateSelectionInput"
             @change="updateProgression(1)"
           >
             <option value="" selected disabled>Select State</option>
@@ -113,7 +113,7 @@
       </ErrorMessage>
     </div>
     <!-- No validation for this part -->
-    <div class="col-span-6" v-if="careerStatusMale == 'others'">
+    <div class="col-span-6" v-if="formValues.career_status  == 'others'">
       <Field
         v-model="formValues.career_status_other"
         type="text"
@@ -154,7 +154,7 @@
       </ErrorMessage>
     </div>
     <Message class="col-span-6">Identity Evidence:</Message>
-    <!-- Validation for Idnetification Card -->
+    <!-- Validation for Identification Card -->
     <div class="col-span-6">
       <div>
         <h1>Identication Card:</h1>
@@ -163,14 +163,14 @@
         class="col-span-6 flex flex-col sm:flex-row mt-3.5 gap-6 items-center justify-center"
       >
         <Field
-          name="identicationCard"
+          name="identication_card"
           type="file"
-          :rules="validateFile"
-          v-model="formValues.IC_number"
-          @change="updateProgression(6)"
+  
+          v-model="formValues.identication_card"
+          @change="handleFileChange($event,'identication_card',6)"
         >
         </Field>
-        <ErrorMessage name="identicationCard" v-slot="{ message }">
+        <ErrorMessage name="identication_card" v-slot="{ message }">
           <span class="text-red-500 text-sm">
             {{ message }}
           </span>
@@ -181,6 +181,7 @@
       ></div>
     </div>
     <Message class="col-span-6">Health Condition</Message>
+
     <!-- Validation for medical check (physically) -->
     <div class="col-span-6">
       <div>
@@ -190,14 +191,14 @@
         class="col-span-6 flex flex-col sm:flex-row mt-3.5 gap-6 items-center justify-center"
       >
         <Field
-          name="filePhysicalMedicalCheck"
+          name="medical_check_physically"
           type="file"
-          :rules="validateFile"
+
           v-model="formValues.medical_check_physically"
-          @blur="updateProgression(7)"
+          @blur="handleFileChange($event,'medical_check_physically',7)"
         >
         </Field>
-        <ErrorMessage name="filePhysicalMedicalCheck" v-slot="{ message }">
+        <ErrorMessage name="medical_check_physically" v-slot="{ message }">
           <span class="text-red-500 text-sm">
             {{ message }}
           </span>
@@ -207,6 +208,7 @@
         class="w-full h-auto m-auto block mt-2.5 mb-2.5 sm:flex sm:items-center sm:justify-center text-xs"
       ></div>
     </div>
+
     <!-- Validation for medical check (mentally) -->
     <div class="col-span-6">
       <div>
@@ -216,20 +218,21 @@
         class="col-span-6 flex flex-col sm:flex-row mt-3.5 gap-6 items-center justify-center"
       >
         <Field
-          name="fileMentalMedicalCheck"
+          name="medical_check_mentally"
           type="file"
-          :rules="validateFile"
+
           v-model="formValues.medical_check_mentally"
-          @change="updateProgression(8)"
+          @change="handleFileChange($event,'medical_check_mentally',8)"
         >
         </Field>
-        <ErrorMessage name="fileMentalMedicalCheck" v-slot="{ message }">
+        <ErrorMessage name="medical_check_mentally" v-slot="{ message }">
           <span class="text-red-500 text-sm">
             {{ message }}
           </span>
         </ErrorMessage>
       </div>
     </div>
+
     <!-- Validation of financial condition -->
     <Message class="col-span-6">Financial Condition</Message>
     <div class="col-span-6">
@@ -240,29 +243,28 @@
         class="col-span-6 flex flex-col sm:flex-row mt-3.5 gap-6 items-center justify-center"
       >
         <Field
-          name="fileSalarySlip"
+          name="salary_slip"
           type="file"
-          :rules="validateFile"
           v-model="formValues.salary_slip"
-          @change="updateProgression(9)"
+          @change="handleFileChange($event,'salary_slip',9)"
         >
         </Field>
-
-        <ErrorMessage name="fileSalarySlip" v-slot="{ message }">
+        <ErrorMessage name="salary_slip" v-slot="{ message }">
           <span class="text-red-500 text-sm">
             {{ message }}
           </span>
         </ErrorMessage>
       </div>
     </div>
+
     <!-- Submit button -->
     <div class="col-span-6 flex justify-center items-center p-5">
       <Button
         type="submit"
-        value="Submit_Female"
+        value="submit_male"
         label="Submit"
         class="bg-green-400 w-full h-auto p-1.5 rounded-md cursor-pointer hover:text-white"
-        :disabled="progressionBar < 95"
+        :disabled="progressionBarFemale < 95"
       >
       </Button>
     </div>
@@ -273,18 +275,16 @@
 import { ref, defineEmits } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Message from "primevue/message";
+import Button from "primevue/button";
 import industries from "../Data&Functions/data/industries"
 import states from "../Data&Functions/data/states";
 import careerStatus from "../Data&Functions/data/careerStatus";
 
-import Button from "primevue/button";
-
-//Form value
-const careerStatusMale = ref("");
+//Industry object
 const formValues = ref({
   name: "",
   state: "",
-  IC_number: "",
+  identication_card: "",
   email: "",
   phone_number: "",
   career_status: "",
@@ -296,48 +296,49 @@ const formValues = ref({
 });
 
 // Create a emit variable to be used in the parent component
-const emit = defineEmits(["progressionBar"]);
-
-//Alert after submitting the form
-const onSubmit = () => {
-  progressionBar.value += 5;
-  emit("progressionBar", progressionBar.value, 1);
-  console.log("Form that emit to the parent: " + formValues.value)
-  emit("collectData", formValues.value, 1)
-  console.log(formValues.value)
-  alert("Form is submitted.");
-};
-
+const emit = defineEmits(["progressionBar", "collectData"]);
 //Progression Tacker
-let progressionBar = ref(0);
-// const progressionBartemp = ref(null);
+let progressionBarFemale = ref(0);
+//Create an array to store the index, so that we can know which index has been stored already
 const arrTemp = ref([]);
-// Create a method to update the value to the parent component
+// Create a method to update the value to the parent component ----------------------------------
 const updateProgression = (index) => {
   console.log("Content Before push any value: " + arrTemp.value);
+
   if (!arrTemp.value.includes(index)) {
     arrTemp.value.push(index);
     console.log("Content of array" + arrTemp.value);
     if (index === 0) {
-      progressionBar.value += 5;
+      progressionBarFemale.value += 5;
     } else {
-      progressionBar.value += 10;
+      progressionBarFemale.value += 10;
     }
 
-    emit("progressionBar", progressionBar.value, 1);
+    emit("progressionBar", progressionBarFemale.value, 1);
   } else {
-    progressionBar.value += 0;
-    emit("progressionBar", progressionBar.value, 1);
+    progressionBarFemale.value += 0;
+    emit("progressionBar", progressionBarFemale.value, 1);
   }
 };
-//Only the
+
+//Alert after submitting the form --------------------------------------------------
+const onSubmit = () => {
+  progressionBarFemale.value += 5;
+  emit("progressionBar", progressionBarFemale.value, 1);
+  console.log("Form that emit to the parent: " + formValues.value)
+  emit("collectData", formValues.value, 1)
+  console.log(formValues.value);
+  alert("Data stored");
+};
+
+//Validation Function-------------------------------------------------------------
 const validateName = (valueName) => {
   if (valueName && valueName.trim()) {
     if (/[^a-zA-Z\s]/.test(valueName)) {
       if (arrTemp.value.includes(0)) {
         arrTemp.value.shift(0);
-        progressionBar.value -= 10;
-        emit("progressionBar", progressionBar.value, 1);
+        progressionBarFemale.value -= 10;
+        emit("progressionBar", progressionBarFemale.value, 1);
       }
       return "Name can only contain alphabetic characters";
     } else {
@@ -348,26 +349,14 @@ const validateName = (valueName) => {
     return "This field is required";
   }
 };
-const validateSelectionState = (valueState) => {
-  if (valueState) {
-    updateProgression(1);
-    return true;
-  } else {
-    if (arrTemp.value.includes(1)) {
-      arrTemp.value.shift(1);
-      progressionBar.value -= 10;
-      emit("progressionBar", progressionBar.value, 1);
-    }
-    return "This field is required";
-  }
-};
+
 const validateEmail = (valueEmail) => {
   if (valueEmail) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valueEmail)) {
       if (arrTemp.value.includes(2)) {
         arrTemp.value.shift(2);
-        progressionBar.value -= 10;
-        emit("progressionBar", progressionBar.value, 1);
+        progressionBarFemale.value -= 10;
+        emit("progressionBar", progressionBarFemale.value, 1);
       }
       return "Please enter a valid email address.";
     } else {
@@ -384,8 +373,8 @@ const validatePhoneNumber = (valuePhone) => {
     if (!/^[+]?[0-9]{10,15}$/.test(valuePhone.trim())) {
       if (arrTemp.value.includes(3)) {
         arrTemp.value.shift(3);
-        progressionBar.value -= 10;
-        emit("progressionBar", progressionBar.value, 1);
+        progressionBarFemale.value -= 10;
+        emit("progressionBar", progressionBarFemale.value, 1);
       }
       return "Invalid phone number.";
     } else {
@@ -405,16 +394,64 @@ const validateSelectionInput = (valueState) => {
   }
 };
 
-const validateFile = (valueFile) => {
-  if (!valueFile) {
-    return "This field is required.";
-  } else {
-    return true;
-  }
+// Function to handle file changes
+const handleFileChange = (event, field, index) => {
+  updateProgression(index);
+  handleFileUpload(field, event);
 };
+
+import { supabase } from "@/clients/supabaseClient";
+const userId = ref("");
+
+// Function to get the current user's ID
+const getUserId = async () => {
+  const { data:{user}, error: getIdError} = await supabase.auth.getUser();
+    if (getIdError) {
+      throw getIdError;
+    }else{
+      userId.value = user.id
+    }
+};
+// Function to upload the file to Supabase with user-specific folder
+const handleFileUpload = async (field, event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+  //Call the getUserId function
+  getUserId();
+  // Define the folder structure
+  const folderPath = `UserAdoptionInformation/${userId.value}/Female`;
+  const fileName = `${folderPath}/${field}-${Date.now()}-${file.name}`;
+
+  // Upload the file to Supabase storage
+  const { error } = await supabase.storage
+    .from('UserAdoptionInformation')
+    .upload(fileName, file);
+
+  if (error) {
+    console.error('File upload failed', error);
+    return;
+  }
+
+  // Get the public URL for the uploaded file
+  const { data, error: urlError } = supabase.storage
+    .from('UserAdoptionInformation')
+    .getPublicUrl(fileName);
+
+  if (urlError) {
+    console.error('Failed to retrieve public URL', urlError);
+    return;
+  }
+
+  formValues.value[field] = data.publicUrl;
+  console.log(`${field} uploaded to:`, data.publicUrl);
+};
+
+
+
 </script>
 
 <style scoped>
+
 input[type="file"]::file-selector-button {
   background-color: #357560;
   color: white;
@@ -424,4 +461,5 @@ input[type="file"]::file-selector-button {
   cursor: pointer;
   font-weight: 500;
 }
+
 </style>

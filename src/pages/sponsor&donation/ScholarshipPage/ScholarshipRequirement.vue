@@ -4,12 +4,12 @@
       class="p-3 border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950"
     >
       <div>
-        <h1 class="font-bold text-lg mb-2">To-Do List</h1>
+        <h1 class="font-bold text-lg mb-2">Scholarship Requirement</h1>
         <input
           v-model="toDoList.newTask"
           type="text"
           class="border rounded p-2 w-full"
-          placeholder="Enter a new requirement for the scholarship"
+          placeholder="Enter a new requirement...."
         />
         <button
           @click="addTask"
@@ -23,7 +23,7 @@
             :key="index"
             class="flex justify-between items-center mb-2"
           >
-            <div>{{ index + 1 }}. {{ task.text }}</div>
+            <div>{{ index + 1 }}. {{ task.requirement }}</div>
             <button
               @click="removeTask(index)"
               class="bg-red-500 text-white px-2 py-1 rounded"
@@ -41,13 +41,20 @@
   </div>
 </template>
 <script setup>
-import { reactive } from "vue";
+import { ref, reactive } from "vue";
 
 const emit = defineEmits(["currentStep", "collectDataRequirement"]);
-
+const requirementInText = ref("");
 const handleClick = (value, name) => {
   if(toDoList.tasks.length >= 3 && name === 'Next'){
-    emit("collectDataRequirement", [...toDoList.tasks]);
+  
+  
+    requirementInText.value = toDoList.tasks
+    .map(element => element.requirement)
+    .join(", ")
+
+  console.log("Requirement in text form " + requirementInText.value);
+  emit("collectDataRequirement", requirementInText.value);
   emit("currentStep", value);
   }
   else if(name === "Back"){
@@ -66,7 +73,7 @@ const toDoList = reactive({
 
 function addTask() {
   if (toDoList.newTask.trim() !== "") {
-    toDoList.tasks.push({ text: toDoList.newTask });
+    toDoList.tasks.push({ requirement: toDoList.newTask });
     toDoList.newTask = "";
   }
 }

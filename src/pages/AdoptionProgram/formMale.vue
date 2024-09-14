@@ -37,7 +37,7 @@
             as="select"
             class="m-3 p-1 w-4/5 rounded-sm border border-solid border-gray-450 text-gray-700 sm:text-sm block"
             name="state"
-            :rules="validateSelectionState"
+            :rules="validateSelectionInput"
             @change="updateProgression(1)"
           >
             <option value="" selected disabled>Select State</option>
@@ -154,7 +154,7 @@
       </ErrorMessage>
     </div>
     <Message class="col-span-6">Identity Evidence:</Message>
-    <!-- Validation for Idnetification Card -->
+    <!-- Validation for Identification Card -->
     <div class="col-span-6">
       <div>
         <h1>Identication Card:</h1>
@@ -163,14 +163,13 @@
         class="col-span-6 flex flex-col sm:flex-row mt-3.5 gap-6 items-center justify-center"
       >
         <Field
-          name="identicationCard"
+          name="identication_card"
           type="file"
-          :rules="validateFile"
-          v-model="formValues.IC_number"
-          @change="updateProgression(6)"
+          v-model="formValues.identication_card"
+          @change="handleFileChange($event,'identication_card',6)"
         >
         </Field>
-        <ErrorMessage name="identicationCard" v-slot="{ message }">
+        <ErrorMessage name="identication_card" v-slot="{ message }">
           <span class="text-red-500 text-sm">
             {{ message }}
           </span>
@@ -181,6 +180,7 @@
       ></div>
     </div>
     <Message class="col-span-6">Health Condition</Message>
+
     <!-- Validation for medical check (physically) -->
     <div class="col-span-6">
       <div>
@@ -190,14 +190,14 @@
         class="col-span-6 flex flex-col sm:flex-row mt-3.5 gap-6 items-center justify-center"
       >
         <Field
-          name="filePhysicalMedicalCheck"
+          name="medical_check_physically"
           type="file"
-          :rules="validateFile"
+
           v-model="formValues.medical_check_physically"
-          @blur="updateProgression(7)"
+          @blur="handleFileChange($event,'medical_check_physically',7)"
         >
         </Field>
-        <ErrorMessage name="filePhysicalMedicalCheck" v-slot="{ message }">
+        <ErrorMessage name="medical_check_physically" v-slot="{ message }">
           <span class="text-red-500 text-sm">
             {{ message }}
           </span>
@@ -207,6 +207,7 @@
         class="w-full h-auto m-auto block mt-2.5 mb-2.5 sm:flex sm:items-center sm:justify-center text-xs"
       ></div>
     </div>
+
     <!-- Validation for medical check (mentally) -->
     <div class="col-span-6">
       <div>
@@ -216,20 +217,21 @@
         class="col-span-6 flex flex-col sm:flex-row mt-3.5 gap-6 items-center justify-center"
       >
         <Field
-          name="fileMentalMedicalCheck"
+          name="medical_check_mentally"
           type="file"
-          :rules="validateFile"
+
           v-model="formValues.medical_check_mentally"
-          @change="updateProgression(8)"
+          @change="handleFileChange($event,'medical_check_mentally',8)"
         >
         </Field>
-        <ErrorMessage name="fileMentalMedicalCheck" v-slot="{ message }">
+        <ErrorMessage name="medical_check_mentally" v-slot="{ message }">
           <span class="text-red-500 text-sm">
             {{ message }}
           </span>
         </ErrorMessage>
       </div>
     </div>
+
     <!-- Validation of financial condition -->
     <Message class="col-span-6">Financial Condition</Message>
     <div class="col-span-6">
@@ -240,21 +242,20 @@
         class="col-span-6 flex flex-col sm:flex-row mt-3.5 gap-6 items-center justify-center"
       >
         <Field
-          name="fileSalarySlip"
+          name="salary_slip"
           type="file"
-          :rules="validateFile"
           v-model="formValues.salary_slip"
-          @change="updateProgression(9)"
+          @change="handleFileChange($event,'salary_slip',9)"
         >
         </Field>
-
-        <ErrorMessage name="fileSalarySlip" v-slot="{ message }">
+        <ErrorMessage name="salary_slip" v-slot="{ message }">
           <span class="text-red-500 text-sm">
             {{ message }}
           </span>
         </ErrorMessage>
       </div>
     </div>
+
     <!-- Submit button -->
     <div class="col-span-6 flex justify-center items-center p-5">
       <Button
@@ -278,12 +279,11 @@ import industries from "../Data&Functions/data/industries"
 import states from "../Data&Functions/data/states";
 import careerStatus from "../Data&Functions/data/careerStatus";
 
-
 //Industry object
 const formValues = ref({
   name: "",
   state: "",
-  IC_number: "",
+  identication_card: "",
   email: "",
   phone_number: "",
   career_status: "",
@@ -348,19 +348,6 @@ const validateName = (valueName) => {
     return "This field is required";
   }
 };
-const validateSelectionState = (valueState) => {
-  if (valueState) {
-    updateProgression(1);
-    return true;
-  } else {
-    if (arrTemp.value.includes(1)) {
-      arrTemp.value.shift(1);
-      progressionBarMale.value -= 10;
-      emit("progressionBar", progressionBarMale.value, 0);
-    }
-    return "This field is required";
-  }
-};
 
 const validateEmail = (valueEmail) => {
   if (valueEmail) {
@@ -406,12 +393,59 @@ const validateSelectionInput = (valueState) => {
   }
 };
 
-const validateFile = (valueFile) => {
-  if (!valueFile) {
-    return "This field is required.";
-  } else {
-    return true;
+
+
+// Function to handle file changes
+const handleFileChange = (event, field, index) => {
+  updateProgression(index);
+  handleFileUpload(field, event);
+};
+
+
+import { supabase } from "@/clients/supabaseClient";
+const userId = ref("");
+
+// Function to get the current user's ID
+const getUserId = async () => {
+  const { data:{user}, error: getIdError} = await supabase.auth.getUser();
+    if (getIdError) {
+      throw getIdError;
+    }else{
+      userId.value = user.id
+    }
+};
+// Function to upload the file to Supabase with user-specific folder
+const handleFileUpload = async (field, event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+  //Call the getUserId function
+  getUserId();
+  // Define the folder structure
+  const folderPath = `UserAdoptionInformation/${userId.value}/Male`;
+  const fileName = `${folderPath}/${field}-${Date.now()}-${file.name}`;
+
+  // Upload the file to Supabase storage
+  const { error } = await supabase.storage
+    .from('UserAdoptionInformation')
+    .upload(fileName, file);
+
+  if (error) {
+    console.error('File upload failed', error);
+    return;
   }
+
+  // Get the public URL for the uploaded file
+  const { data, error: urlError } = supabase.storage
+    .from('UserAdoptionInformation')
+    .getPublicUrl(fileName);
+
+  if (urlError) {
+    console.error('Failed to retrieve public URL', urlError);
+    return;
+  }
+
+  formValues.value[field] = data.publicUrl;
+  console.log(`${field} uploaded to:`, data.publicUrl);
 };
 
 
@@ -419,6 +453,7 @@ const validateFile = (valueFile) => {
 </script>
 
 <style scoped>
+
 input[type="file"]::file-selector-button {
   background-color: #357560;
   color: white;
@@ -428,4 +463,5 @@ input[type="file"]::file-selector-button {
   cursor: pointer;
   font-weight: 500;
 }
+
 </style>
