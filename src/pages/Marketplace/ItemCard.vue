@@ -2,15 +2,15 @@
 	<div class="bg-white rounded-3xl p-5 flex flex-col gap-2">
 		<Toast position="bottom-left" group="bl" />
 		<div class="rounded-2xl overflow-hidden">
-			<img :src="item.itemImage" alt="" />
+			<img :src="item.item_image_url" alt="" />
 		</div>
 		<div class="flex flex-col gap-3">
-			<h3 class="font-semibold">{{ item.itemName }}</h3>
+			<h3 class="font-semibold">{{ item.item_name }}</h3>
 			<div class="flex justify-between items-center">
 				<p class="text-gray-400 text-sm">
-					<span class="font-medium">Qty: </span>{{ item.quantityAvailable }}
+					<span class="font-medium">Qty: </span>{{ item.quantity_available }}
 				</p>
-				<p class="font-bold text-xl">RM{{ item.itemUnitPrice }}</p>
+				<p class="font-bold text-xl">RM{{ item.unit_price }}</p>
 			</div>
 			<div class="flex justify-between items-center">
 				<div class="flex bg-gray-50 rounded-full py-1 items-center">
@@ -42,7 +42,7 @@ export default {
 		const toast = useToast();
 
 		const increaseQuantity = () => {
-			if (quantity.value === props.item.quantityAvailable) {
+			if (quantity.value === props.item.quantity_available) {
 				toast.add({
 					severity: "error",
 					summary: "Maximum Quantity Reached",

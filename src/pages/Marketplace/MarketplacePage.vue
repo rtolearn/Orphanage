@@ -23,6 +23,7 @@ import api from "@/services/api";
 import NavBar from "@/pages/HomePage/NavBar.vue";
 import SearchBar from "@/pages/MarketPlace/SearchBar.vue";
 import ItemCard from "@/pages/MarketPlace/ItemCard.vue";
+import { fetchMarketplaceItems } from "@/services/marketplaceService.js";
 
 export default {
 	components: {
@@ -37,8 +38,8 @@ export default {
 
 		const fetchItems = async () => {
 			try {
-				const response = await api.getMarketplaceItems();
-				items.value = response.data;
+				const response = await fetchMarketplaceItems();
+				items.value = response;
 			} catch (error) {
 				console.error("Error fetching items:", error);
 			}
@@ -46,7 +47,7 @@ export default {
 
 		const filteredItems = computed(() => {
 			return items.value.filter((item) =>
-				item.itemName.toLowerCase().includes(searchTerm.value.toLowerCase())
+				item.item_name.toLowerCase().includes(searchTerm.value.toLowerCase())
 			);
 		});
 
