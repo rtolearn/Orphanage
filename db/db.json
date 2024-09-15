@@ -5,28 +5,28 @@
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Storybook",
       "itemUnitPrice": 15.99,
-      "quantityAvailable": 25
+      "quantityAvailable": 17
     },
     {
       "id": "2",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Toy Building Blocks",
       "itemUnitPrice": 29.99,
-      "quantityAvailable": 40
+      "quantityAvailable": 32
     },
     {
       "id": "3",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Stuffed Animal",
       "itemUnitPrice": 19.99,
-      "quantityAvailable": 50
+      "quantityAvailable": 39
     },
     {
       "id": "4",
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Children's Backpack",
       "itemUnitPrice": 24.99,
-      "quantityAvailable": 30
+      "quantityAvailable": 29
     },
     {
       "id": "5",
@@ -40,7 +40,7 @@
       "itemImage": "https://images.pexels.com/photos/3989394/pexels-photo-3989394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "itemName": "Drawing Pad",
       "itemUnitPrice": 12.99,
-      "quantityAvailable": 55
+      "quantityAvailable": 49
     },
     {
       "id": "7",
@@ -217,27 +217,7 @@
       "userId": "1",
       "items": [
         {
-          "id": 8,
-          "quantity": 1
-        },
-        {
-          "id": 10,
-          "quantity": 1
-        },
-        {
-          "id": 11,
-          "quantity": 1
-        },
-        {
-          "id": 12,
-          "quantity": 1
-        },
-        {
-          "id": 13,
-          "quantity": 1
-        },
-        {
-          "id": 2,
+          "id": "6",
           "quantity": 1
         }
       ]
