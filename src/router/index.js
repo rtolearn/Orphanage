@@ -23,11 +23,11 @@ const routes = [
 		name: "market",
 		component: () => import("@/pages/Marketplace/index.vue"),
 	},
-	{
-		path: "/purchase",
-		name: "purchase",
-		component: () => import("@/pages/MarketPlace/PurchasePage.vue"),
-	},
+	// {
+	// 	path: "/purchase",
+	// 	name: "purchase",
+	// 	component: () => import("@/pages/MarketPlace/PurchasePage.vue"),
+	// },
 	{
 		path: "/adoption",
 		name: "adoption",
@@ -66,6 +66,22 @@ const routes = [
 		name: "profile",
 		component: () => import("@/pages/Profile/page.vue"),
 	},
+	{
+		path:'/paymentSponsor',
+		name: 'paymentSponsor',
+		component: () => import("@/pages/Sponsor&Donation/Payment.vue")
+	},
+	// Additional for convenient
+	{
+		path:'/paymentSponsorEquipment',
+		name: 'paymentSponsorEquipment',
+		component: () => import("@/pages/Sponsor&Donation/EquipmentPage/Payment.vue")
+	},
+	{
+		path:'/paymentSponsorNecessary',
+		name: 'paymentSponsorNecessary',
+		component: () => import("@/pages/Sponsor&Donation/NecessaryPage/Payment.vue")
+	}
 ];
 const router = createRouter({
 	history: createWebHistory(),

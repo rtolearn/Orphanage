@@ -37,13 +37,19 @@ onMounted(async () => {
           max_amount: item.max_amount,
         });
       });
+
+      // Sort the data based on the gap (max_amount - current_amount) in descending order
+      dataEquipment.value.sort((a, b) => {
+        const gapA = a.max_amount - a.current_amount;
+        const gapB = b.max_amount - b.current_amount;
+        return gapB - gapA; // Sort in descending order
+      });
     }
   } catch (error) {
     alert(error.message);
   }
 });
 </script>
-
 
 <template>
   <div class="max-w-[1440px] mx-auto max-h-auto">

@@ -3,7 +3,7 @@
   <Form
     action="#"
     class="mt-8 p-8 grid grid-cols-6 gap-6 border-2 border-solid border-black rounded-md"
-    @submit="onSubmit"
+    @submit.prevent="onSubmit"
   >
     <h1 class="col-span-6 text-center m-2.5 text-lg sm:text-xl">
       Personal Information

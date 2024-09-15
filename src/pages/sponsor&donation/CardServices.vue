@@ -47,10 +47,4 @@ const props = defineProps({
   },
 });
 
-
-// import necessary from "@/images/necessary.svg";
-// import scholarship from "@/images/scholarship.svg";
-// import fund from "@/images/fund.svg";
-// import equipment from "@/images/equipment.svg";
-// import sponsor from "@/images/sponsor.jpg";
 </script>

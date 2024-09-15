@@ -19,11 +19,6 @@ import router from "@/router/index.js";
 import SelectButton from "primevue/selectbutton";
 import ToastService from "primevue/toastservice";
 import { createPinia } from 'pinia';
-// import Accordion from 'primevue/accordion';
-// import AccordionPanel from 'primevue/accordionpanel';
-// import AccordionHeader from 'primevue/accordionheader';
-// import AccordionContent from 'primevue/accordioncontent';
-
 import "./assets/main.css";
 import "./assets/style.scss";
 
@@ -43,6 +38,7 @@ app.use(PrimeVue, {
 });
 app.use(ToastService);
 app.use(pinia);
+app.use(router);
 app.component("Breadcrumb", Breadcrumb);
 app.component("Menubar", Menubar);
 app.directive("Ripple", Ripple);
@@ -52,10 +48,7 @@ app.component("Carousel", Carousel);
 app.component("Dialog", Dialog);
 app.component("InputNumber", InputNumber);
 app.component("SelectButton", SelectButton);
-// app.component('Accrodion', Accordion)
-// app.component('AccordionPanel', AccordionPanel)
-// app.component('AccordionHeader', AccordionHeader)
-// app.component('AccordionContent', AccordionContent)
 
-app.use(router);
+
+
 app.mount("#app");

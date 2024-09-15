@@ -71,7 +71,7 @@ const services = [
       {
         subModuleName: "Fund",
         subModuleIcon: fund,
-        subModuleLinkage: "./",
+        subModuleLinkage: "./paymentSponsor",
       },
     ],
   },
