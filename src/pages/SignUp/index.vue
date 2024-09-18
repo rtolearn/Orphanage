@@ -35,5 +35,5 @@
 </template>
 
 <script setup>
-import signUp from "./signUp.vue";
+import signUp from "../../components/SignUp/signUp.vue";
 </script>

@@ -27,7 +27,7 @@
 import { useMessageStore } from "@/store/messageStore";
 import { ref } from "vue";
 import * as yup from "yup";
-import { supabase } from "@/clients/supabaseClient";
+import {updateData} from "../../services/profilesectionService"
 
 // Define your validation schema
 const validationSchema = yup.object().shape({
@@ -45,6 +45,7 @@ const validationSchema = yup.object().shape({
 const props = defineProps({
   updatedValue: {
     type: Object,
+    
     required: true,
   },
   imageURL: {
@@ -59,7 +60,6 @@ const visible = ref(false);
 
 const store = useMessageStore();
 const message = ref(store.statusLogIn);
-const userId = ref(store.userId);
 
 // Function for handling cancel button
 const handleCancel = () => {
@@ -75,42 +75,10 @@ const handleSignOut = () => {
   emits("visibility", visible.value);
 };
 
-// Function for handling the update of data
-const handleUpdate = async () => {
-  try {
-    // Validate the updatedValue
-    await validationSchema.validate(props.updatedValue, { abortEarly: false });
-console.log("imge Url pass into the button component: " + props.imageURL)
-    // Update user's data
-    const { error } = await supabase
-      .from("users")
-      .update({
-        first_name: props.updatedValue.first_name,
-        last_name: props.updatedValue.last_name,
-        contact_number: props.updatedValue.contact_number,
-        state: props.updatedValue.state,
-        address: props.updatedValue.address,
-        image_url: props.imageURL, // Include image URL if it exists
-      })
-      .eq("user_id", userId.value);
+const handleUpdate =() =>{
+  updateData(validationSchema, props.updatedValue, props.imageURL, visible,emits)
+}
 
-    if (error) {
-      throw error;
-    }
-    alert("Data updated");
-
-    // Close the modal dialog
-    visible.value = false;
-    emits("visibility", visible.value);
-  } catch (err) {
-    // Handle validation errors
-    if (err.errors) {
-      alert(err.errors.join(", ")); // Show all validation errors
-    } else {
-      alert("Error updating data: " + err.message);
-    }
-  }
-};
 </script>
 
 <style scoped>

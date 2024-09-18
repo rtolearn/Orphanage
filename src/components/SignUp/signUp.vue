@@ -1,7 +1,7 @@
 <template>
   <Form
     class="mt-8 p-5 grid content-center grid-cols-6 gap-6 border-2 border-solid border-black rounded-md"
-    @submit="handleSignUp"
+    @submit="onSubmit"
   >
     <h1 class="col-span-6 text-center m-2.5 text-lg sm:text-xl">Sign Up</h1>
 
@@ -203,8 +203,8 @@ import validatePhoneNumber from "@/pages/Data&Functions/function/validatePhoneNu
 import validateSelectionInput from "@/pages/Data&Functions/function/validateSelectionInput.js";
 import validateEmptyContent from "@/pages/Data&Functions/function/validateEmptyContent.js";
 import { Form, Field, ErrorMessage } from "vee-validate";
-import { supabase } from "@/clients/supabaseClient";
 import { useRouter } from "vue-router";
+import { handleSignUp } from "@/services/signupService.js";
 // import { signUp } from "@/clients/authentication";
 
 const signUpIndividual = ref({
@@ -221,50 +221,8 @@ const signUpIndividual = ref({
 });
 
 const router = useRouter();
-const handleSignUp = async () => {
-  try {
-    const { data, error: signUpError } = await supabase.auth.signUp({
-      email: signUpIndividual.value.email,
-      password: signUpIndividual.value.password,
-    });
+const onSubmit = () =>{
+  handleSignUp(signUpIndividual, router)
+}
 
-    if (signUpError) {
-      throw signUpError;
-    }
-
-    // Use the user ID from the sign-up response
-    if (data) {
-      const userId = data.user.id; // This is the UUID of the signed-up user
-      console.log(userId);
-      // Proceed with inserting user data into your database
-      const { error: insertError } = await supabase.from("sign_up").insert([
-        {
-          user_id: userId, // Include the user ID here
-          first_name: signUpIndividual.value.first_name,
-          last_name: signUpIndividual.value.last_name,
-          age: signUpIndividual.value.age,
-          gender: signUpIndividual.value.gender,
-          state: signUpIndividual.value.state,
-          email: signUpIndividual.value.email,
-          contact_number: signUpIndividual.value.phone_number,
-          address: signUpIndividual.value.address,
-        },
-      ]);
-
-      if (insertError) {
-        alert("Information cannot be stored");
-      } else if (
-        signUpIndividual.value.password !==
-        signUpIndividual.value.password_confirmation
-      ) {
-        alert("The password and password confirmation are not matched");
-      } else {
-        alert("Sign Up successfully!");
-      }
-    }
-    router.push({ path: "/sign-in" });
-  } catch (error) {
-    alert(error.message);
-  }
-};
 </script>

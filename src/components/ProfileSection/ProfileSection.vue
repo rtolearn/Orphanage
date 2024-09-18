@@ -16,7 +16,8 @@
 import avatarImg from "@/images/avatarPic.jpg";
 import { ref, onMounted } from "vue";
 import { supabase } from "@/clients/supabaseClient";
-
+import { useMessageStore } from "@/store/messageStore";
+const userId = useMessageStore().userId;
 const props = defineProps({
   profileName: {
     type: String,
@@ -29,31 +30,14 @@ const userProfilePicture = ref(avatarImg); // Default image
 
 // Function to fetch user profile picture
 const fetchUserProfilePicture = async () => {
-  // Get the currently authenticated user
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
-  if (userError || !user) {
-    alert("User is not authenticated.");
-    return;
-  }
-  try {
-    const { data, error } = await supabase
-      .from("users")
-      .select("image_url")
-      .eq("user_id", user.id)
-      .single();
-   
+  const { data } = await supabase
+    .from("users")
+    .select("image_url")
+    .eq("user_id", userId)
+    .single();
+  if (data && data.image_url) {
     userProfilePicture.value = data.image_url;
-      
-     
-    if (error) {
-      throw error;
-    }
-  } catch (error) {
-    alert(error.message);
-  }
+  } 
 };
 
 // Fetch user profile picture when the component is mounted

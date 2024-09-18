@@ -2,7 +2,7 @@
   <Form
     action="#sign-in-form"
     class="w-full h-full p-4 sm:p-8 border-2 border-solid border-black-600 rounded-md m-auto block"
-    @submit="handleSignIn"
+    @submit="onSubmit"
   >
     <h1 class="mb-10 w-full text-center text-lg sm:text-xl">Sign in</h1>
     <div class="mt-5 w-full">
@@ -19,7 +19,6 @@
         <span class="text-red-500 text-sm">{{ message }}</span>
       </ErrorMessage>
     </div>
-
     <div class="mt-5 w-full">
       <Field
         v-model="signInIndividual.password"
@@ -34,7 +33,6 @@
         <span class="text-red-500 text-sm">{{ message }}</span>
       </ErrorMessage>
     </div>
-
     <div class="mt-10">
       <label for="MarketingAccept" class="flex gap-4">
         <Field
@@ -54,7 +52,6 @@
         </Field>
       </label>
     </div>
-
     <!-- Part for user to create account -->
     <div
       class="mt-5 text-center sm:flex sm:items-center sm:gap-4 sm:justify-center"
@@ -76,69 +73,20 @@
 </template>
 
 <script setup>
-import validateEmail from "../Data&Functions/function/validateEmail.js";
-import validateEmptyContent from "../Data&Functions/function/validateEmptyContent.js";
-import { Form, Field, ErrorMessage } from "vee-validate";
+import validateEmail from "../../pages/Data&Functions/function/validateEmail.js";
+import validateEmptyContent from "../../pages/Data&Functions/function/validateEmptyContent.js";
+import { Form,Field, ErrorMessage } from "vee-validate";
 import { ref } from "vue";
-import { supabase } from "@/clients/supabaseClient";
 import { useRouter } from "vue-router";
-
+import { handleSignIn } from "@/services/signinService.js";
 //Create object to store the value of each form
 const signInIndividual = ref({
   email: "",
   password: "",
 });
-//---------------------------------------------
-
-
-
-// Assign the value to the globla variable into the store
-import { useMessageStore } from "@/store/messageStore";
-const messageStore = useMessageStore();
-const message = ref(messageStore.statusLogIn);
-const updateMessage = () => {
-  messageStore.setStatus(!message.value);
-};
-//---------------------------------------------------------
-
-// Implementarion of router-------
+// Router instance
 const router = useRouter();
-//--------------------------------
-
-// Function to handle sign in---------------------------
-async function handleSignIn () {
-  
-  try {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: signInIndividual.value.email,
-      password: signInIndividual.value.password,
-    });
-
-    if (error) {
-      // Throw the error so that the error will be caught by the catch block
-      throw error;
-    }
-
-    if (data) {
-      alert("Login successful");
-      // Check if data.user exists before accessing user ID
-      if (data.user) {
-        const userId = data.user.id; // Extract the user ID from the response
-        console.log("User ID being saved:", userId); // Log the user ID
-        messageStore.setUserId(userId); // Save the user ID in the store
-      } else {
-        console.error("User object not found in the response:", data);
-      }
-      
-      // Call the function to update the global user login status
-      updateMessage();
-      // Redirect to home or another route
-      router.push({ path: "./" });
-    }
-  } catch (error) {
-    alert(error.message);
-  }
+const onSubmit = () =>{
+  handleSignIn(signInIndividual, router)
 }
-
-// -----------------------------------------------------
 </script>

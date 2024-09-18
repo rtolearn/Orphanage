@@ -70,6 +70,7 @@ const handleVisibility = (value) => {
 const imageURL = ref("");
 //Handle the image's URL
 const handleImageURL = (value) => {
+  console.log("Image url of profile pictuere receive in parent componetn>:" + value)
   imageURL.value = value;
 };
 </script>

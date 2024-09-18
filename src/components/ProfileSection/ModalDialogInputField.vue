@@ -20,8 +20,10 @@
 </template>
 
 <script setup>
-import { supabase } from "@/clients/supabaseClient";
+
 import { reactive, watch, onMounted } from "vue";
+import {displayValueInInputField} from "../../services/profilesectionService"
+
 //Declare an object to store all the updated value
 const updatedValue = reactive({
   first_name: "",
@@ -52,30 +54,9 @@ watch(
 
 // Display all the related user's information
 onMounted(async () => {
-  try {
-    // Get the userId
-    const { data: {user}, error: userIdError } = await supabase.auth.getUser();
-    if (userIdError) {
-      alert("User is not authenticated");
-    }
-    //Retrieve the data
-    const { data, error } = await supabase
-      .from("users")
-      .select("*")
-      .eq("user_id", user.id)
-      .single();
-
-    if (error) {
-      alert(error.message);
-    } else {
-      updatedValue.first_name = data.first_name;
-      updatedValue.last_name = data.last_name;
-      updatedValue.contact_number = data.contact_number;
-      updatedValue.state = data.state;
-      updatedValue.address = data.address;
-    }
-  } catch (error) {
-    alert(error.message);
-  }
+  displayValueInInputField(updatedValue);
 });
+
+
+
 </script>

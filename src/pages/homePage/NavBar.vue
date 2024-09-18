@@ -40,7 +40,7 @@
 <script setup>
 import { ref, watch } from "vue";
 import NavLinks from "./NavLinks.vue";
-import Profile from "../Profile/page.vue";
+import Profile from "../Profile/index.vue";
 import { useMessageStore } from "@/store/messageStore";
 import { supabase } from "@/clients/supabaseClient";
 
@@ -59,6 +59,7 @@ const userId = messageStore.userId;
 console.log(messageStore.statusLogIn);
 
 const fullName = ref("");
+
 //Get the information from the user and then display his name in the column there
 const dynamicUserName = async () => {
   try {

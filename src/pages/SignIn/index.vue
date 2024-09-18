@@ -24,17 +24,13 @@
       </p>
     </div>
 
- 
-
     <!-- Part of the form to sign in -->
     <div class="w-4/5 lg:w-3/5 h-full m-auto block mt-5">
-          <signIn />
+      <signIn />
     </div>
   </section>
 </template>
 
 <script setup>
-
-import signIn  from "./signIn.vue"
-
+import signIn from "../../components/SignIn/signIn.vue";
 </script>

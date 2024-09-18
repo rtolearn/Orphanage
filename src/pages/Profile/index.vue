@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import HomePage from "./HomePage.vue";
+import HomePage from "../../components/ProfileSection/HomePage.vue";
 
 
 </script>
