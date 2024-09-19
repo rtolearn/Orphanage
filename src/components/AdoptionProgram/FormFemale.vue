@@ -276,9 +276,9 @@ import { ref, defineEmits } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Message from "primevue/message";
 import Button from "primevue/button";
-import industries from "../Data&Functions/data/industries"
-import states from "../Data&Functions/data/states";
-import careerStatus from "../Data&Functions/data/careerStatus";
+import industries from "@/pages/Data&Functions/data/industries"
+import states from "@/pages/Data&Functions/data/states";
+import careerStatus from "@/pages/Data&Functions/data/careerStatus";
 
 //Industry object
 const formValues = ref({

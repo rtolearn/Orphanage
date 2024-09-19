@@ -48,14 +48,9 @@
 import { ref, onMounted } from "vue";
 import Timeline from "primevue/timeline";
 import "primeicons/primeicons.css";
-import { supabase } from "@/clients/supabaseClient";
+import { handleApplicationProgressionBar } from "@/services/adoptionprogramService";
 
-const props = defineProps({
-  userId: {
-    type: Number,
-    required: true,
-  },
-});
+
 //Array that display until the latest phase of the application
 const events = ref([]);
 // Create an object to store all the phases of the adoption application
@@ -101,28 +96,14 @@ const currentPhase = ref([]);
 
 // Function to get the current user's ID
 onMounted(async () => {
-  const { data, error: applicationProgressionError } = await supabase
-    .from("adoption_program")
-    .select("application_progression")
-    .eq("user_id", props.userId)
-    .single();
-
-  if (applicationProgressionError) {
-    console.error("Error getting program ID", applicationProgressionError);
-    return;
-  }
-  if (data) {
-    console.log(
-      "Current phase of application progression" + data.application_progression
-    );
-  }
-  for (let i = 0; i < data.application_progression; i++) {
-    events.value.push(phaseObj[i]);
-  }
-
-  currentPhase.value = events.value[data.application_progression-1];
+  handleApplicationProgressionBar(events, phaseObj, currentPhase);
 });
+
+
+
 </script>
+
+
 
 <style>
 @media (max-width: 425px) {

@@ -113,9 +113,9 @@ const collectedData = ref([]);
 //Function to collect all the data
 const handleCollectedData = (objValue, index) => {
   collectedData.value[index] = objValue;
-  console.log(
-    "Value passed from the children to the parent: " +
-      JSON.stringify(collectedData.value[index])
-  );
+  // console.log(
+  //   "Value passed from the children to the parent: " +
+  //     JSON.stringify(collectedData.value[index])
+  // );
 };
 </script>

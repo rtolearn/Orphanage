@@ -18,7 +18,7 @@
         name="name"
         class="mt-1 p-3 w-full rounded-md border border-solid border-gray-350 bg-white text-sm text-gray-700 shadow-sm"
         placeholder="Name"
-        :rules="validateName"
+        :rules="validateName(formValues.name, progressionBarMale)"
       />
       <ErrorMessage name="name" v-slot="{ message }">
         <span class="text-red-500 text-sm">
@@ -38,7 +38,7 @@
             class="m-3 p-1 w-4/5 rounded-sm border border-solid border-gray-450 text-gray-700 sm:text-sm block"
             name="state"
             :rules="validateSelectionInput"
-            @change="updateProgression(1)"
+            @change="updateProgression(1, progressionBarMale, emit, arrTemp)"
           >
             <option value="" selected disabled>Select State</option>
             <option v-for="state in states" :key="state" :value="state">
@@ -166,7 +166,7 @@
           name="identication_card"
           type="file"
           v-model="formValues.identication_card"
-          @change="handleFileChange($event,'identication_card',6)"
+          @change="handleFileChange($event,'identication_card',6, progressionBarMale, emit, arrTemp)"
         >
         </Field>
         <ErrorMessage name="identication_card" v-slot="{ message }">
@@ -194,7 +194,7 @@
           type="file"
 
           v-model="formValues.medical_check_physically"
-          @blur="handleFileChange($event,'medical_check_physically',7)"
+          @blur="handleFileChange($event,'medical_check_physically',7, progressionBarMale, emit, arrTemp)"
         >
         </Field>
         <ErrorMessage name="medical_check_physically" v-slot="{ message }">
@@ -221,7 +221,7 @@
           type="file"
 
           v-model="formValues.medical_check_mentally"
-          @change="handleFileChange($event,'medical_check_mentally',8)"
+          @change="handleFileChange($event,'medical_check_mentally',8, progressionBarMale, emit, arrTemp)"
         >
         </Field>
         <ErrorMessage name="medical_check_mentally" v-slot="{ message }">
@@ -245,7 +245,7 @@
           name="salary_slip"
           type="file"
           v-model="formValues.salary_slip"
-          @change="handleFileChange($event,'salary_slip',9)"
+          @change="handleFileChange($event,'salary_slip',9, progressionBarMale, emit, arrTemp)"
         >
         </Field>
         <ErrorMessage name="salary_slip" v-slot="{ message }">
@@ -275,10 +275,10 @@ import { ref, defineEmits } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Message from "primevue/message";
 import Button from "primevue/button";
-import industries from "../Data&Functions/data/industries"
-import states from "../Data&Functions/data/states";
-import careerStatus from "../Data&Functions/data/careerStatus";
-
+import industries from "@/pages/Data&Functions/data/industries"
+import states from "@/pages/Data&Functions/data/states";
+import careerStatus from "@/pages/Data&Functions/data/careerStatus";
+import { handleFileChange, updateProgression, validateName } from "@/services/adoptionprogramService";
 //Industry object
 const formValues = ref({
   name: "",
@@ -301,24 +301,24 @@ let progressionBarMale = ref(0);
 //Create an array to store the index, so that we can know which index has been stored already
 const arrTemp = ref([]);
 // Create a method to update the value to the parent component ----------------------------------
-const updateProgression = (index) => {
-  console.log("Content Before push any value: " + arrTemp.value);
+// const updateProgression = (index) => {
+//   console.log("Content Before push any value: " + arrTemp.value);
 
-  if (!arrTemp.value.includes(index)) {
-    arrTemp.value.push(index);
-    console.log("Content of array" + arrTemp.value);
-    if (index === 0) {
-      progressionBarMale.value += 5;
-    } else {
-      progressionBarMale.value += 10;
-    }
+//   if (!arrTemp.value.includes(index)) {
+//     arrTemp.value.push(index);
+//     console.log("Content of array" + arrTemp.value);
+//     if (index === 0) {
+//       progressionBarMale.value += 5;
+//     } else {
+//       progressionBarMale.value += 10;
+//     }
 
-    emit("progressionBar", progressionBarMale.value, 0);
-  } else {
-    progressionBarMale.value += 0;
-    emit("progressionBar", progressionBarMale.value, 0);
-  }
-};
+//     emit("progressionBar", progressionBarMale.value, 0);
+//   } else {
+//     progressionBarMale.value += 0;
+//     emit("progressionBar", progressionBarMale.value, 0);
+//   }
+// };
 
 //Alert after submitting the form --------------------------------------------------
 const onSubmit = () => {
@@ -331,23 +331,23 @@ const onSubmit = () => {
 };
 
 //Validation Function-------------------------------------------------------------
-const validateName = (valueName) => {
-  if (valueName && valueName.trim()) {
-    if (/[^a-zA-Z\s]/.test(valueName)) {
-      if (arrTemp.value.includes(0)) {
-        arrTemp.value.shift(0);
-        progressionBarMale.value -= 10;
-        emit("progressionBar", progressionBarMale.value, 0);
-      }
-      return "Name can only contain alphabetic characters";
-    } else {
-      updateProgression(0);
-      return true;
-    }
-  } else {
-    return "This field is required";
-  }
-};
+// const validateName = (valueName) => {
+//   if (valueName && valueName.trim()) {
+//     if (/[^a-zA-Z\s]/.test(valueName)) {
+//       if (arrTemp.value.includes(0)) {
+//         arrTemp.value.shift(0);
+//         progressionBarMale.value -= 10;
+//         emit("progressionBar", progressionBarMale.value, 0);
+//       }
+//       return "Name can only contain alphabetic characters";
+//     } else {
+//       updateProgression(0);
+//       return true;
+//     }
+//   } else {
+//     return "This field is required";
+//   }
+// };
 
 const validateEmail = (valueEmail) => {
   if (valueEmail) {
@@ -395,58 +395,58 @@ const validateSelectionInput = (valueState) => {
 
 
 
-// Function to handle file changes
-const handleFileChange = (event, field, index) => {
-  updateProgression(index);
-  handleFileUpload(field, event);
-};
+// // Function to handle file changes
+// const handleFileChange = (event, field, index) => {
+//   updateProgression(index);
+//   handleFileUpload(field, event);
+// };
 
 
-import { supabase } from "@/clients/supabaseClient";
-const userId = ref("");
+// import { supabase } from "@/clients/supabaseClient";
+// const userId = ref("");
 
-// Function to get the current user's ID
-const getUserId = async () => {
-  const { data:{user}, error: getIdError} = await supabase.auth.getUser();
-    if (getIdError) {
-      throw getIdError;
-    }else{
-      userId.value = user.id
-    }
-};
-// Function to upload the file to Supabase with user-specific folder
-const handleFileUpload = async (field, event) => {
-  const file = event.target.files[0];
-  if (!file) return;
-  //Call the getUserId function
-  getUserId();
-  // Define the folder structure
-  const folderPath = `UserAdoptionInformation/${userId.value}/Male`;
-  const fileName = `${folderPath}/${field}-${Date.now()}-${file.name}`;
+// // Function to get the current user's ID
+// const getUserId = async () => {
+//   const { data:{user}, error: getIdError} = await supabase.auth.getUser();
+//     if (getIdError) {
+//       throw getIdError;
+//     }else{
+//       userId.value = user.id
+//     }
+// };
+// // Function to upload the file to Supabase with user-specific folder
+// const handleFileUpload = async (field, event) => {
+//   const file = event.target.files[0];
+//   if (!file) return;
+//   //Call the getUserId function
+//   getUserId();
+//   // Define the folder structure
+//   const folderPath = `UserAdoptionInformation/${userId.value}/Male`;
+//   const fileName = `${folderPath}/${field}-${Date.now()}-${file.name}`;
 
-  // Upload the file to Supabase storage
-  const { error } = await supabase.storage
-    .from('UserAdoptionInformation')
-    .upload(fileName, file);
+//   // Upload the file to Supabase storage
+//   const { error } = await supabase.storage
+//     .from('UserAdoptionInformation')
+//     .upload(fileName, file);
 
-  if (error) {
-    console.error('File upload failed', error);
-    return;
-  }
+//   if (error) {
+//     console.error('File upload failed', error);
+//     return;
+//   }
 
-  // Get the public URL for the uploaded file
-  const { data, error: urlError } = supabase.storage
-    .from('UserAdoptionInformation')
-    .getPublicUrl(fileName);
+//   // Get the public URL for the uploaded file
+//   const { data, error: urlError } = supabase.storage
+//     .from('UserAdoptionInformation')
+//     .getPublicUrl(fileName);
 
-  if (urlError) {
-    console.error('Failed to retrieve public URL', urlError);
-    return;
-  }
+//   if (urlError) {
+//     console.error('Failed to retrieve public URL', urlError);
+//     return;
+//   }
 
-  formValues.value[field] = data.publicUrl;
-  console.log(`${field} uploaded to:`, data.publicUrl);
-};
+//   formValues.value[field] = data.publicUrl;
+//   console.log(`${field} uploaded to:`, data.publicUrl);
+// };
 
 
 

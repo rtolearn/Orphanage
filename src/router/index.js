@@ -31,13 +31,13 @@ const routes = [
   {
     path: "/adoption",
     name: "adoption",
-    component: () => import("@/pages/AdoptionProgram/page.vue"),
+    component: () => import("@/pages/AdoptionProgram/index.vue"),
   },
   {
     path: "/adoptionProgression",
     name: "adoptionProgression",
     component: () =>
-      import("@/pages/AdoptionProgram/ApplicationProgression.vue"),
+      import("@/components/AdoptionProgram/ApplicationProgression.vue"),
   },
   {
     path: "/sponsor&donation",
