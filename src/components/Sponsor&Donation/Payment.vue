@@ -112,16 +112,18 @@
       <router-link to="/sponsor&donation">
         <Button label="Back"></Button>
       </router-link>
-    <Button type="submit" label="Confirm funding" @click="validateForm"></Button>
-
-      
+      <Button
+        type="submit"
+        label="Confirm funding"
+        @click="validateForm"
+      ></Button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref} from "vue";
-import {useRouter} from "vue-router"
+import { ref } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import * as yup from "yup";
 
 // Form state
@@ -140,11 +142,11 @@ const schema = yup.object().shape({
     .string()
     .email("Please enter a valid email")
     .required("Email is required"),
-    fund: yup
-  .number()
-  .required("Fund is required")
-  .positive("Fund must be greater than 0")
-  .min(1, "Fund must be at least 1"),
+  fund: yup
+    .number()
+    .required("Fund is required")
+    .positive("Fund must be greater than 0")
+    .min(1, "Fund must be at least 1"),
   creditCardNum: yup
     .string()
     .matches(
@@ -199,47 +201,101 @@ const validateForm = async () => {
 };
 
 import { supabase } from "@/clients/supabaseClient";
+import { useMessageStore } from "@/store/messageStore";
+const userId = useMessageStore().userId;
 const router = useRouter();
- //Get the user Id first
- const userId = ref("");
+const route = useRoute();
+const itemId = route.query.id;
+const tableName = route.query.table_name;
+
 const dataSubmissionFunction = async () => {
- 
-  try {
-    const {
-      data: { user },
-      error: getIdError,
-    } = await supabase.auth.getUser();
-    if (getIdError) {
-      throw getIdError;
-    } else {
-      userId.value = user.id;
-    }
-  } catch (error) {
-    alert(error.message);
-  }
-
   // Upload the data into the table named adoption_program
-  try {
-    const { error: insertFundData } = await supabase
-      .from("donation_fund")
-      .insert([
-        {
-          amount: fundValues.value.fund,
-          user_id: userId.value,
-        },
-      ])
-      .select();
+  if (tableName && itemId) {
+    console.log("Item id:" + itemId + "tableName: " + tableName);
+    // Upload the data into the table named adoption_program
+    try {
+      const { error: insertFundDataError } = await supabase
+        .from(`${tableName}`)
+        .insert([
+          {
+            amount: fundValues.value.fund,
+            sponsor_item_id: itemId,
+            user_id: userId,
+          },
+        ])
+        .select();
 
-    if (insertFundData) {
-      throw insertFundData;
-    }else{
-        router.push({path: './sponsor&donation'})
+      if (insertFundDataError) {
+        throw insertFundDataError;
+      } else {
+        console.log("Calling the updateEquipment function......");
+        // After uploading the data into the sponsor_records, we just to update the current value in the sponsor_items as well
+        updateEquipment();
+        router.push({ path: "./sponsor&donation" });
+      }
+    } catch (error) {
+      alert(error.message);
     }
-  } catch (error) {
-    alert(error.message);
+  } else {
+    try {
+      const { error: insertFundData } = await supabase
+        .from("donation_fund")
+        .insert([
+          {
+            amount: fundValues.value.fund,
+            user_id: userId,
+          },
+        ])
+        .select();
+
+      if (insertFundData) {
+        throw insertFundData;
+      } else {
+        alert("Thanks for your support")
+        router.push({ path: "./sponsor&donation" });
+      }
+    } catch (error) {
+      alert(error.message);
+    }
   }
 };
 
+//Function for updating the current_amount of the specific item
+const updateEquipment = async () => {
+  try {
+    const { data, error: fetchError } = await supabase
+      .from("sponsor_items")
+      .select("current_amount")
+      .eq("sponsor_item_id", itemId)
+      .single();
+
+    if (fetchError) {
+      console.error("Fetch Error:", fetchError);
+      throw fetchError;
+    }
+
+    console.log("Current Amount Fetched:", data.current_amount);
+    console.log("Fund Value:", fundValues.value.fund);
+
+    const fundValue = Number(fundValues.value.fund);
+    const newAmount = data.current_amount + fundValue;
+    console.log("New Amount to Update:", newAmount);
+
+    const { error: updateEquipmentError } = await supabase
+      .from("sponsor_items")
+      .update({ current_amount: newAmount })
+      .eq("sponsor_item_id", itemId);
+
+    if (updateEquipmentError) {
+      console.error("Update Error:", updateEquipmentError);
+      throw updateEquipmentError;
+    } else {
+      console.log("Current Amount Updated Successfully");
+    }
+  } catch (error) {
+    alert("Error: " + error.message);
+  }
+};
 //Function to reset the entire form
 const resetForm = () => {
   fundValues.value.email = "";
@@ -249,11 +305,10 @@ const resetForm = () => {
   fundValues.value.showErrors = false;
   formErrors.value = {
     email: "",
-    fund:"",
+    fund: "",
     creditCardNum: "",
     expiryDate: "",
     cvv: "",
   };
-
 };
 </script>

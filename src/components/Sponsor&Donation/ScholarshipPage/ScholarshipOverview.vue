@@ -77,9 +77,11 @@
             <div class="py-6 flex gap-2 text-sm sm:text-base">
               <button
                 label="Next"
-                 class="bg-green-500 text-white py-2 px-4 rounded"
+                class="bg-green-500 text-white py-2 px-4 rounded"
                 @click="handleClick"
-              >Next</button>
+              >
+                Next
+              </button>
             </div>
           </div>
         </div>
@@ -91,8 +93,8 @@
 <script setup>
 import ScholarshipIcon from "@/images/scholarship.png";
 
-const emit = defineEmits(['currentStep']);
-const handleClick = () =>{
-  emit('currentStep', `2`)
-}
+const emit = defineEmits(["currentStep"]);
+const handleClick = () => {
+  emit("currentStep", `2`);
+};
 </script>

@@ -24,7 +24,7 @@
         </button>
         <button
           class="bg-green-500 text-white py-2 px-4 rounded"
-          @click="handleDataSubmission"
+          @click="handleDataSubmission(props.submitData, router)"
         >
           Complete
         </button>
@@ -35,7 +35,7 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-
+import { handleDataSubmission } from "@/services/sponsor&donation";
 const router = useRouter();
 const props = defineProps({
   submitData: {
@@ -48,46 +48,5 @@ const emit = defineEmits(["currentStep"]);
 
 const handleClick = (value) => {
   emit("currentStep", value);
-};
-
-//Push the data into supabase
-import { supabase } from "@/clients/supabaseClient";
-import {ref } from 'vue'
-const userId = ref("")
-const handleDataSubmission = async () => {
-  console.log("Data before submiting to the supabase" + props.submitData);
-
-  try {
-    const { data:{user}, error: getIdError} = await supabase.auth.getUser();
-    if (getIdError) {
-      throw getIdError;
-    }else{
-      userId.value = user.id
-    }
-    const {error: insertError } = await supabase
-      .from("donation_scholarship")
-      .insert([
-        {
-          requirement: props.submitData.requirement,
-          donor_name: props.submitData.patron.name,
-          donor_email: props.submitData.patron.email,
-          amount: props.submitData.patron.fund,
-          meeting_date: props.submitData.patron.date,
-          user_id: userId.value,
-        },
-      ]);
-    if (insertError) {
-      throw insertError;
-    }
-  } catch (error) {
-    console.log(error.message);
-  }
-
-  alert(
-    `All the information are stored,
-    please wait for the updates via your email for futher discussion`
-  );
-
-  router.push("/sponsor&donation");
 };
 </script>

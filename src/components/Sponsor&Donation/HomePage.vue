@@ -48,14 +48,14 @@ const services = [
     title: "Sponsor: ",
     module: [
       {
-        subModuleName: "Equipments",
+        subModuleName: "Equipment",
         subModuleIcon: equipment,
-        subModuleLinkage: "./equipment",
+        subModuleLinkage: "./equipment&necessary",
       },
       {
-        subModuleName: "Necessaries",
+        subModuleName: "Necessary",
         subModuleIcon: necessary,
-        subModuleLinkage: "./necessary",
+        subModuleLinkage: "./equipment&necessary",
       },
     ],
   },
@@ -75,9 +75,5 @@ const services = [
       },
     ],
   },
-
 ];
-// onMounted(() => {
-//   console.log(services[0])
-// })
 </script>

@@ -1,12 +1,11 @@
 import { supabase } from "@/clients/supabaseClient";
 import { useMessageStore } from "@/store/messageStore";
-import avatarImg from "@/images/avatarPic.jpg";
 import { ref } from "vue";
 
 const userId = useMessageStore().userId;
 
 const errorMessage = ref(null);
-const src = ref(avatarImg);
+
 
 // Function for file selection
 const onFileSelect = async (event, emit, src) => { // Accept emit as an argument

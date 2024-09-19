@@ -42,24 +42,19 @@ const routes = [
   {
     path: "/sponsor&donation",
     name: "sponsor&donation",
-    component: () => import("@/pages/Sponsor&Donation/page.vue"),
+    component: () => import("@/pages/Sponsor&Donation/index.vue"),
   },
   {
-    path: "/necessary",
-    name: "useItem",
-    component: () => import("@/pages/Sponsor&Donation/NecessaryPage/page.vue"),
-  },
-
-  {
-    path: "/equipment",
-    name: "equipment",
-    component: () => import("@/pages/Sponsor&Donation/EquipmentPage/page.vue"),
+    path: "/equipment&necessary",
+    name: "equipment&necessary",
+    component: () =>
+      import("@/components/Sponsor&Donation/Equipment&NecessaryPage/page.vue"),
   },
   {
     path: "/scholarship",
     name: "scholarship",
     component: () =>
-      import("@/pages/Sponsor&Donation/ScholarshipPage/Scholarship.vue"),
+      import("@/components/Sponsor&Donation/ScholarshipPage/Scholarship.vue"),
   },
   {
     path: "/profile",
@@ -69,20 +64,7 @@ const routes = [
   {
     path: "/paymentSponsor",
     name: "paymentSponsor",
-    component: () => import("@/pages/Sponsor&Donation/Payment.vue"),
-  },
-  // Additional for convenient
-  {
-    path: "/paymentSponsorEquipment",
-    name: "paymentSponsorEquipment",
-    component: () =>
-      import("@/pages/Sponsor&Donation/EquipmentPage/Payment.vue"),
-  },
-  {
-    path: "/paymentSponsorNecessary",
-    name: "paymentSponsorNecessary",
-    component: () =>
-      import("@/pages/Sponsor&Donation/NecessaryPage/Payment.vue"),
+    component: () => import("@/components/Sponsor&Donation/Payment.vue"),
   },
 ];
 const router = createRouter({

@@ -16,7 +16,7 @@
       <div class="text-[1.1rem]">
         <!-- Loop through all the module -->
         <div v-for="(item, index) in props.services.module" :key="index">
-          <router-link :to="item.subModuleLinkage">
+          <router-link :to="{path: item.subModuleLinkage, query: {type: item.subModuleName.toLowerCase()}}">
             <div
               class="flex justify-left items-center border solid black hover:bg-gray-300 my-1 hover:scale-105"
             >

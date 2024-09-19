@@ -50,7 +50,9 @@
               {{ amount }}
             </option>
           </select>
-          <span v-if="errors.fund" class="text-red-500 text-sm">{{ errors.fund }}</span>
+          <span v-if="errors.fund" class="text-red-500 text-sm">{{
+            errors.fund
+          }}</span>
         </div>
 
         <!-- Date Picker for meeting (interview) -->
@@ -64,7 +66,9 @@
             class="mt-1 p-3 rounded-md border border-solid border-gray-350 bg-white text-sm text-gray-700 shadow-sm"
             required
           />
-          <span v-if="errors.date" class="text-red-500 text-sm">{{ errors.date }}</span>
+          <span v-if="errors.date" class="text-red-500 text-sm">{{
+            errors.date
+          }}</span>
         </div>
 
         <div class="p-6 flex gap-2 text-sm sm:text-base">
@@ -102,7 +106,13 @@ const data = ref({
 });
 
 // Array of affordable fund options
-const fundOptions = ["<RM10000", "<RM20000", "<RM30000", "<RM40000", "<RM50000"]; 
+const fundOptions = [
+  "<RM10000",
+  "<RM20000",
+  "<RM30000",
+  "<RM40000",
+  "<RM50000",
+];
 // Get today's date for date picker (min date)
 const today = new Date();
 const minDate = today.toISOString().split("T")[0]; // Format date as YYYY-MM-DD
@@ -118,10 +128,8 @@ const schema = Yup.object().shape({
   email: Yup.string()
     .email("Please enter a valid email address")
     .required("This field is required"),
-  fund: Yup.string()
-    .required("Please select a fund."),
-  date: Yup.string()
-    .required("This field is required"),
+  fund: Yup.string().required("Please select a fund."),
+  date: Yup.string().required("This field is required"),
 });
 
 // Validate and handle form submission
