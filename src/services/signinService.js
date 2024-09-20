@@ -4,9 +4,10 @@ import { ref } from "vue";
 
 const messageStore = useMessageStore();
 const message = ref(messageStore.statusLogIn);
-// const userId = ref(messageStore.userId)
+const userId = ref(messageStore.userId)
 
 const updateMessage = () => {
+  console.log("userId: " + userId.value)
   messageStore.setStatus(!message.value);
 };
 
@@ -27,14 +28,15 @@ const handleSignIn = async (signInIndividual, router) => {
 
     if (data) {
       alert("Login successful");
-      // Check if data.user exists before accessing user ID
-    //   if (data.user) {
-    //     // const userId = data.user.id; // Extract the user ID from the response
-    //     // console.log("User ID being saved:", userId); // Log the user ID
-    //     messageStore.setUserId(userId); // Save the user ID in the store
-    //   } else {
-    //     console.error("User object not found in the response:", data);
-    //   }
+ 
+      if (data.user) {
+        messageStore.setUserId(data.user.id); // Save the user ID in the store
+        if(error){
+          console.log(error.message)
+        }
+      } else {
+        console.error("User object not found in the response:", data);
+      }
 
       // Call the function to update the global user login status
       updateMessage();

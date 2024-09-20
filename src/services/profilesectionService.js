@@ -85,6 +85,7 @@ const updateData = async (validationSchema, updatedValue, imageURL, visible,emit
       // Validate the updatedValue
       await validationSchema.validate(updatedValue, { abortEarly: false });
       console.log("imge Url pass into the button component: " + imageURL);
+      console.log("User id: " +  userId)
       // Update user's data
       if(imageURL){
         const { error } = await supabase
@@ -113,7 +114,7 @@ const updateData = async (validationSchema, updatedValue, imageURL, visible,emit
           state: updatedValue.state,
           address: updatedValue.address,
         })
-        .eq("user_id", userId.value);
+        .eq("user_id", userId);
   
       if (error) {
         throw error;
