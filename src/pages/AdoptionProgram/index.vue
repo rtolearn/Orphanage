@@ -4,14 +4,16 @@ import NavBar from "@/pages/HomePage/NavBar.vue";
 import HomePage from "../../components/AdoptionProgram/HomePage.vue";
 import Introduction from "../../components/AdoptionProgram/Introduction.vue";
 import ApplicationProgression from "../../components/AdoptionProgram/ApplicationProgression.vue";
-import { ref, onMounted } from "vue";
-import { handleProgramStatus } from "../../services/adoptionprogramService";
+// import { ref } from "vue";
+import {useRoute} from "vue-router"
 
-const applicationStatus = ref(false);
-// Function to get the current user's ID
-onMounted( () => {
-  handleProgramStatus(applicationStatus);
-});
+
+
+// const applicationStatus = ref(false);
+const route = useRoute();
+const applicationStatus = route.query.programStatus;
+
+
 </script>
 
 <template>

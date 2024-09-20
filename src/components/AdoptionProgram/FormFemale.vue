@@ -3,7 +3,7 @@
   <Form
     action="#"
     class="mt-8 p-8 grid grid-cols-6 gap-6 border-2 border-solid border-black rounded-md"
-    @submit.prevent="onSubmit"
+    @submit="onSubmit"
   >
     <h1 class="col-span-6 text-center m-2.5 text-lg sm:text-xl">
       Personal Information
@@ -113,7 +113,7 @@
       </ErrorMessage>
     </div>
     <!-- No validation for this part -->
-    <div class="col-span-6" v-if="formValues.career_status  == 'others'">
+    <div class="col-span-6" v-if="formValues.career_status == 'others'">
       <Field
         v-model="formValues.career_status_other"
         type="text"
@@ -165,9 +165,8 @@
         <Field
           name="identication_card"
           type="file"
-  
           v-model="formValues.identication_card"
-          @change="handleFileChange($event,'identication_card',6)"
+          @change="handleFileChange($event, 'identication_card', 6)"
         >
         </Field>
         <ErrorMessage name="identication_card" v-slot="{ message }">
@@ -193,9 +192,8 @@
         <Field
           name="medical_check_physically"
           type="file"
-
           v-model="formValues.medical_check_physically"
-          @blur="handleFileChange($event,'medical_check_physically',7)"
+          @blur="handleFileChange($event, 'medical_check_physically', 7)"
         >
         </Field>
         <ErrorMessage name="medical_check_physically" v-slot="{ message }">
@@ -220,9 +218,8 @@
         <Field
           name="medical_check_mentally"
           type="file"
-
           v-model="formValues.medical_check_mentally"
-          @change="handleFileChange($event,'medical_check_mentally',8)"
+          @change="handleFileChange($event, 'medical_check_mentally', 8)"
         >
         </Field>
         <ErrorMessage name="medical_check_mentally" v-slot="{ message }">
@@ -246,7 +243,7 @@
           name="salary_slip"
           type="file"
           v-model="formValues.salary_slip"
-          @change="handleFileChange($event,'salary_slip',9)"
+          @change="handleFileChange($event, 'salary_slip', 9)"
         >
         </Field>
         <ErrorMessage name="salary_slip" v-slot="{ message }">
@@ -274,9 +271,10 @@
 <script setup>
 import { ref, defineEmits } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
+import { useMessageStore } from "@/store/messageStore";
 import Message from "primevue/message";
 import Button from "primevue/button";
-import industries from "@/pages/Data&Functions/data/industries"
+import industries from "@/pages/Data&Functions/data/industries";
 import states from "@/pages/Data&Functions/data/states";
 import careerStatus from "@/pages/Data&Functions/data/careerStatus";
 
@@ -325,8 +323,8 @@ const updateProgression = (index) => {
 const onSubmit = () => {
   progressionBarFemale.value += 5;
   emit("progressionBar", progressionBarFemale.value, 1);
-  console.log("Form that emit to the parent: " + formValues.value)
-  emit("collectData", formValues.value, 1)
+  console.log("Form that emit to the parent: " + formValues.value);
+  emit("collectData", formValues.value, 1);
   console.log(formValues.value);
   alert("Data stored");
 };
@@ -395,63 +393,48 @@ const validateSelectionInput = (valueState) => {
 };
 
 // Function to handle file changes
-const handleFileChange = (event, field, index) => {
+const handleFileChange = (event, field, index, formValues) => {
   updateProgression(index);
-  handleFileUpload(field, event);
+  handleFileUpload(field, event, formValues);
 };
 
 import { supabase } from "@/clients/supabaseClient";
-const userId = ref("");
-
-// Function to get the current user's ID
-const getUserId = async () => {
-  const { data:{user}, error: getIdError} = await supabase.auth.getUser();
-    if (getIdError) {
-      throw getIdError;
-    }else{
-      userId.value = user.id
-    }
-};
+const userId = useMessageStore().userId
 // Function to upload the file to Supabase with user-specific folder
 const handleFileUpload = async (field, event) => {
   const file = event.target.files[0];
   if (!file) return;
-  //Call the getUserId function
-  getUserId();
+
   // Define the folder structure
-  const folderPath = `UserAdoptionInformation/${userId.value}/Female`;
+  const folderPath = `UserAdoptionInformation/${userId}/Female`;
   const fileName = `${folderPath}/${field}-${Date.now()}-${file.name}`;
 
   // Upload the file to Supabase storage
   const { error } = await supabase.storage
-    .from('UserAdoptionInformation')
+    .from("UserAdoptionInformation")
     .upload(fileName, file);
 
   if (error) {
-    console.error('File upload failed', error);
+    console.error("File upload failed", error);
     return;
   }
 
   // Get the public URL for the uploaded file
   const { data, error: urlError } = supabase.storage
-    .from('UserAdoptionInformation')
+    .from("UserAdoptionInformation")
     .getPublicUrl(fileName);
 
   if (urlError) {
-    console.error('Failed to retrieve public URL', urlError);
+    console.error("Failed to retrieve public URL", urlError);
     return;
   }
 
   formValues.value[field] = data.publicUrl;
   console.log(`${field} uploaded to:`, data.publicUrl);
 };
-
-
-
 </script>
 
 <style scoped>
-
 input[type="file"]::file-selector-button {
   background-color: #357560;
   color: white;
@@ -461,5 +444,4 @@ input[type="file"]::file-selector-button {
   cursor: pointer;
   font-weight: 500;
 }
-
 </style>

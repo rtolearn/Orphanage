@@ -1,7 +1,4 @@
 <template>
-
-
-
   <h1 class="text-2xl font-bold mt-10">Fill in the form:</h1>
   <div class="flex flex-col min-h-screen">
     <!-- Accordion Section -->

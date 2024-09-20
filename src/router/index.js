@@ -23,22 +23,17 @@ const routes = [
     name: "market",
     component: () => import("@/pages/Marketplace/index.vue"),
   },
-  // {
-  // 	path: "/purchase",
-  // 	name: "purchase",
-  // 	component: () => import("@/pages/MarketPlace/PurchasePage.vue"),
-  // },
   {
     path: "/adoption",
     name: "adoption",
     component: () => import("@/pages/AdoptionProgram/index.vue"),
   },
-  {
-    path: "/adoptionProgression",
-    name: "adoptionProgression",
-    component: () =>
-      import("@/components/AdoptionProgram/ApplicationProgression.vue"),
-  },
+  // {
+  //   path: "/adoptionProgression",
+  //   name: "adoptionProgression",
+  //   component: () =>
+  //     import("@/components/AdoptionProgram/ApplicationProgression.vue"),
+  // },
   {
     path: "/sponsor&donation",
     name: "sponsor&donation",

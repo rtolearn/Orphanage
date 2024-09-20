@@ -48,7 +48,7 @@
 import { ref, onMounted } from "vue";
 import Timeline from "primevue/timeline";
 import "primeicons/primeicons.css";
-import { handleApplicationProgressionBar } from "@/services/adoptionprogramService";
+import { handleApplicationProgression } from "../../services/adoptionprogramServices";
 
 
 //Array that display until the latest phase of the application
@@ -96,7 +96,7 @@ const currentPhase = ref([]);
 
 // Function to get the current user's ID
 onMounted(async () => {
-  handleApplicationProgressionBar(events, phaseObj, currentPhase);
+  handleApplicationProgression(events, phaseObj, currentPhase);
 });
 
 

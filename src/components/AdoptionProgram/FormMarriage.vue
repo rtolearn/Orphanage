@@ -87,32 +87,23 @@ const validateFile = (valueFile) => {
 };
 
 import { supabase } from "@/clients/supabaseClient";
-const userId = ref("");
+import { useMessageStore} from "@/store/messageStore";
+const userId = useMessageStore().userId
+ 
+
 
 const handleFileChange = (event) => {
   updateProgression(0);
   handleFileUpload(event);
 }
 
-const getUserId = async () =>{
-  try{
-    const {data: {user}, error} = await supabase.auth.getUser()
-    if(error){
-      throw error;      
-    }
-    userId.value = user.id; 
-  }catch(error){
-    alert(error.message)
-  }
-}
 // Function to upload the file to Supabase with user-specific folder
 const handleFileUpload = async (event) => {
   const file = event.target.files[0];
   if (!file) return;
-  //Call the getUserId function
-  getUserId();
+
   // Define the folder structure
-  const folderPath = `UserAdoptionInformation/${userId.value}/Marriage`;
+  const folderPath = `UserAdoptionInformation/${userId}/Marriage`;
   const fileName = `${folderPath}/Marriage-${Date.now()}-${file.name}`;
 
   // Upload the file to Supabase storage
