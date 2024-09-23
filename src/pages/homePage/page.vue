@@ -3,15 +3,15 @@
 <script setup>
 // import NavigationBar from "./NavigationBar.vue";
 // import NavBar from "./NavBar.vue";
-import NavBar from "@/pages/HomePage/NavBar.vue"
+import NavBar from "./NavBar.vue"
 
-import Introduction from "@/pages/HomePage/IntroductionSection.vue";
-import AboutUs from "@/pages/HomePage/AboutUs.vue";
-import VisionAndMission from "@/pages/HomePage/VisionAndMission.vue";
-import SponsorAndDonation from "@/pages/HomePage/Sponsor&Donation.vue";
-import MarketPlace from "@/pages/HomePage/MarketPlace.vue";
-import AdoptionProgram from "@/pages/HomePage/AdoptionProgram.vue";
-import FooterSection from "@/pages/HomePage/FooterSection.vue";
+import Introduction from "./IntroductionSection.vue";
+import AboutUs from "./AboutUs.vue";
+import VisionAndMission from "./VisionAndMission.vue";
+import SponsorAndDonation from "./Sponsor&Donation.vue";
+import MarketPlace from "./MarketPlace.vue";
+import AdoptionProgram from "./AdoptionProgram.vue";
+import FooterSection from "./FooterSection.vue";
 </script>
 
 <template>
