@@ -6,17 +6,17 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: () => import("../pages/HomePage/page.vue"),
+    component: () => import("@/pages/HomePage/page.vue"),
   },
   {
     path: "/sign-in",
     name: "sign-in",
-    component: () => import("../pages/SignIn/index.vue"),
+    component: () => import("@/pages/SignIn/index.vue"),
   },
   {
     path: "/sign-up",
     name: "sign-up",
-    component: () => import("../pages/SignUp/index.vue"),
+    component: () => import("@/pages/SignUp/index.vue"),
   },
   {
     path: "/marketplace",
@@ -28,12 +28,6 @@ const routes = [
     name: "adoption",
     component: () => import("@/pages/AdoptionProgram/index.vue"),
   },
-  // {
-  //   path: "/adoptionProgression",
-  //   name: "adoptionProgression",
-  //   component: () =>
-  //     import("@/components/AdoptionProgram/ApplicationProgression.vue"),
-  // },
   {
     path: "/sponsor&donation",
     name: "sponsor&donation",
