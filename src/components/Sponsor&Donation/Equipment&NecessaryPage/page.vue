@@ -5,17 +5,16 @@ import DisplayItem from "./DisplayItem.vue";
 import Title from "./Title.vue";
 import CheckList from "./CheckList.vue";
 import { ref, onMounted } from "vue";
-import {useRoute} from "vue-router"
-import {displayItem} from "../../../services/sponsor&donation"
+import { useRoute } from "vue-router";
+import { displayItem } from "../../../services/sponsor&donation";
 const route = useRoute();
-const typeOfItem = route.query.type
+const typeOfItem = route.query.type;
 const dataItem = ref([]);
 
 onMounted(() => {
-    console.log("type of item passed fromm parent" + typeOfItem)
+  console.log("type of item passed fromm parent" + typeOfItem);
   displayItem(dataItem, typeOfItem);
 });
-
 </script>
 
 <template>
