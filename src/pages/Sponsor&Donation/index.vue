@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import HomePage from '@/components/Sponsor&Donation/HomePage.vue'
-import NavBar from "@/pages/HomePage/NavBar.vue"
+import NavBar from "../HomePage/NavBar.vue"
 
 </script> 
 
