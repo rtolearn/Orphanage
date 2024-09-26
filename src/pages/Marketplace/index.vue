@@ -25,7 +25,8 @@ import {
 	fetchMarketplaceItems,
 	fetchCartItems,
 } from "@/services/marketplaceService.js";
-import NavBar from "@/pages/HomePage/NavBar.vue";
+import NavBar from "../HomePage/NavBar.vue";
+
 import SearchBar from "@/components/Marketplace/SearchBar.vue";
 import MarketplaceItemCard from "@/components/Marketplace/MarketplaceItemCard.vue";
 

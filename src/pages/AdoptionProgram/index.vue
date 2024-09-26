@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import NavBar from "@/pages/HomePage/NavBar.vue";
+import NavBar from "../HomePage/NavBar.vue";
 import HomePage from "../../components/AdoptionProgram/HomePage.vue";
 import Introduction from "../../components/AdoptionProgram/Introduction.vue";
 import ApplicationProgression from "../../components/AdoptionProgram/ApplicationProgression.vue";
