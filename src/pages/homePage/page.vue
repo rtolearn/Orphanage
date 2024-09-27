@@ -21,7 +21,6 @@ import FooterSection from "./FooterSection.vue";
     <Introduction />
     <AboutUs />
     <VisionAndMission />
-    <!--<contentOrphanage />-->
     <SponsorAndDonation />
     <MarketPlace />
     <AdoptionProgram />
