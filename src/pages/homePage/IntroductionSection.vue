@@ -1,6 +1,4 @@
 <template>
-
-    
   <div class="hero_section_background" id="home">
     <div class="relative z-10 w-4/5 h-auto py-[1rem] m-auto block">
       <img
@@ -9,8 +7,6 @@
         alt=""
       />
       <figure class="mt-1 sm:mt-5 text-center">
-        
-        
         <h5
           class="text-[0.65rem] sm:text-lg text-gray-400 leading-8 sm:leading-10 font-semibold font-['Poppins'] w-full h-auto sm:mb-[1rem]"
         >
@@ -29,11 +25,13 @@
           who need it most. Join us in making a lasting difference, one donation
           at a time"
         </p>
-        <button
-          class="text-md border solid green rounded-[5px] w-3/5 h-auto bg-green-700 text-white my-[0.25rem] md:my-[1rem] lg:my-[3rem] font-['Poppins']"
-        >
-          Donate Now
-        </button>
+        <router-link to="/sponsor&donation">
+          <button
+            class="text-md border solid green rounded-[5px] w-3/5 h-auto bg-green-700 text-white my-[0.25rem] md:my-[1rem] lg:my-[3rem] font-['Poppins']"
+          >
+            Donate Now
+          </button>
+        </router-link>
       </figure>
     </div>
   </div>
@@ -73,6 +71,7 @@ import twitter from "@/images/twitter.svg";
 import bmw from "@/images/bmw.svg";
 import facebook from "@/images/facebook.svg";
 import mcdonald from "@/images/mcdonald.svg";
+// import { router } from "json-server";
 
 const data = [
   { img: googleIcon },

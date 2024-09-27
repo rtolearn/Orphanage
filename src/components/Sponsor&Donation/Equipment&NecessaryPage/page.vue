@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import NavBar from "@/pages/HomePage/NavBar.vue";
+import NavBar from "@/pages/HomePagetesting/NavBar.vue";
 import DisplayItem from "./DisplayItem.vue";
 import Title from "./Title.vue";
 import CheckList from "./CheckList.vue";

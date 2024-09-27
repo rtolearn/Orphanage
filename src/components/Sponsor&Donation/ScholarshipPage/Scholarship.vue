@@ -36,7 +36,7 @@ import Overview from "./ScholarshipOverview.vue";
 import Requirement from "./ScholarshipRequirement.vue";
 import MeetingInformation from "./ScholarshipMeeting.vue";
 import Gratitude from "./ScholarshipGratitude.vue";
-import NavBar from "@/pages/HomePage/NavBar.vue";
+import NavBar from "@/pages/HomePagetesting/NavBar.vue";
 import Title from "./ScholarshipTitle.vue";
 // Define activateCallback if needed
 const activateCallback = () => {

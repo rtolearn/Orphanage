@@ -5,15 +5,11 @@ import HomePage from "../../components/AdoptionProgram/HomePage.vue";
 import Introduction from "../../components/AdoptionProgram/Introduction.vue";
 import ApplicationProgression from "../../components/AdoptionProgram/ApplicationProgression.vue";
 // import { ref } from "vue";
-import {useRoute} from "vue-router"
-
-
+import { useRoute } from "vue-router";
 
 // const applicationStatus = ref(false);
 const route = useRoute();
 const applicationStatus = route.query.programStatus;
-
-
 </script>
 
 <template>
@@ -21,7 +17,7 @@ const applicationStatus = route.query.programStatus;
     <NavBar />
     <Introduction />
     <div v-if="applicationStatus">
-      <ApplicationProgression/>
+      <ApplicationProgression />
     </div>
 
     <div v-else>
